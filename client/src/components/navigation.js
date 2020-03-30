@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 
-const footer = memo(() => {
+const navigation = memo(() => {
     return (
         <div>
             
@@ -8,4 +8,4 @@ const footer = memo(() => {
     );
 });
 
-export default footer;
+export default navigation;
