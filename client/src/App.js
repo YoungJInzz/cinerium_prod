@@ -1,14 +1,13 @@
-import React from "react";
-import Nav from "./components/navigation";
+import React, { Component } from "react";
+// import Navigation from "./components/navigation";
+import BookingPage from "./pages/bookingpage";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <>
-        <Nav />
-      </>
+    <div>
+      <BookingPage />
     </div>
   );
-}
+};
 
 export default App;
