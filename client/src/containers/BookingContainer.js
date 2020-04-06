@@ -14,7 +14,7 @@ const BookingConatainer = ({
   screeninfo,
   selectMovie,
   selectTheater,
-  selectScreen
+  selectScreen,
 }) => {
   return (
     <Booking
@@ -42,11 +42,11 @@ export default connect(
     regiontheater: booking.regiontheater,
     movielist: booking.movielist,
     theaterlist: booking.theaterlist,
-    screenlnfo: booking.screenlist
+    screeninfo: booking.screeninfo,
   }),
   {
     selectMovie,
     selectTheater,
-    selectScreen
+    selectScreen,
   }
 )(BookingConatainer);

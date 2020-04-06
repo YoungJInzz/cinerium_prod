@@ -5,10 +5,10 @@ const SELECT_THEATER = "booking/SELECT_THEATER";
 const SELECT_SCREEN = "booking/SELECT_TIME";
 const SELECT_REGION = "booking/SELECT_REGION";
 
-export const selectMovie = createAction(SELECT_MOVIE, input => input);
-export const selectTheater = createAction(SELECT_THEATER, input => input);
-export const selectScreen = createAction(SELECT_THEATER, input => input);
-export const selectRegion = createAction(SELECT_REGION, input => input);
+export const selectMovie = createAction(SELECT_MOVIE, (input) => input);
+export const selectTheater = createAction(SELECT_THEATER, (input) => input);
+export const selectScreen = createAction(SELECT_THEATER, (input) => input);
+export const selectRegion = createAction(SELECT_REGION, (input) => input);
 
 const initialState = {
   movie: "주디",
@@ -32,7 +32,7 @@ const initialState = {
     "은평",
     "홍대",
     "강서",
-    "이태원"
+    "이태원",
   ],
   movielist: [
     { title: "엽문", age: 12 },
@@ -52,7 +52,7 @@ const initialState = {
     { title: "광복절", age: 12 },
     { title: "본얼티메이텀2", age: 12 },
     { title: "0073", age: 19 },
-    { title: "백두산2", age: 15 }
+    { title: "백두산2", age: 15 },
   ],
   theaterlist: [
     {
@@ -72,44 +72,65 @@ const initialState = {
         "송파",
         "신촌",
         "은평",
-        "홍대"
-      ]
+        "홍대",
+      ],
     },
     {
       region: "경기",
-      theaterlist: ["경기광주", "광교", "광교상현", "구리", "김포"]
+      theaterlist: ["경기광주", "광교", "광교상현", "구리", "김포"],
     },
     {
       region: "인천",
-      theaterlist: ["계양", "남주안", "부평", "인천"]
+      theaterlist: ["계양", "남주안", "부평", "인천"],
     },
     {
       region: "강원",
-      theaterlist: ["걍릉", "춘천", "춘천명동"]
+      theaterlist: ["걍릉", "춘천", "춘천명동"],
     },
     {
       region: "대전",
-      theaterlist: ["당진", "대전", "서산", "천안"]
-    }
+      theaterlist: ["당진", "대전", "서산", "천안"],
+    },
   ],
-  screenlist: [
-    { screen: "1관", time: "16:15" },
-    { screen: "2관", time: "13:15" },
-    { screen: "2관", time: "18:15" }
-  ]
+  screeninfo: [
+    {
+      screen: "1관",
+      layer: "5층",
+      time: "16:15",
+      dimension: "2D",
+      totalSeat: 170,
+      emptySeat: 50,
+    },
+    {
+      screen: "2관",
+      layer: "5층",
+      time: "13:15",
+      dimension: "2D",
+      totalSeat: 180,
+      emptySeat: 60,
+    },
+    {
+      screen: "2관",
+      layer: "5층",
+      time: "18:15",
+      dimension: "2D",
+      totalSeat: 150,
+      emptySeat: 70,
+    },
+  ],
 };
 const booking = handleActions(
   {
     [SELECT_MOVIE]: (state, action) => ({ ...state, movie: action.payload }),
     [SELECT_THEATER]: (state, action) => ({
       ...state,
-      theater: action.payload
+      theater: action.payload,
     }),
     [SELECT_SCREEN]: (state, action) => ({ ...state, screen: action.payload }),
     [SELECT_REGION]: (state, action) => ({
       ...state,
-      regiontheater: action.payload
-    })
+      regiontheater: action.payload,
+    }),
   },
   initialState
 );

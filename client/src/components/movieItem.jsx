@@ -1,9 +1,12 @@
 import React from "react";
 
-const MovieItem = ({ movie }) => {
+const MovieItem = ({ movie, selectMovie }) => {
+  const Doit = () => {
+    console.log("abc");
+  };
   return (
     <div>
-      <div className="movieItem">
+      <div className="movieItem" onClick={() => selectMovie(movie.title)}>
         <span
           className={
             "age " +
@@ -12,7 +15,7 @@ const MovieItem = ({ movie }) => {
         >
           {movie.age}
         </span>
-        <span>{movie.title}</span>
+        <span className="title">{movie.title}</span>
       </div>
     </div>
   );
