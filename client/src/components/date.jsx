@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
 
-const DateItem = ({ item }) => {
+const DateItem = ({ item, date, selectDate }) => {
   return (
-    <div className="dateItem">
+    <div
+      className={"dateItem" + (item.fullDate === date ? " selected" : "")}
+      onClick={() => selectDate(item.fullDate)}
+    >
       <span
         className={
           "day " + (item.day === "일" ? "sun" : item.day === "토" ? "sat" : "")
@@ -15,7 +18,7 @@ const DateItem = ({ item }) => {
   );
 };
 
-const Dates = () => {
+const Dates = ({ date, selectDate }) => {
   const [year, setYear] = useState();
   const [month, setMonth] = useState();
   const [dates, setDates] = useState([]);
@@ -33,9 +36,10 @@ const Dates = () => {
     for (let i = 0; i < 20; i++) {
       let d = new Date();
       d.setDate(d.getDate() - i);
+      let fullDate = d;
       let date = d.getDate();
       let day = weekday[d.getDay()];
-      arr.push({ day, date });
+      arr.push({ day, date, fullDate });
     }
     // console.log(arr);
     return arr;
@@ -53,7 +57,10 @@ const Dates = () => {
         <div className="year">{year}</div>
         <div className="month">{month}</div>
         <div className="dates">
-          {dates && dates.map((item) => <DateItem item={item} />)}
+          {dates &&
+            dates.map((item) => (
+              <DateItem item={item} date={date} selectDate={selectDate} />
+            ))}
         </div>
       </div>
     </>

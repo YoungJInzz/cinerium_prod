@@ -23,7 +23,9 @@ const TheatherSection = ({
         <div className="regionList">
           {regionList.map((item) => (
             <div
-              className={"regionItem " + (item === region ? " selected" : "")}
+              className={
+                "regionItem " + (item === region ? " regionSelected" : "")
+              }
               onClick={() => selectRegion(item)}
             >
               {item}

@@ -17,6 +17,7 @@ const BookingConatainer = ({
   regiontheater,
   movielist,
   theaterlist,
+  date,
   screeninfo,
   selectMovie,
   selectRegion,
@@ -33,6 +34,7 @@ const BookingConatainer = ({
       regiontheater={regiontheater}
       movielist={movielist}
       theaterlist={theaterlist}
+      date={date}
       screeninfo={screeninfo}
       selectMovie={selectMovie}
       selectRegion={selectRegion}

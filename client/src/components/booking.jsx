@@ -13,6 +13,7 @@ const Booking = ({
   regiontheater,
   movielist,
   theaterlist,
+  date,
   screeninfo,
   selectMovie,
   selectRegion,
@@ -40,7 +41,7 @@ const Booking = ({
             regiontheater={regiontheater}
             selectTheater={selectTheater}
           />
-          <Dates />
+          <Dates date={date} selectDate={selectDate} />
           <TimeSection screeninfo={screeninfo} />
         </div>
         <BookInfo movie={movie} theater={theater} />
