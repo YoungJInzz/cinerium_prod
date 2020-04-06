@@ -1,24 +1,29 @@
 import React from "react";
 
-const MovieItem = ({ movie, selectMovie }) => {
+const Movieitems = ({ movie, items, selectMovie }) => {
   const Doit = () => {
-    console.log("abc");
+    console.log(items);
   };
   return (
     <div>
-      <div className="movieItem" onClick={() => selectMovie(movie.title)}>
+      <div
+        className={
+          "movieItem" + (items.title === movie ? " regionSelected" : "")
+        }
+        onClick={() => selectMovie(items.title)}
+      >
         <span
           className={
             "age " +
-            (movie.age === 12 ? "twe" : movie.age === 15 ? "fif" : "nin")
+            (items.age === 12 ? "twe" : items.age === 15 ? "fif" : "nin")
           }
         >
-          {movie.age}
+          {items.age}
         </span>
-        <span className="title">{movie.title}</span>
+        <span className="title">{items.title}</span>
       </div>
     </div>
   );
 };
 
-export default MovieItem;
+export default Movieitems;

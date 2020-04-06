@@ -1,6 +1,12 @@
 import React from "react";
 import { connect } from "react-redux";
-import { selectMovie, selectTheater, selectScreen } from "../modules/booking";
+import {
+  selectMovie,
+  selectRegion,
+  selectTheater,
+  selectDate,
+  selectScreen,
+} from "../modules/booking";
 import Booking from "../components/booking";
 
 const BookingConatainer = ({
@@ -13,8 +19,10 @@ const BookingConatainer = ({
   theaterlist,
   screeninfo,
   selectMovie,
+  selectRegion,
   selectTheater,
   selectScreen,
+  selectDate,
 }) => {
   return (
     <Booking
@@ -27,6 +35,8 @@ const BookingConatainer = ({
       theaterlist={theaterlist}
       screeninfo={screeninfo}
       selectMovie={selectMovie}
+      selectRegion={selectRegion}
+      selectDate={selectDate}
       selectTheater={selectTheater}
       selectScreen={selectScreen}
     />
@@ -39,6 +49,7 @@ export default connect(
     theater: booking.theater,
     screen: booking.screen,
     region: booking.region,
+    date: booking.date,
     regiontheater: booking.regiontheater,
     movielist: booking.movielist,
     theaterlist: booking.theaterlist,
@@ -46,7 +57,9 @@ export default connect(
   }),
   {
     selectMovie,
+    selectRegion,
     selectTheater,
+    selectDate,
     selectScreen,
   }
 )(BookingConatainer);

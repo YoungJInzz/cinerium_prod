@@ -2,10 +2,15 @@ import React from "react";
 
 const TheatherSection = ({
   region,
+  theater,
   theaterlist,
   regiontheater,
+  selectRegion,
   selectTheater,
 }) => {
+  const show = () => {
+    console.log(theater);
+  };
   const regionList = theaterlist.map((item) => item.region);
   return (
     <div className="theater-section">
@@ -18,7 +23,8 @@ const TheatherSection = ({
         <div className="regionList">
           {regionList.map((item) => (
             <div
-              className={"regionItem " + (item === region ? "on" : "")} //not working
+              className={"regionItem " + (item === region ? " selected" : "")}
+              onClick={() => selectRegion(item)}
             >
               {item}
             </div>
@@ -26,7 +32,10 @@ const TheatherSection = ({
         </div>
         <div className="regiontheater">
           {regiontheater.map((item) => (
-            <div className={"theaterItem"} onClick={() => selectTheater(item)}>
+            <div
+              className={"theaterItem" + (item === theater ? " selected" : "")}
+              onClick={() => selectTheater(item)}
+            >
               {item}
             </div>
           ))}

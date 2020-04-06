@@ -1,6 +1,15 @@
 body {
   font-family: Consolas, monospace;
 }
+.selected {
+  background-color: #666;
+  color: whitesmoke;
+}
+.regionSelected {
+  background-color: #abb2b9;
+  color: whitesmoke;
+}
+
 .booking-container {
   position: relative;
   margin: 0 auto;

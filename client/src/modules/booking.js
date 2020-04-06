@@ -1,20 +1,23 @@
 import { createAction, handleActions } from "redux-actions";
 
 const SELECT_MOVIE = "booking/SELECT_MOIVE";
-const SELECT_THEATER = "booking/SELECT_THEATER";
-const SELECT_SCREEN = "booking/SELECT_TIME";
 const SELECT_REGION = "booking/SELECT_REGION";
+const SELECT_THEATER = "booking/SELECT_THEATER";
+const SELECT_DATE = "booking/SELECT_DATE";
+const SELECT_SCREEN = "booking/SELECT_TIME";
 
 export const selectMovie = createAction(SELECT_MOVIE, (input) => input);
-export const selectTheater = createAction(SELECT_THEATER, (input) => input);
-export const selectScreen = createAction(SELECT_THEATER, (input) => input);
 export const selectRegion = createAction(SELECT_REGION, (input) => input);
+export const selectTheater = createAction(SELECT_THEATER, (input) => input);
+export const selectDate = createAction(SELECT_DATE, (input) => input);
+export const selectScreen = createAction(SELECT_THEATER, (input) => input);
 
 const initialState = {
-  movie: "주디",
-  theater: "강남",
-  screen: "1관",
+  movie: "",
+  theater: "",
+  screen: "",
   region: "서울",
+  date: "",
   regiontheater: [
     "강남",
     "강변",
@@ -122,15 +125,13 @@ const initialState = {
 const booking = handleActions(
   {
     [SELECT_MOVIE]: (state, action) => ({ ...state, movie: action.payload }),
+    [SELECT_REGION]: (state, action) => ({ ...state, region: action.payload }),
     [SELECT_THEATER]: (state, action) => ({
       ...state,
       theater: action.payload,
     }),
     [SELECT_SCREEN]: (state, action) => ({ ...state, screen: action.payload }),
-    [SELECT_REGION]: (state, action) => ({
-      ...state,
-      regiontheater: action.payload,
-    }),
+    [SELECT_DATE]: (state, action) => ({ ...state, date: action.payload }),
   },
   initialState
 );
