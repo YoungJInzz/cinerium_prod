@@ -1,17 +1,22 @@
 import React, { useState, useEffect } from "react";
 
-const DateItem = ({ item, date, selectDate }) => {
+const DateItem = ({ year, month, item, date, selectDate, numToDay }) => {
   return (
     <div
-      className={"dateItem" + (item.fullDate === date ? " selected" : "")}
-      onClick={() => selectDate(item.fullDate)}
+      className={
+        "dateItem" +
+        (item.day === date.day && item.date === date.date ? " selected" : "")
+      }
+      onClick={() =>
+        selectDate({ year, month, day: item.day, date: item.date })
+      }
     >
       <span
         className={
-          "day " + (item.day === "일" ? "sun" : item.day === "토" ? "sat" : "")
+          "day " + (item.day === 0 ? "sun" : item.day === 6 ? "sat" : "")
         }
       >
-        {item.day}
+        {numToDay(item.day)}
       </span>
       <span className="date">{item.date}</span>
     </div>
@@ -23,8 +28,7 @@ const Dates = ({ date, selectDate }) => {
   const [month, setMonth] = useState();
   const [dates, setDates] = useState([]);
 
-  const getDateArr = () => {
-    let arr = [];
+  const numToDay = (num) => {
     var weekday = new Array(7);
     weekday[0] = "일";
     weekday[1] = "월";
@@ -33,13 +37,17 @@ const Dates = ({ date, selectDate }) => {
     weekday[4] = "목";
     weekday[5] = "금";
     weekday[6] = "토";
+    return weekday[num];
+  };
+
+  const getDateArr = () => {
+    let arr = [];
     for (let i = 0; i < 20; i++) {
       let d = new Date();
       d.setDate(d.getDate() - i);
-      let fullDate = d;
       let date = d.getDate();
-      let day = weekday[d.getDay()];
-      arr.push({ day, date, fullDate });
+      let day = d.getDay();
+      arr.push({ day, date });
     }
     // console.log(arr);
     return arr;
@@ -59,7 +67,14 @@ const Dates = ({ date, selectDate }) => {
         <div className="dates">
           {dates &&
             dates.map((item) => (
-              <DateItem item={item} date={date} selectDate={selectDate} />
+              <DateItem
+                year={year}
+                month={month}
+                item={item}
+                date={date}
+                selectDate={selectDate}
+                numToDay={numToDay}
+              />
             ))}
         </div>
       </div>

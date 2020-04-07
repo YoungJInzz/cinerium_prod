@@ -23,6 +23,7 @@ const BookInfo = ({ movie, theater, screenId, date, screeninfo }) => {
         <div className={"choicePh" + (movie !== "" ? " disabled" : "")}>
           영화선택
         </div>
+        <div className="movieSelected">{movie}</div>
       </div>
       <div className="th Choice">
         <div
