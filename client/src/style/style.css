@@ -352,7 +352,6 @@ body {
 
 .Choice {
   position: absolute;
-  background-color: tomato;
   line-height: 90px;
   padding-right: 50px;
   text-align: center;
@@ -367,15 +366,15 @@ body {
 }
 
 .th {
-  margin-left: 630px;
+  margin-left: 620px;
 }
 
 .se {
-  margin-left: 810px;
+  margin-left: 840px;
 }
 
 .pay {
-  margin-left: 990px;
+  margin-left: 1060px;
 }
 .choicePh {
   color: #cccccc;

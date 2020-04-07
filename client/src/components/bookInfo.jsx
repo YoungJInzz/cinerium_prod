@@ -1,20 +1,31 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 const BookInfo = ({ movie, theater, screenId, date, screeninfo }) => {
+  const [screen, setScreen] = useState();
+  const [layer, setLayer] = useState();
+  const [time, setTime] = useState();
+
+  useEffect(() => {
+    filterScreen();
+  }, []);
+
   const filterScreen = () => {
     let filteredSreen = screeninfo.filter((item) => item.id === screenId);
     let result = filteredSreen[0];
-    let screen = "";
-    let layer = "";
-    for (let key in result) {
-      if (key === "screen") {
-        screen = result[key];
-      }
-      if ((key = "layer")) {
-        layer = result[key];
-      }
-    }
-    return `${screen} ${layer} `;
+    console.log(result);
+    // setScreen("dd");
+    // for (let key in result) {
+    //   if (key === "screen") {
+    //     setScreen(result[key]);
+    //   }
+    //   if ((key = "layer")) {
+    //     setLayer(result[key]);
+    //   }
+    //   if ((key = "time")) {
+    //     setTime(result[key]);
+    //   }
+    // }
+    return;
   };
 
   return (
@@ -33,6 +44,14 @@ const BookInfo = ({ movie, theater, screenId, date, screeninfo }) => {
         >
           극장선택
         </div>
+        <div className="theaterIt">극장</div>
+        <div className="theaterContent">CGV {theater}</div>
+        <div className="theaterIt">일시</div>
+        <div className="theaterContent">
+          {date.year}.{date.month}.
+        </div>
+        <div className="theaterIt">상영관</div>
+        <div className="theaterContent"></div>
       </div>
       <div className="se Choice">
         <div className="choicePh">좌석선택</div>
