@@ -5,16 +5,18 @@ const SELECT_REGION = "booking/SELECT_REGION";
 const SELECT_THEATER = "booking/SELECT_THEATER";
 const SELECT_DATE = "booking/SELECT_DATE";
 const SELECT_SCREEN = "booking/SELECT_TIME";
+const SHOW_SCREEN = "booking/SHOW_SCREEN";
 
 export const selectMovie = createAction(SELECT_MOVIE, (input) => input);
 export const selectRegion = createAction(SELECT_REGION, (input) => input);
 export const selectTheater = createAction(SELECT_THEATER, (input) => input);
 export const selectDate = createAction(SELECT_DATE, (input) => input);
-export const selectScreen = createAction(SELECT_THEATER, (input) => input);
+export const selectScreen = createAction(SELECT_SCREEN, (input) => input);
 
 const initialState = {
   movie: "",
   theater: "",
+  screenId: "",
   screen: "",
   region: "서울",
   date: "",
@@ -97,6 +99,7 @@ const initialState = {
   ],
   screeninfo: [
     {
+      id: "1",
       screen: "1관",
       layer: "5층",
       time: "16:15",
@@ -105,6 +108,7 @@ const initialState = {
       emptySeat: 50,
     },
     {
+      id: "2",
       screen: "2관",
       layer: "5층",
       time: "13:15",
@@ -113,7 +117,8 @@ const initialState = {
       emptySeat: 60,
     },
     {
-      screen: "2관",
+      id: "3",
+      screen: "3관",
       layer: "5층",
       time: "18:15",
       dimension: "2D",
@@ -130,7 +135,10 @@ const booking = handleActions(
       ...state,
       theater: action.payload,
     }),
-    [SELECT_SCREEN]: (state, action) => ({ ...state, screen: action.payload }),
+    [SELECT_SCREEN]: (state, action) => ({
+      ...state,
+      screenId: action.payload,
+    }),
     [SELECT_DATE]: (state, action) => ({ ...state, date: action.payload }),
   },
   initialState

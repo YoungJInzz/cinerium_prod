@@ -12,7 +12,7 @@ import Booking from "../components/booking";
 const BookingConatainer = ({
   movie,
   theater,
-  screen,
+  screenId,
   region,
   regiontheater,
   movielist,
@@ -29,7 +29,7 @@ const BookingConatainer = ({
     <Booking
       movie={movie}
       theater={theater}
-      screen={screen}
+      screenId={screenId}
       region={region}
       regiontheater={regiontheater}
       movielist={movielist}
@@ -49,7 +49,7 @@ export default connect(
   ({ booking }) => ({
     movie: booking.movie,
     theater: booking.theater,
-    screen: booking.screen,
+    screenId: booking.screenId,
     region: booking.region,
     date: booking.date,
     regiontheater: booking.regiontheater,

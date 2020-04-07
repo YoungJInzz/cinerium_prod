@@ -1,6 +1,9 @@
 body {
   font-family: Consolas, monospace;
 }
+.disabled {
+  display: none;
+}
 .selected {
   background-color: #666;
   color: whitesmoke;
@@ -14,6 +17,7 @@ body {
   position: relative;
   margin: 0 auto;
   width: 1100px;
+  z-index: 1;
 }
 .booking-container .step1 {
   background-color: #ebedef;
@@ -271,6 +275,12 @@ body {
   color: #e5e3d4;
   background-color: #2c3e50;
 }
+.placeholder {
+  margin-top: 180px;
+  text-align: center;
+  font-size: 15px;
+  color: #666;
+}
 
 .timeItem {
   padding-top: 7px;
@@ -331,6 +341,48 @@ body {
   color: #519227;
 }
 /*time*/
+
+/*bookInfo*/
+.bookInfo {
+  position: relative;
+  margin-top: 2px;
+  background-color: #17202a;
+  height: 140px;
+}
+
+.Choice {
+  position: absolute;
+  line-height: 90px;
+  padding-right: 70px;
+  text-align: center;
+  margin-top: 20px;
+  margin-left: 450px;
+  height: 90px;
+  width: 100px;
+  font-size: 25px;
+  border-right: 1px solid #cccccc;
+  color: #ededed;
+}
+.mv {
+  margin-left: 450px;
+}
+
+.th {
+  margin-left: 630px;
+}
+
+.se {
+  margin-left: 810px;
+}
+
+.pay {
+  margin-left: 990px;
+}
+.choicePh {
+  color: #cccccc;
+}
+
+/*bookInfo*/
 
 /*scroll bar*/
 ::-webkit-scrollbar {

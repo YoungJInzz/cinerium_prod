@@ -8,7 +8,7 @@ import BookInfo from "./bookInfo";
 const Booking = ({
   movie,
   theater,
-  screen,
+  screenId,
   region,
   regiontheater,
   movielist,
@@ -42,10 +42,20 @@ const Booking = ({
             selectTheater={selectTheater}
           />
           <Dates date={date} selectDate={selectDate} />
-          <TimeSection screeninfo={screeninfo} />
+          <TimeSection
+            screenId={screenId}
+            selectScreen={selectScreen}
+            screeninfo={screeninfo}
+          />
         </div>
-        <BookInfo movie={movie} theater={theater} />
       </div>
+      <BookInfo
+        movie={movie}
+        theater={theater}
+        screenId={screenId}
+        date={date}
+        screeninfo={screeninfo}
+      />
     </div>
   );
 };
