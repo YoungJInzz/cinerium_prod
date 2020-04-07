@@ -7,25 +7,24 @@ const BookInfo = ({ movie, theater, screenId, date, screeninfo }) => {
 
   useEffect(() => {
     filterScreen();
-  }, []);
+  }, [movie, theater, screenId, date]);
 
   const filterScreen = () => {
     let filteredSreen = screeninfo.filter((item) => item.id === screenId);
     let result = filteredSreen[0];
-    console.log(result);
-    // setScreen("dd");
-    // for (let key in result) {
-    //   if (key === "screen") {
-    //     setScreen(result[key]);
-    //   }
-    //   if ((key = "layer")) {
-    //     setLayer(result[key]);
-    //   }
-    //   if ((key = "time")) {
-    //     setTime(result[key]);
-    //   }
-    // }
-    return;
+    console.log(typeof result);
+    setScreen("dd");
+    for (let key in result) {
+      if (key === "screen") {
+        setScreen(result[key]);
+      }
+      if ((key = "layer")) {
+        setLayer(result[key]);
+      }
+      if ((key = "time")) {
+        setTime(result[key]);
+      }
+    }
   };
 
   return (
@@ -60,7 +59,7 @@ const BookInfo = ({ movie, theater, screenId, date, screeninfo }) => {
         <div className="choicePh">결제</div>
       </div>
       <div>{theater}</div>
-      <div>{filterScreen()}</div>
+      <div></div>
     </div>
   );
 };
