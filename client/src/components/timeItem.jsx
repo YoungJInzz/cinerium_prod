@@ -4,7 +4,10 @@ const TimeItem = ({ screenId, timeData, selectScreen, entry }) => {
   return (
     <div
       className="seatSelect"
-      onClick={() => selectScreen({ screenId: screenId, timeId: entry.id })}
+      onClick={() =>
+        entry.emptySeat !== 0 &&
+        selectScreen({ screenId: screenId, timeId: entry.id })
+      }
     >
       <div
         className={
