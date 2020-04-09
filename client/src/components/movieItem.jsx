@@ -1,16 +1,16 @@
 import React from "react";
 
-const Movieitems = ({ movie, items, selectMovie }) => {
-  const Doit = () => {
-    console.log(items);
+const Movieitems = ({ movie, items, selectMovie, selectScreen }) => {
+  const clickmovie = (title) => {
+    selectMovie(title);
+    // selectScreen({ screenId: "", timeId: "" });
   };
+
   return (
     <div>
       <div
-        className={
-          "movieItem" + (items.title === movie ? " selected" : "")
-        }
-        onClick={() => selectMovie(items.title)}
+        className={"movieItem" + (items.title === movie ? " selected" : "")}
+        onClick={() => clickmovie(items.title)}
       >
         <span
           className={

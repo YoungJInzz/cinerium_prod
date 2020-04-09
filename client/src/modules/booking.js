@@ -5,19 +5,21 @@ const SELECT_REGION = "booking/SELECT_REGION";
 const SELECT_THEATER = "booking/SELECT_THEATER";
 const SELECT_DATE = "booking/SELECT_DATE";
 const SELECT_SCREEN = "booking/SELECT_TIME";
-const SHOW_SCREEN = "booking/SHOW_SCREEN";
 
 export const selectMovie = createAction(SELECT_MOVIE, (input) => input);
 export const selectRegion = createAction(SELECT_REGION, (input) => input);
 export const selectTheater = createAction(SELECT_THEATER, (input) => input);
 export const selectDate = createAction(SELECT_DATE, (input) => input);
-export const selectScreen = createAction(SELECT_SCREEN, (input) => input);
+export const selectScreen = createAction(SELECT_SCREEN, (input) => ({
+  screenId: input.screenId,
+  timeId: input.timeId,
+}));
 
 const initialState = {
   movie: "",
   theater: "",
-  screenId: "",
   screen: "",
+  timeData: "",
   region: "서울",
   date: "",
   regiontheater: [
@@ -99,31 +101,38 @@ const initialState = {
   ],
   screeninfo: [
     {
-      id: "1",
-      screen: "1관",
-      layer: "5층",
-      time: "16:15",
-      dimension: "2D",
+      id: "0",
+      screen: "1",
+      layer: "4",
       totalSeat: 170,
-      emptySeat: 50,
+      timeslot: [
+        { id: 0, time: "16:15", dimension: "2D", emptySeat: 0 },
+        { id: 1, time: "18:15", dimension: "2D", emptySeat: 110 },
+        { id: 2, time: "19:15", dimension: "2D", emptySeat: 0 },
+        { id: 3, time: "20:15", dimension: "2D", emptySeat: 40 },
+        { id: 4, time: "21:15", dimension: "2D", emptySeat: 50 },
+        { id: 5, time: "22:15", dimension: "2D", emptySeat: 110 },
+      ],
+    },
+    {
+      id: "1",
+      screen: "2",
+      layer: "5",
+      totalSeat: 180,
+      timeslot: [
+        { id: 0, time: "16:15", dimension: "2D", emptySeat: 110 },
+        { id: 1, time: "18:15", dimension: "2D", emptySeat: 20 },
+      ],
     },
     {
       id: "2",
-      screen: "2관",
-      layer: "5층",
-      time: "13:15",
-      dimension: "2D",
-      totalSeat: 180,
-      emptySeat: 60,
-    },
-    {
-      id: "3",
-      screen: "3관",
-      layer: "5층",
-      time: "18:15",
-      dimension: "2D",
-      totalSeat: 150,
-      emptySeat: 70,
+      screen: "3",
+      layer: "5",
+      totalSeat: 190,
+      timeslot: [
+        { id: 0, time: "16:15", dimension: "2D", emptySeat: 1 },
+        { id: 1, time: "18:15", dimension: "2D", emptySeat: 15 },
+      ],
     },
   ],
 };
@@ -137,7 +146,7 @@ const booking = handleActions(
     }),
     [SELECT_SCREEN]: (state, action) => ({
       ...state,
-      screenId: action.payload,
+      timeData: action.payload,
     }),
     [SELECT_DATE]: (state, action) => ({ ...state, date: action.payload }),
   },

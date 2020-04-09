@@ -7,9 +7,11 @@ const TheatherSection = ({
   regiontheater,
   selectRegion,
   selectTheater,
+  selectScreen,
 }) => {
-  const show = () => {
-    console.log(theater);
+  const Do = (item) => {
+    selectTheater(item);
+    selectScreen({ screenId: "", timeId: "" });
   };
   const regionList = theaterlist.map((item) => item.region);
   return (
@@ -36,7 +38,7 @@ const TheatherSection = ({
           {regiontheater.map((item) => (
             <div
               className={"theaterItem" + (item === theater ? " selected" : "")}
-              onClick={() => selectTheater(item)}
+              onClick={() => Do(item)}
             >
               {item}
             </div>

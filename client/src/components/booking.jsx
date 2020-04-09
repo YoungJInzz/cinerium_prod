@@ -8,7 +8,7 @@ import BookInfo from "./bookInfo";
 const Booking = ({
   movie,
   theater,
-  screenId,
+  timeData,
   region,
   regiontheater,
   movielist,
@@ -32,6 +32,7 @@ const Booking = ({
             movie={movie}
             movielist={movielist}
             selectMovie={selectMovie}
+            selectScreen={selectScreen}
           />
           <TheatherSection
             region={region}
@@ -40,10 +41,11 @@ const Booking = ({
             theaterlist={theaterlist}
             regiontheater={regiontheater}
             selectTheater={selectTheater}
+            selectScreen={selectScreen}
           />
           <Dates date={date} selectDate={selectDate} />
           <TimeSection
-            screenId={screenId}
+            timeData={timeData}
             selectScreen={selectScreen}
             screeninfo={screeninfo}
           />
@@ -52,7 +54,7 @@ const Booking = ({
       <BookInfo
         movie={movie}
         theater={theater}
-        screenId={screenId}
+        timeData={timeData}
         date={date}
         screeninfo={screeninfo}
       />

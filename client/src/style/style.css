@@ -236,6 +236,7 @@ body {
 }
 
 .sun {
+  margin-top: 3px;
   color: #a93226;
 }
 
@@ -282,11 +283,30 @@ body {
   color: #666;
 }
 
+.time-option {
+  font-size: 15px;
+  margin-bottom: 10px;
+  padding-left: 20px;
+  padding-top: 20px;
+}
+
+.morning {
+  margin-right: 15px;
+}
+
+.sun {
+  color: #ff0000;
+}
+
+.moon {
+  color: #0000ff;
+}
+
 .timeItem {
+  overflow: hidden;
   padding-top: 7px;
   padding-bottom: 7px;
   border-top: 2px solid #abb2b9;
-  margin-top: 30px;
   margin-left: 20px;
   margin-right: 20px;
 }
@@ -317,6 +337,8 @@ body {
 
 .seatSelect {
   cursor: pointer;
+  float: left;
+  margin-bottom: 20px;
 }
 
 .timeItem .time {
@@ -335,10 +357,18 @@ body {
 .emptySeat {
   position: relative;
   float: left;
-  width: 30px;
+  width: 70px;
   margin-top: 6px;
   font-size: 12px;
   color: #519227;
+}
+
+.sellout {
+  color: #ff0000;
+}
+.sellout2 {
+  text-decoration: line-through;
+  opacity: 0.5;
 }
 /*time*/
 
@@ -386,24 +416,30 @@ body {
   color: #ededed;
 }
 
-.theaterInfo{
-position: relative;
-margin-top: 15px;
+.theaterInfo {
+  position: relative;
+  margin-top: 15px;
 }
-.row{
+.row {
   line-height: 20px;
- font-size: 15px;
- text-align:left;
+  font-size: 15px;
+  text-align: left;
 }
 
-.content{
+.content {
   position: absolute;
   font-weight: bold;
-  margin-left:10px;
+  margin-left: 10px;
   line-height: 20px;
   font-size: 15px;
 }
 
+.C-screen {
+  margin-left: 55px;
+}
+.C-layer {
+  margin-left: 80px;
+}
 /*bookInfo*/
 
 /*scroll bar*/

@@ -1,23 +1,24 @@
 import React from "react";
 
-const TimeItem = ({ screenId, selectScreen, item }) => {
+const TimeItem = ({ screenId, timeData, selectScreen, entry }) => {
   return (
-    <div className="timeItem">
-      <span className="dimension">{item.dimension}</span>
-      <span className="screen">{item.screen}</span>
-      <span className="layer">{item.layer}</span>
-      <span className="totalSeat">(총{item.totalSeat}석)</span>
-      <br />
+    <div
+      className="seatSelect"
+      onClick={() => selectScreen({ screenId: screenId, timeId: entry.id })}
+    >
       <div
-        className="seatSelect"
-        onClick={() => {
-          selectScreen(item.id);
-        }}
+        className={
+          "time" +
+          (entry.id === timeData.timeId && screenId === timeData.screenId
+            ? " selected"
+            : "") +
+          (entry.emptySeat === 0 ? " sellout2" : "")
+        }
       >
-        <div className={"time" + (item.id === screenId ? " selected" : "")}>
-          {item.time}
-        </div>
-        <div className="emptySeat">{item.emptySeat}석</div>
+        {entry.time}
+      </div>
+      <div className={"emptySeat" + (entry.emptySeat === 0 ? " sellout" : "")}>
+        {entry.emptySeat !== 0 ? `${entry.emptySeat}석` : "매진"}
       </div>
     </div>
   );
