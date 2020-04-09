@@ -367,6 +367,7 @@ body {
 
 .th {
   margin-left: 620px;
+  color: #ededed;
 }
 
 .se {
@@ -383,6 +384,24 @@ body {
 .movieSelected {
   font-size: 20px;
   color: #ededed;
+}
+
+.theaterInfo{
+position: relative;
+margin-top: 15px;
+}
+.row{
+  line-height: 20px;
+ font-size: 15px;
+ text-align:left;
+}
+
+.content{
+  position: absolute;
+  font-weight: bold;
+  margin-left:10px;
+  line-height: 20px;
+  font-size: 15px;
 }
 
 /*bookInfo*/

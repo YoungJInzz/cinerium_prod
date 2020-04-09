@@ -8,7 +8,7 @@ const Movieitems = ({ movie, items, selectMovie }) => {
     <div>
       <div
         className={
-          "movieItem" + (items.title === movie ? " regionSelected" : "")
+          "movieItem" + (items.title === movie ? " selected" : "")
         }
         onClick={() => selectMovie(items.title)}
       >

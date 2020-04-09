@@ -7,7 +7,7 @@ const BookInfo = ({ movie, theater, screenId, date, screeninfo }) => {
 
   useEffect(() => {
     filterScreen();
-  }, [movie, theater, screenId, date]);
+  }, [movie, theater, screenId]);
 
   const filterScreen = () => {
     let filteredSreen = screeninfo.filter((item) => item.id === screenId);
@@ -38,28 +38,36 @@ const BookInfo = ({ movie, theater, screenId, date, screeninfo }) => {
       <div className="th Choice">
         <div
           className={
-            "choicePh" + (theater !== "" || screenId !== "" ? " disabled" : "")
+            "choicePh" + (theater !== "" || screenId !== ""  ||  date !=='' ? " disabled" : "")
           }
         >
           극장선택
         </div>
-        <div className="theaterIt">극장</div>
-        <div className="theaterContent">CGV {theater}</div>
-        <div className="theaterIt">일시</div>
-        <div className="theaterContent">
-          {date.year}.{date.month}.
+        <div className={"theaterInfo"+(theater ==='' && screenId === '' && date === ''?' disabled':'')}>
+          <div className="row">
+        <span className="content-title">극장</span>
+        <span className="content"> {`CGV${theater}`}</span>
         </div>
-        <div className="theaterIt">상영관</div>
-        <div className="theaterContent"></div>
+        <div className="row">
+        <span className="content-title">일시</span>
+        <span className="content">
+          {date.year}.{date.month}
+        </span>
+        </div>
+        <div className="row">
+        <span className="content-title">상영관</span>
+        <span className="content">{time}</span>
+        </div>
       </div>
       <div className="se Choice">
         <div className="choicePh">좌석선택</div>
+      </div>
       </div>
       <div className="pay Choice">
         <div className="choicePh">결제</div>
       </div>
       <div>{theater}</div>
-      <div></div>
+      
     </div>
   );
 };
