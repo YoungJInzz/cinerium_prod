@@ -7,18 +7,18 @@ import BookingPage from "./pages/bookingpage";
 const App = memo(() => {
   return (
     <>
-      <div className="App">
+      {/* <div className="App">
         <>
           <Navigation />
           <Main />
           <Footer />
         </>
-      </div>
+      </div> */}
 
       <div>
-      <BookingPage />
+        <BookingPage />
       </div>
-    </>    
+    </>
   );
 });
 

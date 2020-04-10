@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Dates from "./date";
 import MovieSection from "./movieSection";
 import TheatherSection from "./theatherSection";
@@ -21,9 +21,6 @@ const Booking = ({
   selectDate,
   selectScreen,
 }) => {
-  useEffect(() => {
-    console.log(screeninfo);
-  }, [theater]);
   return (
     <div>
       <div className="booking-container">
@@ -43,7 +40,11 @@ const Booking = ({
             selectTheater={selectTheater}
             selectScreen={selectScreen}
           />
-          <Dates date={date} selectDate={selectDate} />
+          <Dates
+            date={date}
+            selectDate={selectDate}
+            selectScreen={selectScreen}
+          />
           <TimeSection
             timeData={timeData}
             selectScreen={selectScreen}

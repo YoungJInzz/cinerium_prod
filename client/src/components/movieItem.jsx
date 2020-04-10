@@ -3,7 +3,7 @@ import React from "react";
 const Movieitems = ({ movie, items, selectMovie, selectScreen }) => {
   const clickmovie = (title) => {
     selectMovie(title);
-    // selectScreen({ screenId: "", timeId: "" });
+    selectScreen({ screenId: "", timeId: "" });
   };
 
   return (

@@ -7,29 +7,33 @@ const BookInfo = ({ movie, theater, timeData, date, screeninfo }) => {
 
   useEffect(() => {
     filterScreen();
-    console.log(timeData);
-  }, [movie, theater, timeData]);
+  }, [timeData]);
 
   const filterScreen = () => {
     let filteredSreen = screeninfo.filter(
       (item) => item.id === timeData.screenId
     );
-    let result = filteredSreen[0];
-    console.log(result); //setScreen(result.screen) don't work!
-    for (let key in result) {
-      if (key === "screen") {
-        setScreen(result[key]);
-      }
-      if ((key = "layer")) {
-        setLayer(result[key]);
-      }
-      if ((key = "timeslot")) {
-        for (let element of result[key]) {
-          if (element.id === timeData.timeId) {
-            setTime(element.time);
+    let result = filteredSreen[0]; //setScreen(result.screen) don't work!
+    if (result !== undefined) {
+      for (let key in result) {
+        if (key === "screen") {
+          setScreen(result[key]);
+        }
+        if ((key = "layer")) {
+          setLayer(result[key]);
+        }
+        if ((key = "timeslot")) {
+          for (let element of result[key]) {
+            if (element.id === timeData.timeId) {
+              setTime(element.time);
+            }
           }
         }
       }
+    } else {
+      setScreen("");
+      setLayer("");
+      setTime("");
     }
   };
 
