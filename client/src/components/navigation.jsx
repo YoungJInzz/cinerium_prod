@@ -1,7 +1,7 @@
 import React, { memo } from "react";
 
-const navigation = memo(() => {
-  return <div></div>;
+const Navigation = memo(() => {
+  return <div> dd</div>;
 });
 
-export default navigation;
+export default Navigation;
