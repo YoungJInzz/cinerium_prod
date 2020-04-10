@@ -1,13 +1,25 @@
-import React, { Component } from "react";
-// import Navigation from "./components/navigation";
+import React, { memo } from "react";
+import Navigation from "./components/navigation";
+import Main from "./components/main";
+import Footer from "./components/footer";
 import BookingPage from "./pages/bookingpage";
 
-const App = () => {
+const App = memo(() => {
   return (
-    <div>
-      <BookingPage />
-    </div>
-  );
-};
+    <>
+      <div className="App">
+        <>
+          <Navigation />
+          <Main />
+          <Footer />
+        </>
+      </div>
 
-export default App;
+      <div>
+      <BookingPage />
+      </div>
+    </>    
+  );
+});
+
+export default memo(App);
