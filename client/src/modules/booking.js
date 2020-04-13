@@ -5,6 +5,8 @@ const SELECT_REGION = "booking/SELECT_REGION";
 const SELECT_THEATER = "booking/SELECT_THEATER";
 const SELECT_DATE = "booking/SELECT_DATE";
 const SELECT_SCREEN = "booking/SELECT_TIME";
+const MOVE_TO_NEXT = "booking/MoveToNext";
+const MOVE_TO_BEFORE = "booking/MoveToBefore";
 
 export const selectMovie = createAction(SELECT_MOVIE, (input) => input);
 export const selectRegion = createAction(SELECT_REGION, (input) => input);
@@ -14,8 +16,11 @@ export const selectScreen = createAction(SELECT_SCREEN, (input) => ({
   screenId: input.screenId,
   timeId: input.timeId,
 }));
+export const moveToNext = createAction(MOVE_TO_NEXT);
+export const moveToBefore = createAction(MOVE_TO_BEFORE);
 
 const initialState = {
+  currentStep: 1,
   movie: "",
   theater: "",
   screen: "",
@@ -149,6 +154,14 @@ const booking = handleActions(
       timeData: action.payload,
     }),
     [SELECT_DATE]: (state, action) => ({ ...state, date: action.payload }),
+    [MOVE_TO_NEXT]: (state, action) => ({
+      ...state,
+      currentStep: state.currentStep + 1,
+    }),
+    [MOVE_TO_BEFORE]: (state, action) => ({
+      ...state,
+      currentStep: state.currentStep - 1,
+    }),
   },
   initialState
 );

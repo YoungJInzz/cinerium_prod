@@ -14,17 +14,20 @@ const Booking = ({
   movielist,
   theaterlist,
   date,
+  currentStep,
   screeninfo,
   selectMovie,
   selectRegion,
   selectTheater,
   selectDate,
   selectScreen,
+  moveToBefore,
+  moveToNext,
 }) => {
   return (
     <div>
       <div className="booking-container">
-        <div className="step1">
+        <div className={"step1" + (currentStep !== 1 ? " hide" : "")}>
           <MovieSection
             movie={movie}
             movielist={movielist}
@@ -51,6 +54,7 @@ const Booking = ({
             screeninfo={screeninfo}
           />
         </div>
+        <div className={"step2" + (currentStep !== 2 ? " hide" : "")}></div>
       </div>
       <BookInfo
         movie={movie}
@@ -58,6 +62,9 @@ const Booking = ({
         timeData={timeData}
         date={date}
         screeninfo={screeninfo}
+        moveToBefore={moveToBefore}
+        moveToNext={moveToNext}
+        currentStep={currentStep}
       />
     </div>
   );

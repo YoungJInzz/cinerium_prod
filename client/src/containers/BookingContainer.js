@@ -6,6 +6,8 @@ import {
   selectTheater,
   selectDate,
   selectScreen,
+  moveToNext,
+  moveToBefore,
 } from "../modules/booking";
 import Booking from "../components/booking";
 
@@ -18,12 +20,15 @@ const BookingConatainer = ({
   movielist,
   theaterlist,
   date,
+  currentStep,
   screeninfo,
   selectMovie,
   selectRegion,
   selectTheater,
   selectScreen,
   selectDate,
+  moveToNext,
+  moveToBefore,
 }) => {
   return (
     <Booking
@@ -35,12 +40,15 @@ const BookingConatainer = ({
       movielist={movielist}
       theaterlist={theaterlist}
       date={date}
+      currentStep={currentStep}
       screeninfo={screeninfo}
       selectMovie={selectMovie}
       selectRegion={selectRegion}
       selectDate={selectDate}
       selectTheater={selectTheater}
       selectScreen={selectScreen}
+      moveToBefore={moveToBefore}
+      moveToNext={moveToNext}
     />
   );
 };
@@ -52,6 +60,7 @@ export default connect(
     timeData: booking.timeData,
     region: booking.region,
     date: booking.date,
+    currentStep: booking.currentStep,
     regiontheater: booking.regiontheater,
     movielist: booking.movielist,
     theaterlist: booking.theaterlist,
@@ -63,5 +72,7 @@ export default connect(
     selectTheater,
     selectDate,
     selectScreen,
+    moveToBefore,
+    moveToNext,
   }
 )(BookingConatainer);
