@@ -14,7 +14,13 @@ body {
   background-color: #abb2b9;
   color: whitesmoke;
 }
+.red {
+  background-color: #c0392b;
+}
 
+.gray {
+  background-color: #808b96;
+}
 .booking-container {
   position: relative;
   margin: 0 auto;
@@ -445,7 +451,7 @@ body {
 
 .theaterInfo {
   position: relative;
-  margin-top: 15px;
+  margin-top: 5px;
 }
 
 .row {
@@ -461,17 +467,24 @@ body {
   line-height: 20px;
   font-size: 15px;
 }
+.content-time {
+  margin-left: 85px;
+  font-weight: bold;
+}
 
-.btn-to-step2 {
+.content-layer {
+  margin-left: 40px;
+  font-weight: bold;
+}
+
+.rightBtn {
   cursor: pointer;
   position: absolute;
   margin-left: 1350px;
   margin-top: 15px;
-  border: 2px solid#CD6155;
   border-radius: 20px;
   width: 100px;
   height: 100px;
-  background-color: #c0392b;
 }
 
 .rightArrow {
@@ -482,7 +495,7 @@ body {
   margin-top: 10px;
 }
 
-.btn-to-step2-title {
+.rightBtn-title {
   position: relative;
   margin-left: 20px;
   font-size: 15px;
@@ -493,8 +506,56 @@ body {
 /*bookInfo*/
 
 .step2 {
-  background-color: #ebedef;
-  height: 495px;
+  background-color: #fffaf0;
+  height: 595px;
+  width: 1100px;
+  margin: 0 auto;
+  border: 1px solid #ebedef;
+}
+
+.seat-header {
+  position: relative;
+  height: 35px;
+  width: 1100px;
+  background-color: #00001a;
+  margin: 0 auto;
+  text-align: center;
+  color: #e5e3d4;
+  font-size: 17px;
+  font-weight: bold;
+  line-height: 32px;
+}
+
+.seat-info {
+  position: relative;
+}
+
+.seat-person {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  padding-left: 20px;
+  padding-right: 20px;
+  height: 90px;
+  width: 500px;
+  border-right: 1px solid #cccccc;
+}
+
+.seat-row-title {
+  float: left;
+}
+.adult-person {
+  float: left;
+}
+
+.adult-person > li {
+  width: 20px;
+  height: 20px;
+  float: left;
+  border: 1px solid #d6d3ce;
+}
+
+.adult-person-item {
+  text-align: center;
 }
 
 /*scroll bar*/

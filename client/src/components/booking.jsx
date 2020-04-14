@@ -4,6 +4,7 @@ import MovieSection from "./movieSection";
 import TheatherSection from "./theatherSection";
 import TimeSection from "./timeSection";
 import BookInfo from "./bookInfo";
+import SeatSelectSection from "./seatSelectSection";
 
 const Booking = ({
   movie,
@@ -15,6 +16,7 @@ const Booking = ({
   theaterlist,
   date,
   currentStep,
+  seatObj,
   screeninfo,
   selectMovie,
   selectRegion,
@@ -54,7 +56,9 @@ const Booking = ({
             screeninfo={screeninfo}
           />
         </div>
-        <div className={"step2" + (currentStep !== 2 ? " hide" : "")}></div>
+        <div className={"step2" + (currentStep !== 2 ? " hide" : "")}>
+          <SeatSelectSection />
+        </div>
       </div>
       <BookInfo
         movie={movie}

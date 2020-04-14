@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { FaArrowRight, FaArrowLeft } from "react-icons/fa";
-
+import RightBtn1 from "./rightBtn1";
+import RightBtn2 from "./rightBtn2";
 const BookInfo = ({
   movie,
   theater,
@@ -82,16 +83,19 @@ const BookInfo = ({
             <span className={"content" + (date === "" ? " hide" : "")}>
               {`${date.year}.${date.month}.${date.date}`}
             </span>
+            <span className="content-time">{time}</span>
           </div>
           <div className="row">
             <span className="content-title">상영관</span>
-            <span className="content">{time}</span>
             <span className={"content" + (screen === "" ? " hide" : "")}>
               {screen}관
             </span>
-            <span className={"content" + (layer === "" ? " hide" : "")}>
+            <span className={"content-layer" + (layer === "" ? " hide" : "")}>
               {layer}층
             </span>
+          </div>
+          <div className="row">
+            <span className="content-title">인원</span>
           </div>
         </div>
       </div>
@@ -101,22 +105,22 @@ const BookInfo = ({
       <div className="pay Choice">
         <div className="choicePh">결제</div>
       </div>
-      <div
-        className={
-          "btn-to-step2" +
-          (movie !== "" &&
-          theater !== "" &&
-          date !== "" &&
-          timeData.screenId !== ""
-            ? " red"
-            : "") +
-          (currentStep !== 1 ? " hide" : "")
-        }
-        onClick={() => moveToNext()}
-      >
-        <FaArrowRight className="rightArrow" />
-        <div className="btn-to-step2-title">좌석선택</div>
-      </div>
+      <RightBtn1
+        movie={movie}
+        theater={theater}
+        date={date}
+        timeData={timeData}
+        title="좌석선택"
+        moveToNext={moveToNext}
+        currentStep={currentStep}
+        step={1}
+      />
+      <RightBtn2
+        title="결제선택"
+        moveToNext={moveToNext}
+        currentStep={currentStep}
+        step={2}
+      />
     </div>
   );
 };
