@@ -527,35 +527,74 @@ body {
 }
 
 .seat-info {
+  height: 120px;
+  background-color: #f9efdc;
   position: relative;
+  box-shadow: 0px 2px #bdbdbd;
 }
-
+.seat-row {
+  height: 30px;
+  margin-bottom: 5px;
+  clear: both;
+}
 .seat-person {
-  margin-top: 15px;
+  position: absolute;
+  margin-top: 10px;
   margin-bottom: 15px;
   padding-left: 20px;
   padding-right: 20px;
   height: 90px;
-  width: 500px;
+  width: 470px;
   border-right: 1px solid #cccccc;
 }
 
 .seat-row-title {
+  color: #706e66;
+  line-height: 25px;
+  font-size: 13px;
   float: left;
 }
 .adult-person {
+  position: absolute;
+  margin-left: 50px;
   float: left;
 }
 
 .adult-person > li {
-  width: 20px;
-  height: 20px;
+  margin-left: 10px;
   float: left;
-  border: 1px solid #d6d3ce;
 }
 
-.adult-person-item {
-  text-align: center;
+.person-btn {
+  width: 23px;
+  height: 23px;
+  background-color: transparent;
+  border: 1px solid #cdcac5;
+}
+
+.seat-time {
+  position: absolute;
+  margin-top: 20px;
+  margin-bottom: 15px;
+  padding-left: 530px;
+  padding-right: 20px;
+  height: 90px;
+  width: 470px;
+}
+
+.seat-time-content {
+  position: relative;
+  float: left;
+  padding-left: 10px;
+  font-size: 15px;
+  width: 70px;
+}
+
+.thea {
+  border-right: 1px solid #cccccc;
+}
+.scr {
+  border-right: 1px solid #cccccc;
 }
 
 /*scroll bar*/

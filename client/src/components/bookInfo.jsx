@@ -36,15 +36,11 @@ const BookInfo = ({
         if ((key = "timeslot")) {
           for (let element of result[key]) {
             if (element.id === timeData.timeId) {
-              setTime(element.time);
+              setTime(element.startTime);
             }
           }
         }
       }
-    } else {
-      setScreen("");
-      setLayer("");
-      setTime("");
     }
   };
 
