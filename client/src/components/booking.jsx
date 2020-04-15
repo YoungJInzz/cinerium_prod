@@ -16,6 +16,7 @@ const Booking = ({
   theaterlist,
   date,
   currentStep,
+  person,
   seatObj,
   screeninfo,
   selectMovie,
@@ -25,6 +26,9 @@ const Booking = ({
   selectScreen,
   moveToBefore,
   moveToNext,
+  selectAdult,
+  selectTeen,
+  selectSenior,
 }) => {
   return (
     <div>
@@ -61,10 +65,14 @@ const Booking = ({
             theater={theater}
             timeData={timeData}
             date={date}
+            person={person}
             screeninfo={screeninfo}
             moveToBefore={moveToBefore}
             moveToNext={moveToNext}
             currentStep={currentStep}
+            selectAdult={selectAdult}
+            selectTeen={selectTeen}
+            selectSenior={selectSenior}
           />
         </div>
       </div>

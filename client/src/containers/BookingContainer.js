@@ -8,10 +8,14 @@ import {
   selectScreen,
   moveToNext,
   moveToBefore,
+  selectAdult,
+  selectTeen,
+  selectSenior,
 } from "../modules/booking";
 import Booking from "../components/booking";
 
 const BookingConatainer = ({
+  person,
   movie,
   theater,
   timeData,
@@ -30,9 +34,13 @@ const BookingConatainer = ({
   selectDate,
   moveToNext,
   moveToBefore,
+  selectAdult,
+  selectTeen,
+  selectSenior,
 }) => {
   return (
     <Booking
+      person={person}
       movie={movie}
       theater={theater}
       timeData={timeData}
@@ -51,12 +59,16 @@ const BookingConatainer = ({
       selectScreen={selectScreen}
       moveToBefore={moveToBefore}
       moveToNext={moveToNext}
+      selectAdult={selectAdult}
+      selectTeen={selectTeen}
+      selectSenior={selectSenior}
     />
   );
 };
 
 export default connect(
   ({ booking }) => ({
+    person: booking.person,
     movie: booking.movie,
     theater: booking.theater,
     timeData: booking.timeData,
@@ -77,5 +89,8 @@ export default connect(
     selectScreen,
     moveToBefore,
     moveToNext,
+    selectAdult,
+    selectTeen,
+    selectSenior,
   }
 )(BookingConatainer);

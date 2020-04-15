@@ -526,6 +526,26 @@ body {
   line-height: 32px;
 }
 
+.refresh {
+  cursor: pointer;
+  color: #e5e3d4;
+  float: right;
+  width: 100px;
+}
+.refresh-title {
+  position: relative;
+  margin-left: 10px;
+  float: left;
+  font-size: 13px;
+}
+
+.refresh-icon {
+  position: absolute;
+  margin-top: 6px;
+  position: relative;
+  font-size: 20px;
+  color: #e5e3d4;
+}
 .seat-info {
   height: 120px;
   background-color: #f9efdc;
@@ -537,6 +557,7 @@ body {
   margin-bottom: 5px;
   clear: both;
 }
+
 .seat-person {
   position: absolute;
   margin-top: 10px;
@@ -561,15 +582,28 @@ body {
 }
 
 .adult-person > li {
+  width: 23px;
+  height: 23px;
   margin-left: 10px;
   float: left;
 }
 
 .person-btn {
+  position: relative;
+  cursor: pointer;
+  z-index: 1;
+  float: left;
+  font-size: 13px;
+  font-weight: bold;
   width: 23px;
   height: 23px;
   background-color: transparent;
   border: 1px solid #cdcac5;
+}
+
+.select2 {
+  background-color: #4a3913;
+  color: #e5e3d4;
 }
 
 .seat-time {
@@ -581,20 +615,100 @@ body {
   height: 90px;
   width: 470px;
 }
+.seat-time-row {
+  height: 30px;
+}
 
 .seat-time-content {
   position: relative;
   float: left;
   padding-left: 10px;
-  font-size: 15px;
-  width: 70px;
+  font-size: 13px;
 }
 
 .thea {
   border-right: 1px solid #cccccc;
+  width: 90px;
 }
 .scr {
   border-right: 1px solid #cccccc;
+  width: 70px;
+}
+
+.seat-time-time {
+  position: relative;
+  margin-right: 50px;
+  float: left;
+  padding-left: 10px;
+  font-size: 25px;
+  font-weight: bold;
+  width: 100px;
+}
+.seat-screen {
+  position: relative;
+  float: left;
+  border: 1px solid royalblue;
+  margin-left: 80px;
+  width: 800px;
+  height: 400px;
+  padding-top: 30px;
+}
+.screen-img {
+  position: relative;
+  background: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 3px,
+    #ccc 8px,
+    #ccc 5px
+  );
+  margin-left: auto;
+  margin-right: auto;
+  width: 700px;
+  height: 25px;
+  line-height: 20px;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.legend {
+  position: relative;
+  margin-left: 70px;
+  float: left;
+  border: 1px solid blueviolet;
+  width: 100px;
+  height: 400px;
+}
+.legend-content {
+  position: relative;
+  margin-top: 90px;
+}
+
+.legend-row {
+  height: 35px;
+}
+
+.seat-icon-title {
+  color: #706e66;
+  font-size: 14px;
+  float: left;
+  margin-top: 1px;
+  margin-left: 10px;
+}
+
+.seat-icon-selected {
+  position: relative;
+  float: left;
+  margin-top: 5px;
+  color: #c0392b;
+}
+
+.seat-icon-unselected {
+  position: relative;
+  float: left;
+  margin-top: 5px;
+  color: #808b96;
 }
 
 /*scroll bar*/

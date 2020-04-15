@@ -7,6 +7,9 @@ const SELECT_DATE = "booking/SELECT_DATE";
 const SELECT_SCREEN = "booking/SELECT_TIME";
 const MOVE_TO_NEXT = "booking/MoveToNext";
 const MOVE_TO_BEFORE = "booking/MoveToBefore";
+const SELECT_ADULT = "booking/SELECT_ADULT";
+const SELECT_SENIOR = "booking/SELECT_SENIOR";
+const SELECT_TEEN = "booking/SELECT_TEEN";
 
 export const selectMovie = createAction(SELECT_MOVIE, (input) => input);
 export const selectRegion = createAction(SELECT_REGION, (input) => input);
@@ -18,10 +21,13 @@ export const selectScreen = createAction(SELECT_SCREEN, (input) => ({
 }));
 export const moveToNext = createAction(MOVE_TO_NEXT);
 export const moveToBefore = createAction(MOVE_TO_BEFORE);
+export const selectAdult = createAction(SELECT_ADULT);
+export const selectTeen = createAction(SELECT_TEEN);
+export const selectSenior = createAction(SELECT_SENIOR);
 
 const initialState = {
   currentStep: 1,
-  person: { adult: "", teen: "", senior: "" },
+  person: { adult: 0, teen: 0, senior: 0 },
   movie: "",
   theater: "",
   screen: "",
@@ -428,6 +434,18 @@ const booking = handleActions(
     [MOVE_TO_BEFORE]: (state, action) => ({
       ...state,
       currentStep: state.currentStep - 1,
+    }),
+    [SELECT_ADULT]: (state, action) => ({
+      ...state,
+      person: { ...state.person, adult: action.payload },
+    }),
+    [SELECT_TEEN]: (state, action) => ({
+      ...state,
+      person: { ...state.person, teen: action.payload },
+    }),
+    [SELECT_SENIOR]: (state, action) => ({
+      ...state,
+      person: { ...state.person, senior: action.payload },
     }),
   },
   initialState
