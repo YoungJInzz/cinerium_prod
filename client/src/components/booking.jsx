@@ -17,7 +17,6 @@ const Booking = ({
   date,
   currentStep,
   person,
-  seatObj,
   screeninfo,
   selectMovie,
   selectRegion,
@@ -29,6 +28,7 @@ const Booking = ({
   selectAdult,
   selectTeen,
   selectSenior,
+  seatArr,
 }) => {
   return (
     <div>
@@ -73,6 +73,7 @@ const Booking = ({
             selectAdult={selectAdult}
             selectTeen={selectTeen}
             selectSenior={selectSenior}
+            seatArr={seatArr}
           />
         </div>
       </div>

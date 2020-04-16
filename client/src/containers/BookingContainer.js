@@ -25,7 +25,6 @@ const BookingConatainer = ({
   theaterlist,
   date,
   currentStep,
-  seatObj,
   screeninfo,
   selectMovie,
   selectRegion,
@@ -37,6 +36,7 @@ const BookingConatainer = ({
   selectAdult,
   selectTeen,
   selectSenior,
+  seatArr,
 }) => {
   return (
     <Booking
@@ -50,7 +50,6 @@ const BookingConatainer = ({
       theaterlist={theaterlist}
       date={date}
       currentStep={currentStep}
-      seatObj={seatObj}
       screeninfo={screeninfo}
       selectMovie={selectMovie}
       selectRegion={selectRegion}
@@ -62,6 +61,7 @@ const BookingConatainer = ({
       selectAdult={selectAdult}
       selectTeen={selectTeen}
       selectSenior={selectSenior}
+      seatArr={seatArr}
     />
   );
 };
@@ -75,11 +75,11 @@ export default connect(
     region: booking.region,
     date: booking.date,
     currentStep: booking.currentStep,
-    seatObj: booking.seatObj,
     regiontheater: booking.regiontheater,
     movielist: booking.movielist,
     theaterlist: booking.theaterlist,
     screeninfo: booking.screeninfo,
+    seatArr: booking.seatArr,
   }),
   {
     selectMovie,

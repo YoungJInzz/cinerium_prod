@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { FaSquareFull } from "react-icons/fa";
 import { IoMdRefresh } from "react-icons/io";
-
+import SeatRow from "./seatRow";
 const Seatselect2Section = ({
   theater,
   timeData,
@@ -14,6 +14,7 @@ const Seatselect2Section = ({
   selectAdult,
   selectTeen,
   selectSenior,
+  seatArr,
 }) => {
   const [screen, setScreen] = useState("");
   const [layer, setLayer] = useState("");
@@ -441,18 +442,36 @@ const Seatselect2Section = ({
           </div>
         </div>
       </div>
-      <div className="seat-screen">
-        <div className="screen-img">screen</div>
-      </div>
-      <div className="legend">
-        <div className="legend-content">
-          <div className="legend-row">
-            <FaSquareFull className="seat-icon-selected" />
-            <div className="seat-icon-title">선택</div>
+      <div
+        className={
+          "seat-main" +
+          (person.adult === 0 && person.teen === 0 && person.senior === 0
+            ? " blur"
+            : "")
+        }
+      >
+        <div className="seat-screen">
+          <div className="screen-img">screen</div>
+          <div className="opening-container">
+            {seatArr.map((item) => (
+              <SeatRow item={item} />
+            ))}
           </div>
-          <div className="legend-row">
-            <FaSquareFull className="seat-icon-unselected" />
-            <div className="seat-icon-title">예매완료</div>
+        </div>
+        <div className="legend">
+          <div className="legend-content">
+            <div className="legend-row">
+              <FaSquareFull className="seat-icon-selected" />
+              <div className="seat-icon-title">선택완료</div>
+            </div>
+            <div className="legend-row">
+              <FaSquareFull className="seat-icon-selectable" />
+              <div className="seat-icon-title">선택가능</div>
+            </div>
+            <div className="legend-row">
+              <FaSquareFull className="seat-icon-unselected" />
+              <div className="seat-icon-title">예매완료</div>
+            </div>
           </div>
         </div>
       </div>
