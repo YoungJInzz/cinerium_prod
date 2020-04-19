@@ -29,6 +29,10 @@ const Booking = ({
   selectTeen,
   selectSenior,
   seatArr,
+  userId,
+  seatSelected,
+  seatSelectedIndex,
+  handleseatSelected,
 }) => {
   return (
     <div>
@@ -74,10 +78,16 @@ const Booking = ({
             selectTeen={selectTeen}
             selectSenior={selectSenior}
             seatArr={seatArr}
+            userId={userId}
+            seatSelected={seatSelected}
+            seatSelectedIndex={seatSelectedIndex}
+            handleseatSelected={handleseatSelected}
           />
         </div>
       </div>
       <BookInfo
+        person={person}
+        seatSelected={seatSelected}
         movie={movie}
         theater={theater}
         timeData={timeData}

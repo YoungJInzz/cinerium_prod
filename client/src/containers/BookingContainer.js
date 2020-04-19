@@ -11,6 +11,7 @@ import {
   selectAdult,
   selectTeen,
   selectSenior,
+  handleseatSelected,
 } from "../modules/booking";
 import Booking from "../components/booking";
 
@@ -37,6 +38,10 @@ const BookingConatainer = ({
   selectTeen,
   selectSenior,
   seatArr,
+  userId,
+  seatSelected,
+  seatSelectedIndex,
+  handleseatSelected,
 }) => {
   return (
     <Booking
@@ -62,6 +67,10 @@ const BookingConatainer = ({
       selectTeen={selectTeen}
       selectSenior={selectSenior}
       seatArr={seatArr}
+      userId={userId}
+      seatSelected={seatSelected}
+      seatSelectedIndex={seatSelectedIndex}
+      handleseatSelected={handleseatSelected}
     />
   );
 };
@@ -80,6 +89,9 @@ export default connect(
     theaterlist: booking.theaterlist,
     screeninfo: booking.screeninfo,
     seatArr: booking.seatArr,
+    userId: booking.userId,
+    seatSelected: booking.seatSelected,
+    seatSelectedIndex: booking.seatSelectedIndex,
   }),
   {
     selectMovie,
@@ -92,5 +104,6 @@ export default connect(
     selectAdult,
     selectTeen,
     selectSenior,
+    handleseatSelected,
   }
 )(BookingConatainer);

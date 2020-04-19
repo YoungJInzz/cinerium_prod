@@ -11,14 +11,17 @@ const BookInfo = ({
   moveToBefore,
   moveToNext,
   currentStep,
+  seatSelected,
+  person,
 }) => {
   const [screen, setScreen] = useState("");
   const [layer, setLayer] = useState("");
   const [time, setTime] = useState("");
 
-  useEffect(() => {
-    filterScreen();
-  }, [timeData]);
+  // useEffect(() => {
+  //   filterScreen();
+  //   console.log(person);
+  // }, [timeData]);
 
   const filterScreen = () => {
     let filteredSreen = screeninfo.filter(
@@ -96,7 +99,21 @@ const BookInfo = ({
         </div>
       </div>
       <div className="se Choice">
-        <div className="choicePh">좌석선택</div>
+        <div
+          className={"choicePh" + (seatSelected.length !== 0 ? " hide" : "")}
+        >
+          좌석선택
+        </div>
+        <div className={"row" + (seatSelected.length === 0 ? " hide" : "")}>
+          <span className="content-seat">좌석번호</span>
+          <div className="seatSelectedContainer">
+            {seatSelected.map((item) => (
+              <div className="eachSeat">
+                <span>{item},</span>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
       <div className="pay Choice">
         <div className="choicePh">결제</div>
@@ -112,6 +129,8 @@ const BookInfo = ({
         step={1}
       />
       <RightBtn2
+        person={person}
+        seatSelected={seatSelected}
         title="결제선택"
         moveToNext={moveToNext}
         currentStep={currentStep}

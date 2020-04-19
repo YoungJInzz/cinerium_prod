@@ -15,6 +15,10 @@ const Seatselect2Section = ({
   selectTeen,
   selectSenior,
   seatArr,
+  userId,
+  seatSelected,
+  seatSelectedIndex,
+  handleseatSelected,
 }) => {
   const [screen, setScreen] = useState("");
   const [layer, setLayer] = useState("");
@@ -50,7 +54,6 @@ const Seatselect2Section = ({
       (item) => item.id === timeData.screenId
     );
     let result = filteredSreen[0]; //setScreen(result.screen) don't work!
-    console.log(result);
     if (result !== undefined) {
       for (let key in result) {
         if (key === "screen") {
@@ -76,6 +79,7 @@ const Seatselect2Section = ({
   };
 
   const refresh = () => {
+    handleseatSelected([]);
     selectAdult(0);
     selectTeen(0);
     selectSenior(0);
@@ -454,7 +458,14 @@ const Seatselect2Section = ({
           <div className="screen-img">screen</div>
           <div className="opening-container">
             {seatArr.map((item) => (
-              <SeatRow item={item} />
+              <SeatRow
+                item={item}
+                userId={userId}
+                seatSelected={seatSelected}
+                seatSelectedIndex={seatSelectedIndex}
+                handleseatSelected={handleseatSelected}
+                person={person}
+              />
             ))}
           </div>
         </div>
@@ -469,7 +480,7 @@ const Seatselect2Section = ({
               <div className="seat-icon-title">선택가능</div>
             </div>
             <div className="legend-row">
-              <FaSquareFull className="seat-icon-unselected" />
+              <FaSquareFull className="seat-icon-booked" />
               <div className="seat-icon-title">예매완료</div>
             </div>
           </div>
