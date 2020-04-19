@@ -11,6 +11,8 @@ const SELECT_ADULT = "booking/SELECT_ADULT";
 const SELECT_SENIOR = "booking/SELECT_SENIOR";
 const SELECT_TEEN = "booking/SELECT_TEEN";
 const HANDLE_SEATSELECTED = "booking/HANDLE_SEATSELECTED";
+const HANDLE_SEATSELECTEDINDEX = "booking/HANDLE_SEATSELECTEDINDEX";
+const HANDLE_SEATARR = "booking/HANDLE_SEATARR";
 
 export const selectMovie = createAction(SELECT_MOVIE, (input) => input);
 export const selectRegion = createAction(SELECT_REGION, (input) => input);
@@ -29,6 +31,16 @@ export const handleseatSelected = createAction(
   HANDLE_SEATSELECTED,
   (input) => input
 );
+export const handleseatSelectedIndex = createAction(
+  HANDLE_SEATSELECTEDINDEX,
+  (input) => input
+);
+export const handleSeatArr = createAction(HANDLE_SEATARR, (input) => ({
+  rowName: input.rowName,
+  userId: input.userId,
+  rowIndex: input.rowIndex,
+  columnIndex: input.columnIndex,
+}));
 
 const initialState = {
   userId: "58645",
@@ -501,6 +513,29 @@ const booking = handleActions(
     [HANDLE_SEATSELECTED]: (state, action) => ({
       ...state,
       seatSelected: action.payload,
+    }),
+    [HANDLE_SEATSELECTEDINDEX]: (state, action) => ({
+      ...state,
+      seatSelectedIndex: action.payload,
+    }),
+    [HANDLE_SEATARR]: (state, action) => ({
+      ...state,
+      seatArr: state.seatArr.map((item1, index) =>
+        index === action.payload.rowIndex
+          ? {
+              ...item1,
+              [action.payload.rowName]: item1[action.payload.rowName].map(
+                (item2, index) =>
+                  index === action.payload.columnIndex
+                    ? {
+                        key: action.payload.columnIndex + 1,
+                        bookingUser: action.payload.userId,
+                      }
+                    : item2
+              ),
+            }
+          : item1
+      ),
     }),
   },
   initialState

@@ -507,6 +507,17 @@ body {
   height: 100px;
 }
 
+.leftBtn {
+  background-color: #808b96;
+  cursor: pointer;
+  position: absolute;
+  margin-left: 200px;
+  margin-top: 15px;
+  border-radius: 20px;
+  width: 100px;
+  height: 100px;
+}
+
 .rightArrow {
   position: relative;
   font-size: 50px;

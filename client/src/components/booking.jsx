@@ -33,6 +33,8 @@ const Booking = ({
   seatSelected,
   seatSelectedIndex,
   handleseatSelected,
+  handleseatSelectedIndex,
+  handleSeatArr,
 }) => {
   return (
     <div>
@@ -82,10 +84,16 @@ const Booking = ({
             seatSelected={seatSelected}
             seatSelectedIndex={seatSelectedIndex}
             handleseatSelected={handleseatSelected}
+            handleseatSelectedIndex={handleseatSelectedIndex}
+            handleSeatArr={handleSeatArr}
           />
         </div>
       </div>
       <BookInfo
+        selectAdult={selectAdult}
+        selectTeen={selectTeen}
+        selectSenior={selectSenior}
+        handleseatSelected={handleseatSelected}
         person={person}
         seatSelected={seatSelected}
         movie={movie}

@@ -6,15 +6,16 @@ const SeatRow = ({
   seatSelected,
   seatSelectedIndex,
   handleseatSelected,
+  handleseatSelectedIndex,
+  handleSeatArr,
   person,
 }) => {
   const [rowName, setRowName] = useState(Object.keys(item)[0]);
   const [rowArr, setRowArr] = useState(item[rowName]);
-  // useEffect(() => {
-  //   console.log(rowName);
-  //   console.log(rowArr);
-  // });
-
+  useEffect(() => {
+    setRowName(Object.keys(item)[0]);
+    setRowArr(item[rowName]);
+  }, [item]);
   const handleSeat = (rowName, seatId) => {
     const mappingObj = {
       A: 0,
@@ -33,7 +34,7 @@ const SeatRow = ({
       N: 13,
       O: 14,
     };
-    // let copySeatSelectedIndex = JSON.parse(JSON.stringify(seatSelectedIndex));
+    let copySeatSelectedIndex = JSON.parse(JSON.stringify(seatSelectedIndex));
     let totalPerson = person.adult + person.teen + person.senior;
     let copySeatSelected = JSON.parse(JSON.stringify(seatSelected));
     let reA = /[^a-zA-Z]/g;
@@ -50,13 +51,30 @@ const SeatRow = ({
       }
     };
 
-    if (totalPerson > seatSelected.length) {
+    if (
+      totalPerson > seatSelected.length &&
+      copySeatSelected.includes(`${rowName}${seatId}`) === false
+    ) {
       copySeatSelected.push(`${rowName}${seatId}`);
-    } else {
-      alert("선택인원을 초과하였습니다.");
+      copySeatSelectedIndex.push({
+        rowName,
+        rowIndex: mappingObj[rowName],
+        columnIndex: Number(seatId) - 1,
+      });
+      handleseatSelected(copySeatSelected.sort(sortSeat));
+      handleseatSelectedIndex(copySeatSelectedIndex);
+      handleSeatArr({
+        rowName,
+        userId,
+        rowIndex: mappingObj[rowName],
+        columnIndex: Number(seatId) - 1,
+      });
+    } else if (totalPerson === seatSelected.length) {
+      if (window.confirm("선택이완료되었습니다 다시선택하시겠습니까?")) {
+        handleseatSelected([]);
+      } else {
+      }
     }
-
-    handleseatSelected(copySeatSelected.sort(sortSeat));
   };
 
   return (

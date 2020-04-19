@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { FaArrowRight, FaArrowLeft } from "react-icons/fa";
 import RightBtn1 from "./rightBtn1";
 import RightBtn2 from "./rightBtn2";
+import LeftBtn1 from "./leftBtn";
+
 const BookInfo = ({
   movie,
   theater,
@@ -13,15 +15,19 @@ const BookInfo = ({
   currentStep,
   seatSelected,
   person,
+  selectAdult,
+  selectTeen,
+  selectSenior,
+  handleseatSelected,
 }) => {
   const [screen, setScreen] = useState("");
   const [layer, setLayer] = useState("");
   const [time, setTime] = useState("");
 
-  // useEffect(() => {
-  //   filterScreen();
-  //   console.log(person);
-  // }, [timeData]);
+  useEffect(() => {
+    filterScreen();
+    console.log(person);
+  }, [timeData]);
 
   const filterScreen = () => {
     let filteredSreen = screeninfo.filter(
@@ -118,6 +124,14 @@ const BookInfo = ({
       <div className="pay Choice">
         <div className="choicePh">결제</div>
       </div>
+      <LeftBtn1
+        moveToBefore={moveToBefore}
+        currentStep={currentStep}
+        selectAdult={selectAdult}
+        selectSenior={selectSenior}
+        selectTeen={selectTeen}
+        handleseatSelected={handleseatSelected}
+      />
       <RightBtn1
         movie={movie}
         theater={theater}

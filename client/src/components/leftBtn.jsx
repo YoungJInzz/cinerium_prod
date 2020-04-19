@@ -1,34 +1,30 @@
 import React from "react";
 import { FaArrowLeft } from "react-icons/fa";
 
-const RightBtn = ({
-  movie,
-  theater,
-  date,
-  timeData,
-  title,
-  moveToNext,
+const LeftBtn1 = ({
+  moveToBefore,
   currentStep,
-  step,
+  selectAdult,
+  selectTeen,
+  selectSenior,
+  handleseatSelected,
 }) => {
+  const handlePage = () => {
+    moveToBefore();
+    handleseatSelected([]);
+    selectAdult(0);
+    selectTeen(0);
+    selectSenior(0);
+  };
   return (
     <div
-      className={
-        "btn-to-step2" +
-        (movie !== "" &&
-        theater !== "" &&
-        date !== "" &&
-        timeData.screenId !== ""
-          ? " red"
-          : " gray") +
-        (currentStep !== step ? " hide" : "")
-      }
-      onClick={() => moveToNext()}
+      className={"leftBtn" + (currentStep !== 2 ? " hide" : "")}
+      onClick={() => handlePage()}
     >
       <FaArrowLeft className="rightArrow" />
-      <div className="btn-to-step2-title">{title}</div>
+      <div className="rightBtn-title">영화선택</div>
     </div>
   );
 };
 
-export default RightBtn;
+export default LeftBtn1;

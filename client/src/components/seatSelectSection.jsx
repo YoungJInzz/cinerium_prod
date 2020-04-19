@@ -8,9 +8,6 @@ const Seatselect2Section = ({
   date,
   screeninfo,
   person,
-  moveToBefore,
-  moveToNext,
-  currentStep,
   selectAdult,
   selectTeen,
   selectSenior,
@@ -19,6 +16,8 @@ const Seatselect2Section = ({
   seatSelected,
   seatSelectedIndex,
   handleseatSelected,
+  handleseatSelectedIndex,
+  handleSeatArr,
 }) => {
   const [screen, setScreen] = useState("");
   const [layer, setLayer] = useState("");
@@ -79,10 +78,19 @@ const Seatselect2Section = ({
   };
 
   const refresh = () => {
-    handleseatSelected([]);
+    seatSelectedIndex.forEach((item) =>
+      handleSeatArr({
+        rowName: item.rowName,
+        userId: "",
+        rowIndex: item.rowIndex,
+        columnIndex: item.columnIndex,
+      })
+    );
+    handleseatSelectedIndex([]);
     selectAdult(0);
     selectTeen(0);
     selectSenior(0);
+    handleseatSelected([]);
   };
 
   return (
@@ -464,6 +472,8 @@ const Seatselect2Section = ({
                 seatSelected={seatSelected}
                 seatSelectedIndex={seatSelectedIndex}
                 handleseatSelected={handleseatSelected}
+                handleseatSelectedIndex={handleseatSelectedIndex}
+                handleSeatArr={handleSeatArr}
                 person={person}
               />
             ))}

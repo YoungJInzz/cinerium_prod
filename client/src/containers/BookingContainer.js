@@ -12,6 +12,8 @@ import {
   selectTeen,
   selectSenior,
   handleseatSelected,
+  handleseatSelectedIndex,
+  handleSeatArr,
 } from "../modules/booking";
 import Booking from "../components/booking";
 
@@ -42,6 +44,8 @@ const BookingConatainer = ({
   seatSelected,
   seatSelectedIndex,
   handleseatSelected,
+  handleseatSelectedIndex,
+  handleSeatArr,
 }) => {
   return (
     <Booking
@@ -71,6 +75,8 @@ const BookingConatainer = ({
       seatSelected={seatSelected}
       seatSelectedIndex={seatSelectedIndex}
       handleseatSelected={handleseatSelected}
+      handleseatSelectedIndex={handleseatSelectedIndex}
+      handleSeatArr={handleSeatArr}
     />
   );
 };
@@ -105,5 +111,7 @@ export default connect(
     selectTeen,
     selectSenior,
     handleseatSelected,
+    handleseatSelectedIndex,
+    handleSeatArr,
   }
 )(BookingConatainer);
