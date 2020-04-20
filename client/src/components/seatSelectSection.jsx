@@ -31,20 +31,32 @@ const Seatselect2Section = ({
   }, [timeData]);
 
   const checkAdult = (e) => {
-    Number(e.target.value) + Number(person.teen) + Number(person.senior) > 8
+    let totalNum =
+      Number(e.target.value) + Number(person.teen) + Number(person.senior);
+    totalNum > 8
       ? alert(`최대 예매 가능한 인원수는 8명 까지 입니다.`)
+      : totalNum < seatSelected.length
+      ? alert("선택한 좌석이 예매 인원 보다 많습니다.")
       : selectAdult(Number(e.target.value));
   };
 
   const checkTeen = (e) => {
-    Number(person.adult) + Number(e.target.value) + Number(person.senior) > 8
+    let totalNum =
+      Number(person.adult) + Number(e.target.value) + Number(person.senior);
+    totalNum > 8
       ? alert(`최대 예매 가능한 인원수는 8명 까지 입니다.`)
+      : totalNum < seatSelected.length
+      ? alert("선택한 좌석이 예매 인원 보다 많습니다.")
       : selectTeen(Number(e.target.value));
   };
 
   const checkSenior = (e) => {
-    Number(person.adult) + Number(person.teen) + Number(e.target.value) > 8
+    let totalNum =
+      Number(person.adult) + Number(person.teen) + Number(e.target.value);
+    totalNum > 8
       ? alert(`최대 예매 가능한 인원수는 8명 까지 입니다.`)
+      : totalNum < seatSelected.length
+      ? alert("선택한 좌석이 예매 인원 보다 많습니다.")
       : selectSenior(Number(e.target.value));
   };
 
@@ -87,10 +99,10 @@ const Seatselect2Section = ({
       })
     );
     handleseatSelectedIndex([]);
+    handleseatSelected([]);
     selectAdult(0);
     selectTeen(0);
     selectSenior(0);
-    handleseatSelected([]);
   };
 
   return (

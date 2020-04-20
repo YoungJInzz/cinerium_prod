@@ -73,9 +73,6 @@ const Booking = ({
             date={date}
             person={person}
             screeninfo={screeninfo}
-            moveToBefore={moveToBefore}
-            moveToNext={moveToNext}
-            currentStep={currentStep}
             selectAdult={selectAdult}
             selectTeen={selectTeen}
             selectSenior={selectSenior}
@@ -90,6 +87,9 @@ const Booking = ({
         </div>
       </div>
       <BookInfo
+        handleseatSelectedIndex={handleseatSelectedIndex}
+        seatSelectedIndex={seatSelectedIndex}
+        handleSeatArr={handleSeatArr}
         selectAdult={selectAdult}
         selectTeen={selectTeen}
         selectSenior={selectSenior}

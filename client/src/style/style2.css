@@ -21,6 +21,10 @@ body {
   background-color: #c0392b;
 }
 
+.red-font {
+  color: #c0392b;
+}
+
 .gray {
   background-color: #808b96;
 }
@@ -460,30 +464,40 @@ body {
 
 .row {
   line-height: 20px;
+  height: 22px;
   font-size: 15px;
   text-align: left;
+  color: #ededed;
 }
 
 .content {
   position: absolute;
-  font-weight: bold;
+  float: left;
   margin-left: 10px;
   line-height: 20px;
   font-size: 15px;
+  color: #ededed;
 }
 .content-time {
   margin-left: 85px;
-  font-weight: bold;
 }
 
 .content-layer {
   margin-left: 40px;
-  font-weight: bold;
 }
 
 .content-seat {
   position: relative;
+  width: 60px;
   float: left;
+  text-align: left;
+}
+
+.price {
+  float: right;
+  text-align: right;
+  width: 70px;
+  font-weight: bold;
 }
 
 .seatSelectedContainer {

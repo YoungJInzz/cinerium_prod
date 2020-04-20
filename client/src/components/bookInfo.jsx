@@ -19,6 +19,9 @@ const BookInfo = ({
   selectTeen,
   selectSenior,
   handleseatSelected,
+  handleseatSelectedIndex,
+  seatSelectedIndex,
+  handleSeatArr,
 }) => {
   const [screen, setScreen] = useState("");
   const [layer, setLayer] = useState("");
@@ -122,7 +125,37 @@ const BookInfo = ({
         </div>
       </div>
       <div className="pay Choice">
-        <div className="choicePh">결제</div>
+        <div
+          className={
+            "choicePh" +
+            (person.adult + person.teen + person.senior !== 0 ? " hide" : "")
+          }
+        >
+          결제
+        </div>
+        <div className={"row" + (person.adult === 0 ? " hide" : "")}>
+          <span className="content-seat">일반</span>
+          <span className="price">{person.adult * 8000} 원</span>
+        </div>
+        <div className={"row" + (person.teen === 0 ? " hide" : "")}>
+          <span className="content-seat">청소년</span>
+          <span className="price">{person.teen * 8000} 원</span>
+        </div>
+        <div className={"row" + (person.senior === 0 ? " hide" : "")}>
+          <span className="content-seat">우대</span>
+          <span className="price">{person.senior * 8000} 원</span>
+        </div>
+        <div
+          className={
+            "row" +
+            (person.adult + person.teen + person.senior === 0 ? " hide" : "")
+          }
+        >
+          <span className="content-seat">총금액</span>
+          <span className="price red-font">
+            {(person.adult + person.teen + person.senior) * 8000} 원
+          </span>
+        </div>
       </div>
       <LeftBtn1
         moveToBefore={moveToBefore}
@@ -131,6 +164,9 @@ const BookInfo = ({
         selectSenior={selectSenior}
         selectTeen={selectTeen}
         handleseatSelected={handleseatSelected}
+        handleseatSelectedIndex={handleseatSelectedIndex}
+        seatSelectedIndex={seatSelectedIndex}
+        handleSeatArr={handleSeatArr}
       />
       <RightBtn1
         movie={movie}

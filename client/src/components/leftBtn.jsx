@@ -8,8 +8,21 @@ const LeftBtn1 = ({
   selectTeen,
   selectSenior,
   handleseatSelected,
+  seatSelectedIndex,
+  handleSeatArr,
+  handleseatSelectedIndex,
 }) => {
   const handlePage = () => {
+    seatSelectedIndex.forEach((item) =>
+      handleSeatArr({
+        rowName: item.rowName,
+        userId: "",
+        rowIndex: item.rowIndex,
+        columnIndex: item.columnIndex,
+      })
+    );
+    handleseatSelectedIndex([]);
+
     moveToBefore();
     handleseatSelected([]);
     selectAdult(0);

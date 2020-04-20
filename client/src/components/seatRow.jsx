@@ -71,6 +71,15 @@ const SeatRow = ({
       });
     } else if (totalPerson === seatSelected.length) {
       if (window.confirm("선택이완료되었습니다 다시선택하시겠습니까?")) {
+        seatSelectedIndex.forEach((item) =>
+          handleSeatArr({
+            rowName: item.rowName,
+            userId: "",
+            rowIndex: item.rowIndex,
+            columnIndex: item.columnIndex,
+          })
+        );
+        handleseatSelectedIndex([]);
         handleseatSelected([]);
       } else {
       }
