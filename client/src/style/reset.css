@@ -1,6 +1,12 @@
 /* Reset */
 html,
-body,
+body {
+  margin: 0;
+  padding: 0;
+  border: 0;
+
+  word-break: break-all;
+}
 div,
 span,
 applet,
@@ -80,9 +86,9 @@ time,
 mark,
 audio,
 video {
-    margin: 0;
-    padding: 0;
-    border: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
 }
 
 article,
@@ -96,7 +102,7 @@ hgroup,
 menu,
 nav,
 section {
-    display: block;
+  display: block;
 }
 
 html {
@@ -105,12 +111,12 @@ html {
 
 ol,
 ul {
-    list-style: none;
+  list-style: none;
 }
 
 table {
-    border-collapse: collapse;
-    border-spacing: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
 }
 
 a {

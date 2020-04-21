@@ -19,9 +19,7 @@ const TimeSection = ({ timeData, selectScreen, screeninfo }) => {
       </div>
       <div className="timeInfo">
         <div
-          className={
-            "placeholder" + (screeninfo.length !== 0 ? " disabled" : "")
-          }
+          className={"placeholder" + (screeninfo.length !== 0 ? " hide" : "")}
         >
           영화,극장,날짜를 선택해주세요
         </div>

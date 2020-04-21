@@ -16,7 +16,6 @@ const App = memo(() => {
         <Serch/>
         <Footer />
       </div>
-      
       <div>
         <BookingPage />
       </div>

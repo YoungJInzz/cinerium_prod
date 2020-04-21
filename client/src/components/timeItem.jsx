@@ -18,7 +18,7 @@ const TimeItem = ({ screenId, timeData, selectScreen, entry }) => {
           (entry.emptySeat === 0 ? " sellout2" : "")
         }
       >
-        {entry.time}
+        {entry.startTime}
       </div>
       <div className={"emptySeat" + (entry.emptySeat === 0 ? " sellout" : "")}>
         {entry.emptySeat !== 0 ? `${entry.emptySeat}석` : "매진"}
