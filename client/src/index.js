@@ -5,6 +5,7 @@ import * as serviceWorker from "./serviceWorker";
 import "./style/reset.css";
 import "./style/style1.css";
 import "./style/style2.css";
+import "./style/signup.css";
 import "./font/font.css";
 import { createStore } from "redux";
 import rootReducer from "./modules";

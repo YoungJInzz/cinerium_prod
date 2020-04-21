@@ -3,11 +3,40 @@ import Movie1 from "../resources/movie1.jpg";
 import Movie2 from "../resources/movie2.jpg";
 import Movie3 from "../resources/movie3.jpg";
 import Movie4 from "../resources/movie4.jpg";
+import Plus from "../resources/ico-more-cross-gray.png";
+import { withStyles,makeStyles } from "@material-ui/core/styles";
+import Button from "@material-ui/core/Button";
+
+const StyleButton = withStyles((theme) => ({
+  root: {
+    color: 'white',
+    backgroundColor: "black",
+    '&:hover': {
+      backgroundColor: "gray",
+    },
+    justifyContent:'center'
+  },
+}))(Button);
+
+const useStyles = makeStyles((theme) => ({
+  likebutton: {
+    width:'80px'
+  },
+  bookbutton:{
+    width:'140px'
+  }
+}));
 
 const main = memo(() => {
-  return (
+  const classes = useStyles();
+  return (    
     <>
       <div className="main-container clearfix">
+        <p>박스오피스</p>
+        <a href="#">
+          더 많은 영화보기
+          <img className="plus" src={Plus} alt="더 많은 영화보기" />
+          </a>
         <ul className="movie-list">
           <li className="first">
             <a className="movie-list-info" href="#">
@@ -27,13 +56,18 @@ const main = memo(() => {
               </div>
             </a>
             <div className="btn-util">
-              <button type="button" className="button btn-like">
+              <StyleButton variant="contained" color="primary" className={classes.likebutton}>
                 1.2k
-              </button>
+              </StyleButton>
               <div className="book">
-                <a href="#" className="button gblue" title="영화예매">
+                <StyleButton
+                  variant="contained"
+                  color="primary"
+                  className={classes.bookbutton}
+                  title="영화예매"
+                >
                   예매
-                </a>
+                </StyleButton>
               </div>
             </div>
           </li>
@@ -63,13 +97,18 @@ const main = memo(() => {
               </div>
             </a>
             <div className="btn-util">
-              <button type="button" className="button btn-like">
+              <StyleButton variant="contained" color="primary" className={classes.likebutton}>
                 1.2k
-              </button>
+              </StyleButton>
               <div className="book">
-                <a href="#" className="button gblue" title="영화예매">
+                <StyleButton
+                  variant="contained"
+                  color="primary"
+                  className={classes.bookbutton}
+                  title="영화예매"
+                >
                   예매
-                </a>
+                </StyleButton>
               </div>
             </div>
           </li>
@@ -92,13 +131,18 @@ const main = memo(() => {
               </div>
             </a>
             <div className="btn-util">
-              <button type="button" className="button btn-like">
+              <StyleButton variant="contained" color="primary" className={classes.likebutton}>
                 1.2k
-              </button>
+              </StyleButton>
               <div className="book">
-                <a href="#" className="button gblue" title="영화예매">
+                <StyleButton
+                  variant="contained"
+                  color="primary"
+                  className={classes.bookbutton}
+                  title="영화예매"
+                >
                   예매
-                </a>
+                </StyleButton>
               </div>
             </div>
           </li>
@@ -121,13 +165,18 @@ const main = memo(() => {
               </div>
             </a>
             <div className="btn-util">
-              <button type="button" className="button btn-like">
+              <StyleButton variant="contained" color="primary" className={classes.likebutton}>
                 1.2k
-              </button>
+              </StyleButton>
               <div className="book">
-                <a href="#" className="button gblue" title="영화예매">
+                <StyleButton
+                  variant="contained"
+                  color="primary"
+                  className={classes.bookbutton}
+                  title="영화예매"
+                >
                   예매
-                </a>
+                </StyleButton>
               </div>
             </div>
           </li>

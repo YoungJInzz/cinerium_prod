@@ -105,6 +105,10 @@ section {
   display: block;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 ol,
 ul {
   list-style: none;
@@ -116,5 +120,6 @@ table {
 }
 
 a {
-  text-decoration: none;
+    text-decoration: none;
+    color: black;
 }
