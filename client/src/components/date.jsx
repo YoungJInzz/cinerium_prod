@@ -23,7 +23,7 @@ const DateItem = ({ year, month, item, date, selectDate, numToDay }) => {
   );
 };
 
-const Dates = ({ date, selectDate }) => {
+const Dates = ({ date, selectDate, selectScreen }) => {
   const [year, setYear] = useState();
   const [month, setMonth] = useState();
   const [dates, setDates] = useState([]);
@@ -49,14 +49,14 @@ const Dates = ({ date, selectDate }) => {
       let day = d.getDay();
       arr.push({ day, date });
     }
-    // console.log(arr);
     return arr;
   };
   useEffect(() => {
     setYear(new Date().getFullYear());
     setMonth(new Date().getMonth() + 1);
     setDates(getDateArr());
-  }, []);
+    selectScreen({ screenId: "", timeId: "" });
+  }, [date]);
 
   return (
     <>

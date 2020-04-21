@@ -1,15 +1,10 @@
 import React from "react";
 import MovieItem from "./movieItem";
 
-const MovieSection = ({ movie, movielist, selectMovie }) => {
-  const Doit = () => {
-    console.log(movie);
-  };
+const MovieSection = ({ movie, movielist, selectMovie, selectScreen }) => {
   return (
     <div className="movie-section">
-      <div className="head" onClick={() => Doit()}>
-        영화
-      </div>
+      <div className="head">영화</div>
       <div className="select">
         <div className="menu">
           <div className="btn-1">전체</div>
@@ -17,7 +12,12 @@ const MovieSection = ({ movie, movielist, selectMovie }) => {
         </div>
         <div className="list">
           {movielist.map((items) => (
-            <MovieItem movie={movie} items={items} selectMovie={selectMovie} />
+            <MovieItem
+              movie={movie}
+              items={items}
+              selectMovie={selectMovie}
+              selectScreen={selectScreen}
+            />
           ))}
         </div>
       </div>
