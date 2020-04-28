@@ -1,7 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import MovieItem from "./movieItem";
 
-const MovieSection = ({ movie, movielist, selectMovie, selectScreen }) => {
+const MovieSection = ({
+  movies,
+  movie,
+  movielist,
+  selectMovie,
+  selectScreen,
+}) => {
+  useEffect(() => {
+    console.log(movies);
+  });
   return (
     <div className="movie-section">
       <div className="head">영화</div>
@@ -11,7 +20,7 @@ const MovieSection = ({ movie, movielist, selectMovie, selectScreen }) => {
           <div className="btn-2">큐레이션</div>
         </div>
         <div className="list">
-          {movielist.map((items) => (
+          {movies.map((items) => (
             <MovieItem
               movie={movie}
               items={items}

@@ -2,9 +2,9 @@ import axios from "axios";
 
 export const getInit = () => axios.get("http://127.0.0.1:8080/ticket/screens");
 
-export const getScreenInfo = (movieId, cinemaId, date, timeTableId, group) =>
+export const getScreenInfo = (payload) =>
   axios.get(
-    `http://127.0.0.1:8080/ticket/screens/info?movieId=${movieId}&cinemaId=${cinemaId}&date=${date}&timeTableId=${timeTableId}&group=${group}`
+    `http://127.0.0.1:8080/ticket/screens/info?movieId=${payload.movieId}&cinemaId=${payload.cinemaId}&date=${payload.date}&timeTableId=${payload.timeTableId}&group=${payload.group}`
   );
 
 export const getSeats = (timeTableId) =>

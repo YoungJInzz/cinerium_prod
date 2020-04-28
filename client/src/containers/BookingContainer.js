@@ -1,7 +1,5 @@
 import React, { useEffect } from "react";
-import * as api from "../lib/api";
-import { connect, useDispatch } from "react-redux";
-import axios from "axios";
+import { connect } from "react-redux";
 import {
   selectMovie,
   selectRegion,
@@ -21,6 +19,8 @@ import {
 import Booking from "../components/booking";
 
 const BookingConatainer = ({
+  cinemas,
+  movies,
   person,
   movie,
   theater,
@@ -51,14 +51,7 @@ const BookingConatainer = ({
   handleSeatArr,
   getInitScreens,
 }) => {
-  const dispatch = useDispatch();
   useEffect(() => {
-    // console.log("as");
-    // const getUsers = async () => {
-    //   let res = await api.getInit();
-    //   console.log(res.data);
-    // };
-    // getUsers();
     getInitScreens();
   }, []);
 
@@ -92,6 +85,8 @@ const BookingConatainer = ({
       handleseatSelected={handleseatSelected}
       handleseatSelectedIndex={handleseatSelectedIndex}
       handleSeatArr={handleSeatArr}
+      movies={movies}
+      cinemas={cinemas}
     />
   );
 };
@@ -113,6 +108,8 @@ export default connect(
     userId: booking.userId,
     seatSelected: booking.seatSelected,
     seatSelectedIndex: booking.seatSelectedIndex,
+    movies: booking.movies,
+    cinemas: booking.cinemas,
   }),
   {
     getInitScreens,

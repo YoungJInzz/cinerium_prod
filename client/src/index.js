@@ -13,6 +13,7 @@ import rootReducer, { rootSaga } from "./modules";
 import ReduxThunk from "redux-thunk";
 import createSagaMiddleware from "redux-saga";
 import { composeWithDevTools } from "redux-devtools-extension";
+import "react-app-polyfill/ie9";
 
 const sagaMiddleware = createSagaMiddleware();
 const store = createStore(

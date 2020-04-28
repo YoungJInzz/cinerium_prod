@@ -92,6 +92,9 @@ body {
 
 .movieItem {
   height: 30px;
+  width: 220px;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .movieItem:hover {
@@ -111,6 +114,10 @@ body {
   color: white;
   border-radius: 5px;
 }
+.all {
+  font-size: 12px;
+  background-color: #77b300;
+}
 
 .twe {
   background-color: darkorange;
@@ -125,8 +132,10 @@ body {
 }
 
 .movieItem .title {
+  width: 50px;
   font-size: 14px;
   font-weight: 600;
+  overflow: hidden;
 }
 
 /*movie*/

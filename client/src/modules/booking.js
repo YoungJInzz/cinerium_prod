@@ -23,25 +23,7 @@ const HANDLE_SEATSELECTEDINDEX = "booking/HANDLE_SEATSELECTEDINDEX";
 const HANDLE_SEATARR = "booking/HANDLE_SEATARR";
 
 export const getInitScreens = createAction(GET_INITSCREENS);
-function* getInitScreensSaga() {
-  yield put(startloading(GET_INITSCREENS));
-  try {
-    const response = yield call(api.getInit);
-    console.log(response);
-    yield put({
-      type: GET_INITSCREENS_SUCCESS,
-      payload: response.data,
-    });
-  } catch (e) {
-    yield put({
-      type: GET_INITSCREENS_FAILURE,
-      payload: e,
-      error: true,
-    });
-  }
-  yield put(finishloading(GET_INITSCREENS));
-}
-
+const getInitScreensSaga = createRequestSaga(GET_INITSCREENS, api.getInit);
 export function* bookingSaga() {
   yield takeLatest(GET_INITSCREENS, getInitScreensSaga);
 }
@@ -92,7 +74,9 @@ export const handleSeatArr = createAction(HANDLE_SEATARR, (input) => ({
 }));
 
 const initialState = {
-  movies: "",
+  movies: [],
+  cinemas: [],
+  dates: [],
   userId: "58645",
   seatSelected: [],
   seatSelectedIndex: [],
@@ -592,7 +576,9 @@ const booking = handleActions(
     }),
     [GET_INITSCREENS_SUCCESS]: (state, action) => ({
       ...state,
-      movies: action.payload,
+      movies: action.payload.movies,
+      cinemas: action.payload.cinemas,
+      dates: action.payload.dates,
     }),
   },
   initialState

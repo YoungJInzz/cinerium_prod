@@ -29,7 +29,6 @@ const BookInfo = ({
 
   useEffect(() => {
     filterScreen();
-    console.log(person);
   }, [timeData]);
 
   const filterScreen = () => {

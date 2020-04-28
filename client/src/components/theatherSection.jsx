@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 const TheatherSection = ({
+  cinemas,
   region,
   theater,
   theaterlist,
@@ -9,6 +10,9 @@ const TheatherSection = ({
   selectTheater,
   selectScreen,
 }) => {
+  useEffect(() => {
+    console.log(cinemas);
+  });
   const Do = (item) => {
     selectTheater(item);
     selectScreen({ screenId: "", timeId: "" });
@@ -23,14 +27,14 @@ const TheatherSection = ({
           <div className="btn-2">특별관</div>
         </div>
         <div className="regionList">
-          {regionList.map((item) => (
+          {cinemas.map((item) => (
             <div
               className={
                 "regionItem " + (item === region ? " regionSelected" : "")
               }
               onClick={() => selectRegion(item)}
             >
-              {item}
+              {item.cinemaArea}
             </div>
           ))}
         </div>
