@@ -1,8 +1,11 @@
 import { combineReducers } from "redux";
-import booking from "./booking";
-
+import booking, { bookingSaga } from "./booking";
+import { all } from "redux-saga/effects";
 const rootReducer = combineReducers({
-  booking
+  booking,
 });
+export function* rootSaga() {
+  yield all([bookingSaga()]);
+}
 
 export default rootReducer;

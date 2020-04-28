@@ -1,4 +1,12 @@
 import { createAction, handleActions } from "redux-actions";
+import { takeLatest, put, call } from "redux-saga/effects";
+import * as api from "../lib/api";
+import createRequestSaga from "../lib/createRequestSage";
+import { startloading, finishloading } from "./loading";
+
+const GET_INITSCREENS = "booking/GET_INITSCREENS";
+const GET_INITSCREENS_SUCCESS = "booking/GET_INITSCREENS_SUCCESS";
+const GET_INITSCREENS_FAILURE = "booking/GET_INITSCREENS_FAILURE";
 
 const SELECT_MOVIE = "booking/SELECT_MOIVE";
 const SELECT_REGION = "booking/SELECT_REGION";
@@ -14,6 +22,47 @@ const HANDLE_SEATSELECTED = "booking/HANDLE_SEATSELECTED";
 const HANDLE_SEATSELECTEDINDEX = "booking/HANDLE_SEATSELECTEDINDEX";
 const HANDLE_SEATARR = "booking/HANDLE_SEATARR";
 
+export const getInitScreens = createAction(GET_INITSCREENS);
+function* getInitScreensSaga() {
+  yield put(startloading(GET_INITSCREENS));
+  try {
+    const response = yield call(api.getInit);
+    console.log(response);
+    yield put({
+      type: GET_INITSCREENS_SUCCESS,
+      payload: response.data,
+    });
+  } catch (e) {
+    yield put({
+      type: GET_INITSCREENS_FAILURE,
+      payload: e,
+      error: true,
+    });
+  }
+  yield put(finishloading(GET_INITSCREENS));
+}
+
+export function* bookingSaga() {
+  yield takeLatest(GET_INITSCREENS, getInitScreensSaga);
+}
+
+// export const getInitScreens = () => async (dispatch) => {
+//   dispatch({ type: GET_INITSCREENS });
+//   try {
+//     const response = await api.getInit();
+//     dispatch({
+//       type: GET_INITSCREENS_SUCCESS,
+//       payload: response.data,
+//     });
+//   } catch (e) {
+//     dispatch({
+//       type: GET_INITSCREENS_FAILURE,
+//       payload: e,
+//       error: true,
+//     });
+//     throw e;
+//   }
+// };
 export const selectMovie = createAction(SELECT_MOVIE, (input) => input);
 export const selectRegion = createAction(SELECT_REGION, (input) => input);
 export const selectTheater = createAction(SELECT_THEATER, (input) => input);
@@ -43,6 +92,7 @@ export const handleSeatArr = createAction(HANDLE_SEATARR, (input) => ({
 }));
 
 const initialState = {
+  movies: "",
   userId: "58645",
   seatSelected: [],
   seatSelectedIndex: [],
@@ -302,6 +352,9 @@ const initialState = {
         { key: 15, bookingUser: "" },
       ],
     },
+    {
+      M: [],
+    },
   ],
   regiontheater: [
     "강남",
@@ -536,6 +589,10 @@ const booking = handleActions(
             }
           : item1
       ),
+    }),
+    [GET_INITSCREENS_SUCCESS]: (state, action) => ({
+      ...state,
+      movies: action.payload,
     }),
   },
   initialState

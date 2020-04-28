@@ -9,13 +9,7 @@ import Signup from "./components/signup";
 const App = memo(() => {
   return (
     <>
-      <div>
-        <Navigation />
-        {/* <Signup/> */}
-        <Main />
-        <Serch/>
-        <Footer />
-      </div>
+
       <div>
         <BookingPage />
       </div>
