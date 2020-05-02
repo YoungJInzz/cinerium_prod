@@ -37,9 +37,10 @@ const Booking = ({
   handleSeatArr,
   movies,
   cinemas,
+  dates,
 }) => {
   // useEffect(() => {
-  //   console.log(cinemas);
+  //   console.log(dates);
   // });
   return (
     <div>
@@ -63,6 +64,7 @@ const Booking = ({
             cinemas={cinemas}
           />
           <Dates
+            dates={dates}
             date={date}
             selectDate={selectDate}
             selectScreen={selectScreen}

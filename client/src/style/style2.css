@@ -215,8 +215,11 @@ body {
 }
 
 .theaterItem {
+  width: 120px;
   font-size: 14px;
   height: 25px;
+  white-space: pre;
+  overflow: hidden;
 }
 
 .theaterItem:hover {

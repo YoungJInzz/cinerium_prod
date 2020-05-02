@@ -8,9 +8,7 @@ const MovieSection = ({
   selectMovie,
   selectScreen,
 }) => {
-  useEffect(() => {
-    console.log(movies);
-  });
+  useEffect(() => {});
   return (
     <div className="movie-section">
       <div className="head">영화</div>

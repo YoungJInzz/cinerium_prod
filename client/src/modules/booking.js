@@ -10,6 +10,7 @@ const GET_INITSCREENS_FAILURE = "booking/GET_INITSCREENS_FAILURE";
 
 const SELECT_MOVIE = "booking/SELECT_MOIVE";
 const SELECT_REGION = "booking/SELECT_REGION";
+const SET_CINEMAS = "booking/SET_CINEMAS";
 const SELECT_THEATER = "booking/SELECT_THEATER";
 const SELECT_DATE = "booking/SELECT_DATE";
 const SELECT_SCREEN = "booking/SELECT_TIME";
@@ -45,6 +46,7 @@ export function* bookingSaga() {
 //     throw e;
 //   }
 // };
+
 export const selectMovie = createAction(SELECT_MOVIE, (input) => input);
 export const selectRegion = createAction(SELECT_REGION, (input) => input);
 export const selectTheater = createAction(SELECT_THEATER, (input) => input);
@@ -73,10 +75,13 @@ export const handleSeatArr = createAction(HANDLE_SEATARR, (input) => ({
   columnIndex: input.columnIndex,
 }));
 
+export const setCinemas = createAction(SET_CINEMAS, (input) => input);
+
 const initialState = {
   movies: [],
   cinemas: [],
   dates: [],
+  selectedCinemas: "",
   userId: "58645",
   seatSelected: [],
   seatSelectedIndex: [],

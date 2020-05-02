@@ -5,7 +5,6 @@ export default function createRequestSaga(type, request) {
   const SUCCESS = `${type}_SUCCESS`;
   const FAILURE = `${type}_FAILURE`;
   return function* (action) {
-    console.log("asdasd");
     yield put(startloading(type));
     try {
       const response = yield call(request, action.payload);

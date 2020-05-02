@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from "react";
 
-const DateItem = ({ year, month, item, date, selectDate, numToDay }) => {
+const DateItem = ({
+  item,
+  date,
+  selectDate,
+  numToDay,
+  handleDate,
+  handleDay,
+}) => {
   return (
     <div
-      className={
-        "dateItem" +
-        (item.day === date.day && item.date === date.date ? " selected" : "")
-      }
-      onClick={() =>
-        selectDate({ year, month, day: item.day, date: item.date })
-      }
+      className={"dateItem" + (item === date ? " selected" : "")}
+      onClick={() => selectDate(item)}
     >
       <span
         className={
@@ -18,15 +20,17 @@ const DateItem = ({ year, month, item, date, selectDate, numToDay }) => {
       >
         {numToDay(item.day)}
       </span>
-      <span className="date">{item.date}</span>
+      <span className="date">{handleDate(item)}</span>
     </div>
   );
 };
 
-const Dates = ({ date, selectDate, selectScreen }) => {
+const Dates = ({ date, selectDate, selectScreen, dates }) => {
   const [year, setYear] = useState();
-  const [month, setMonth] = useState();
-  const [dates, setDates] = useState([]);
+  const [thisMonth, setThisMonth] = useState();
+  const [nextMonth, setNextMonth] = useState();
+  const [thisDates, setThisDates] = useState([]);
+  const [nextDates, setNextDates] = useState([]);
 
   const numToDay = (num) => {
     var weekday = new Array(7);
@@ -41,41 +45,65 @@ const Dates = ({ date, selectDate, selectScreen }) => {
   };
 
   const getDateArr = () => {
-    let arr = [];
-    for (let i = 0; i < 20; i++) {
-      let d = new Date();
-      d.setDate(d.getDate() - i);
-      let date = d.getDate();
-      let day = d.getDay();
-      arr.push({ day, date });
+    let thisDatesArr = [];
+    let nextDatesArr = [];
+    for (let item of dates) {
+      console.log(Number(JSON.stringify(item).substring(6, 8)));
+      console.log(item);
+      if (Number(JSON.stringify(item).substring(4, 6)) === thisMonth) {
+        thisDatesArr.push(item);
+      }
+      if (Number(JSON.stringify(item).substring(4, 6)) === nextMonth) {
+        nextDatesArr.push(item);
+      }
     }
-    return arr;
+    console.log(thisDatesArr);
+    setThisDates(thisDatesArr);
+    setNextDates(nextDatesArr);
+  };
+
+  const handleDate = (item) => {
+    let string = JSON.stringify(item);
+    return string.substring(6, 8);
+  };
+  const handleDay = (item) => {
+    let datInfo = new Date(
+      Number(item.subString(0, 4)),
+      Number(item.subString(4, 6)),
+      Number(item.subString(6, 8))
+    );
+    return numToDay(datInfo.getDay());
   };
   useEffect(() => {
     setYear(new Date().getFullYear());
-    setMonth(new Date().getMonth() + 1);
-    setDates(getDateArr());
-    selectScreen({ screenId: "", timeId: "" });
-  }, [date]);
+    setThisMonth(new Date().getMonth() + 1);
+    if (thisMonth === 12) {
+      setNextMonth(1);
+    } else {
+      setNextMonth(new Date().getMonth() + 2);
+    }
+    getDateArr();
+  }, [dates]);
 
   return (
     <>
       <div className="dateSection">
         <div className="head">날짜</div>
         <div className="year">{year}</div>
-        <div className="month">{month}</div>
+        <div className="month">{thisMonth}</div>
         <div className="dates">
-          {dates &&
-            dates.map((item) => (
-              <DateItem
-                year={year}
-                month={month}
-                item={item}
-                date={date}
-                selectDate={selectDate}
-                numToDay={numToDay}
-              />
-            ))}
+          {thisDates.map((item) => (
+            <DateItem
+              year={year}
+              month={thisMonth}
+              item={item}
+              date={date}
+              selectDate={selectDate}
+              numToDay={numToDay}
+              handleDate={handleDate}
+              handleDay={handleDay}
+            />
+          ))}
         </div>
       </div>
     </>

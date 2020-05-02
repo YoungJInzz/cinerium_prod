@@ -19,6 +19,7 @@ import {
 import Booking from "../components/booking";
 
 const BookingConatainer = ({
+  dates,
   cinemas,
   movies,
   person,
@@ -87,6 +88,7 @@ const BookingConatainer = ({
       handleSeatArr={handleSeatArr}
       movies={movies}
       cinemas={cinemas}
+      dates={dates}
     />
   );
 };
@@ -110,6 +112,7 @@ export default connect(
     seatSelectedIndex: booking.seatSelectedIndex,
     movies: booking.movies,
     cinemas: booking.cinemas,
+    dates: booking.dates,
   }),
   {
     getInitScreens,

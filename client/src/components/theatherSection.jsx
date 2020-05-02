@@ -1,23 +1,20 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 const TheatherSection = ({
   cinemas,
   region,
   theater,
-  theaterlist,
-  regiontheater,
   selectRegion,
   selectTheater,
-  selectScreen,
 }) => {
+  const [regionCinemas, setRegionCinemas] = useState([]);
   useEffect(() => {
-    console.log(cinemas);
+    for (let item of cinemas) {
+      if (item.cinemaArea === region) {
+        setRegionCinemas(item.cinemaList);
+      }
+    }
   });
-  const Do = (item) => {
-    selectTheater(item);
-    selectScreen({ screenId: "", timeId: "" });
-  };
-  const regionList = theaterlist.map((item) => item.region);
   return (
     <div className="theater-section">
       <div className="head">극장</div>
@@ -30,21 +27,24 @@ const TheatherSection = ({
           {cinemas.map((item) => (
             <div
               className={
-                "regionItem " + (item === region ? " regionSelected" : "")
+                "regionItem " +
+                (item.cinemaArea === region ? " regionSelected" : "")
               }
-              onClick={() => selectRegion(item)}
+              onClick={() => selectRegion(item.cinemaArea)}
             >
               {item.cinemaArea}
             </div>
           ))}
         </div>
         <div className="regiontheater">
-          {regiontheater.map((item) => (
+          {regionCinemas.map((item) => (
             <div
-              className={"theaterItem" + (item === theater ? " selected" : "")}
-              onClick={() => Do(item)}
+              className={
+                "theaterItem" + (item.cinemaName === theater ? " selected" : "")
+              }
+              onClick={() => selectTheater(item.cinemaName)}
             >
-              {item}
+              {item.cinemaName}
             </div>
           ))}
         </div>
