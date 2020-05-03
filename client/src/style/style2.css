@@ -13,6 +13,10 @@ body {
   opacity: 0.5;
   pointer-events: none;
 }
+
+.blur2 {
+  opacity: 0.5;
+}
 .regionSelected {
   background-color: #abb2b9;
   color: whitesmoke;
@@ -489,6 +493,9 @@ body {
   line-height: 20px;
   font-size: 15px;
   color: #ededed;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 140px;
 }
 .content-time {
   margin-left: 85px;
@@ -849,6 +856,10 @@ body {
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
+}
+
+.test {
+  background-image: url(/src/resources/rec.svg);
 }
 
 /*scroll bar end*/

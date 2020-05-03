@@ -4,9 +4,12 @@ import * as api from "../lib/api";
 import createRequestSaga from "../lib/createRequestSage";
 import { startloading, finishloading } from "./loading";
 
-const GET_INITSCREENS = "booking/GET_INITSCREENS";
-const GET_INITSCREENS_SUCCESS = "booking/GET_INITSCREENS_SUCCESS";
-const GET_INITSCREENS_FAILURE = "booking/GET_INITSCREENS_FAILURE";
+const GET_INITSCREENS = "GET_INITSCREENS";
+const GET_INITSCREENS_SUCCESS = "GET_INITSCREENS_SUCCESS";
+const GET_INITSCREENS_FAILURE = "GET_INITSCREENS_FAILURE";
+const GET_SCREENS = "GET_SCREENS";
+const GET_SCREENS_SUCCESS = "GET_SCREENS_SUCCESS";
+const GET_SCREENS_FAILURE = "GET_SCREENS_FAILURE";
 
 const SELECT_MOVIE = "booking/SELECT_MOIVE";
 const SELECT_REGION = "booking/SELECT_REGION";
@@ -24,11 +27,15 @@ const HANDLE_SEATSELECTEDINDEX = "booking/HANDLE_SEATSELECTEDINDEX";
 const HANDLE_SEATARR = "booking/HANDLE_SEATARR";
 
 export const getInitScreens = createAction(GET_INITSCREENS);
+export const getScreens = createAction(GET_SCREENS, (payload) => payload);
+
 const getInitScreensSaga = createRequestSaga(GET_INITSCREENS, api.getInit);
+const getScreenSaga = createRequestSaga(GET_SCREENS, api.getScreenInfo);
+
 export function* bookingSaga() {
   yield takeLatest(GET_INITSCREENS, getInitScreensSaga);
+  yield takeLatest(GET_SCREENS, getScreenSaga);
 }
-
 // export const getInitScreens = () => async (dispatch) => {
 //   dispatch({ type: GET_INITSCREENS });
 //   try {
@@ -81,8 +88,10 @@ const initialState = {
   movies: [],
   cinemas: [],
   dates: [],
+  showTimes: [],
   selectedCinemas: "",
   userId: "58645",
+  group: "0",
   seatSelected: [],
   seatSelectedIndex: [],
   currentStep: 1,
@@ -91,7 +100,7 @@ const initialState = {
   theater: "",
   screen: "",
   timeData: "",
-  region: "서울",
+  region: { cinemaArea: "서울" },
   date: "",
   seatArr: [
     {
@@ -584,6 +593,23 @@ const booking = handleActions(
       movies: action.payload.movies,
       cinemas: action.payload.cinemas,
       dates: action.payload.dates,
+    }),
+    [GET_SCREENS_SUCCESS]: (state, action) => ({
+      ...state,
+      movies:
+        action.payload.movies === undefined
+          ? state.movies
+          : action.payload.movies,
+      cinemas:
+        action.payload.cinemas === undefined
+          ? state.cinemas
+          : action.payload.cinemas,
+      dates:
+        action.payload.dates === undefined ? state.dates : action.payload.dates,
+      showtimes:
+        action.payload.showtimes === undefined
+          ? state.showTimes
+          : action.payload.showtimes,
     }),
   },
   initialState

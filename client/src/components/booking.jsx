@@ -7,6 +7,7 @@ import BookInfo from "./bookInfo";
 import SeatSelectSection from "./seatSelectSection";
 
 const Booking = ({
+  group,
   movie,
   theater,
   timeData,
@@ -38,6 +39,10 @@ const Booking = ({
   movies,
   cinemas,
   dates,
+  getScreens,
+  getInitScreens,
+  InitState,
+  getSCreensState,
 }) => {
   // useEffect(() => {
   //   console.log(dates);
@@ -45,6 +50,7 @@ const Booking = ({
   return (
     <div>
       <div className="booking-container">
+        <img src="/IMG.png" class="img-responsive" />
         <div className={"step1" + (currentStep !== 1 ? " hide" : "")}>
           <MovieSection
             movies={movies}
@@ -52,8 +58,16 @@ const Booking = ({
             movielist={movielist}
             selectMovie={selectMovie}
             selectScreen={selectScreen}
+            getScreens={getScreens}
+            group={group}
+            theater={theater}
+            date={date}
+            getInitScreens={getInitScreens}
           />
           <TheatherSection
+            getInitScreens={getInitScreens}
+            movie={movie}
+            date={date}
             region={region}
             selectRegion={selectRegion}
             theater={theater}
@@ -62,6 +76,8 @@ const Booking = ({
             selectTheater={selectTheater}
             selectScreen={selectScreen}
             cinemas={cinemas}
+            getScreens={getScreens}
+            group={group}
           />
           <Dates
             dates={dates}
@@ -114,6 +130,7 @@ const Booking = ({
         moveToNext={moveToNext}
         currentStep={currentStep}
       />
+      <div className="test"></div>
     </div>
   );
 };

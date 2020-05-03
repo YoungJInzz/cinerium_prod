@@ -26,10 +26,11 @@ const BookInfo = ({
   const [screen, setScreen] = useState("");
   const [layer, setLayer] = useState("");
   const [time, setTime] = useState("");
-
+  const [dateStr, setDateStr] = useState("");
   useEffect(() => {
+    setDateStr(JSON.stringify(date));
     filterScreen();
-  }, [timeData]);
+  }, [timeData, date]);
 
   const filterScreen = () => {
     let filteredSreen = screeninfo.filter(
@@ -61,7 +62,7 @@ const BookInfo = ({
         <div className={"choicePh" + (movie !== "" ? " hide" : "")}>
           영화선택
         </div>
-        <div className="movieSelected">{movie}</div>
+        <div className="movieSelected">{movie.movieTitle}</div>
       </div>
       <div className="th Choice">
         <div
@@ -82,13 +83,16 @@ const BookInfo = ({
             <span className="content-title">극장</span>
             <span className={"content" + (theater === "" ? " hide" : "")}>
               {" "}
-              {`CGV ${theater}`}
+              {`CGV ${theater.cinemaName}`}
             </span>
           </div>
           <div className="row">
             <span className="content-title">일시</span>
             <span className={"content" + (date === "" ? " hide" : "")}>
-              {`${date.year}.${date.month}.${date.date}`}
+              {`${dateStr.substring(0, 4)}/${dateStr.substring(
+                4,
+                6
+              )}/${dateStr.substring(6, 8)}`}
             </span>
             <span className="content-time">{time}</span>
           </div>

@@ -7,6 +7,11 @@ const MovieSection = ({
   movielist,
   selectMovie,
   selectScreen,
+  getScreens,
+  theater,
+  date,
+  getInitScreens,
+  group,
 }) => {
   useEffect(() => {});
   return (
@@ -23,7 +28,11 @@ const MovieSection = ({
               movie={movie}
               items={items}
               selectMovie={selectMovie}
-              selectScreen={selectScreen}
+              getScreens={getScreens}
+              theater={theater}
+              date={date}
+              getInitScreens={getInitScreens}
+              group={group}
             />
           ))}
         </div>

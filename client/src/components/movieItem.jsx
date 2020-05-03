@@ -1,18 +1,39 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
-const Movieitems = ({ movie, items, selectMovie, selectScreen }) => {
-  const clickmovie = (title) => {
-    selectMovie(title);
-    selectScreen({ screenId: "", timeId: "" });
+const Movieitems = ({
+  movie,
+  items,
+  selectMovie,
+  getScreens,
+  theater,
+  date,
+  getInitScreens,
+  group,
+}) => {
+  const clickmovie = (item) => {
+    if (item.isAvailable === true) {
+      selectMovie(item);
+      getScreens({ movieId: item.Id, cinemaId: theater.id, date, group });
+    } else {
+      if (
+        window.confirm(
+          "해당 상영스케줄이 없습니다.다시 선택하시겠습니까?(선택한 극장 및 날짜가 초기화됩니다)"
+        )
+      ) {
+        getInitScreens();
+      } else {
+      }
+    }
   };
-
   return (
     <div>
       <div
         className={
-          "movieItem" + (items.movieTitle === movie ? " selected" : "")
+          "movieItem" +
+          (items === movie ? " selected" : "") +
+          (items.isAvailable === false ? " blur2" : "")
         }
-        onClick={() => clickmovie(items.movieTitle)}
+        onClick={() => clickmovie(items)}
       >
         <span
           className={

@@ -451,7 +451,9 @@ const Seatselect2Section = ({
         </div>
         <div className="seat-time">
           <div className="seat-time-row">
-            <div className="seat-time-content thea">cgv {theater}</div>
+            <div className="seat-time-content thea">
+              cgv {theater.cinemaName}
+            </div>
             <div className="seat-time-content scr">
               {`${screen}관 ${layer}층`}
             </div>

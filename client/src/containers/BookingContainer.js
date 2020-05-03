@@ -15,10 +15,12 @@ import {
   handleseatSelectedIndex,
   handleSeatArr,
   getInitScreens,
+  getScreens,
 } from "../modules/booking";
 import Booking from "../components/booking";
 
 const BookingConatainer = ({
+  group,
   dates,
   cinemas,
   movies,
@@ -51,13 +53,18 @@ const BookingConatainer = ({
   handleseatSelectedIndex,
   handleSeatArr,
   getInitScreens,
+  getScreens,
+  InitState,
+  getSCreensState,
 }) => {
   useEffect(() => {
     getInitScreens();
+    getScreens();
   }, []);
 
   return (
     <Booking
+      group={group}
       person={person}
       movie={movie}
       theater={theater}
@@ -89,12 +96,16 @@ const BookingConatainer = ({
       movies={movies}
       cinemas={cinemas}
       dates={dates}
+      getScreens={getScreens}
+      getInitScreens={getInitScreens}
+      InitState={InitState}
+      getSCreensState={getSCreensState}
     />
   );
 };
 
 export default connect(
-  ({ booking }) => ({
+  ({ booking, loading }) => ({
     person: booking.person,
     movie: booking.movie,
     theater: booking.theater,
@@ -113,6 +124,9 @@ export default connect(
     movies: booking.movies,
     cinemas: booking.cinemas,
     dates: booking.dates,
+    group: booking.group,
+    InitState: loading.GET_INITSCREENS,
+    getSCreensState: loading.GET_SCREENS,
   }),
   {
     getInitScreens,
@@ -129,5 +143,6 @@ export default connect(
     handleseatSelected,
     handleseatSelectedIndex,
     handleSeatArr,
+    getScreens,
   }
 )(BookingConatainer);

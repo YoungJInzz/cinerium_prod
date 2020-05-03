@@ -10,8 +10,8 @@ const DateItem = ({
 }) => {
   return (
     <div
-      className={"dateItem" + (item === date ? " selected" : "")}
-      onClick={() => selectDate(item)}
+      className={"dateItem" + (item.date === date ? " selected" : "")}
+      onClick={() => selectDate(item.date)}
     >
       <span
         className={
@@ -48,22 +48,19 @@ const Dates = ({ date, selectDate, selectScreen, dates }) => {
     let thisDatesArr = [];
     let nextDatesArr = [];
     for (let item of dates) {
-      console.log(Number(JSON.stringify(item).substring(6, 8)));
-      console.log(item);
-      if (Number(JSON.stringify(item).substring(4, 6)) === thisMonth) {
+      if (Number(JSON.stringify(item.date).substring(4, 6)) === thisMonth) {
         thisDatesArr.push(item);
       }
-      if (Number(JSON.stringify(item).substring(4, 6)) === nextMonth) {
+      if (Number(JSON.stringify(item.date).substring(4, 6)) === nextMonth) {
         nextDatesArr.push(item);
       }
     }
-    console.log(thisDatesArr);
     setThisDates(thisDatesArr);
     setNextDates(nextDatesArr);
   };
 
   const handleDate = (item) => {
-    let string = JSON.stringify(item);
+    let string = JSON.stringify(item.date);
     return string.substring(6, 8);
   };
   const handleDay = (item) => {
