@@ -1,17 +1,46 @@
 import React, { useState, useEffect } from "react";
 
 const DateItem = ({
+  getInitScreens,
   item,
   date,
   selectDate,
   numToDay,
   handleDate,
   handleDay,
+  getScreens,
+  movie,
+  theater,
+  group,
 }) => {
+  const clickDate = (item) => {
+    if (item.isVailable === true) {
+      selectDate(item.date);
+      getScreens({
+        movieId: movie.Id,
+        cinemaId: theater.id,
+        date: item.date,
+        group,
+      });
+    } else {
+      if (
+        window.confirm(
+          "해당 상영스케줄이 없습니다.다시 선택하시겠습니까?(선택한 극장 및 날짜가 초기화됩니다)"
+        )
+      ) {
+        getInitScreens();
+      }
+    }
+  };
+
   return (
     <div
-      className={"dateItem" + (item.date === date ? " selected" : "")}
-      onClick={() => selectDate(item.date)}
+      className={
+        "dateItem" +
+        (item.date === date ? " selected" : "") +
+        (item.isVailable === false ? " blur2" : "")
+      }
+      onClick={() => clickDate(item)}
     >
       <span
         className={
@@ -24,8 +53,18 @@ const DateItem = ({
     </div>
   );
 };
-
-const Dates = ({ date, selectDate, selectScreen, dates }) => {
+//////////////////////////////////////////////////////////////////
+const Dates = ({
+  date,
+  selectDate,
+  selectScreen,
+  dates,
+  getScreens,
+  getInitScreens,
+  movie,
+  theater,
+  group,
+}) => {
   const [year, setYear] = useState();
   const [thisMonth, setThisMonth] = useState();
   const [nextMonth, setNextMonth] = useState();
@@ -80,7 +119,8 @@ const Dates = ({ date, selectDate, selectScreen, dates }) => {
       setNextMonth(new Date().getMonth() + 2);
     }
     getDateArr();
-  }, [dates]);
+    console.log(date);
+  }, [dates, date]);
 
   return (
     <>
@@ -91,6 +131,7 @@ const Dates = ({ date, selectDate, selectScreen, dates }) => {
         <div className="dates">
           {thisDates.map((item) => (
             <DateItem
+              getInitScreens={getInitScreens}
               year={year}
               month={thisMonth}
               item={item}
@@ -99,6 +140,10 @@ const Dates = ({ date, selectDate, selectScreen, dates }) => {
               numToDay={numToDay}
               handleDate={handleDate}
               handleDay={handleDay}
+              getScreens={getScreens}
+              movie={movie}
+              theater={theater}
+              group={group}
             />
           ))}
         </div>

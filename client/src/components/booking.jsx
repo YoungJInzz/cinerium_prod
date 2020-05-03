@@ -5,6 +5,7 @@ import TheatherSection from "./theatherSection";
 import TimeSection from "./timeSection";
 import BookInfo from "./bookInfo";
 import SeatSelectSection from "./seatSelectSection";
+import loadingImg from "../resources/loading.gif";
 
 const Booking = ({
   group,
@@ -43,14 +44,25 @@ const Booking = ({
   getInitScreens,
   InitState,
   getSCreensState,
+  showTimes,
 }) => {
   // useEffect(() => {
   //   console.log(dates);
   // });
   return (
-    <div>
+    <div
+      className={
+        InitState == true || getSCreensState === true ? "notClick" : ""
+      }
+    >
       <div className="booking-container">
-        <img src="/IMG.png" class="img-responsive" />
+        <img
+          className={
+            "loading" +
+            (InitState === false && getSCreensState === false ? " hide" : "")
+          }
+          src={loadingImg}
+        />
         <div className={"step1" + (currentStep !== 1 ? " hide" : "")}>
           <MovieSection
             movies={movies}
@@ -84,11 +96,17 @@ const Booking = ({
             date={date}
             selectDate={selectDate}
             selectScreen={selectScreen}
+            getScreens={getScreens}
+            movie={movie}
+            theater={theater}
+            group={group}
+            getInitScreens={getInitScreens}
           />
           <TimeSection
             timeData={timeData}
             selectScreen={selectScreen}
             screeninfo={screeninfo}
+            showTimes={showTimes}
           />
         </div>
         <div className={"step2" + (currentStep !== 2 ? " hide" : "")}>

@@ -63,7 +63,7 @@ const TheatherSection = ({
             <div
               className={
                 "theaterItem" +
-                (item === theater ? " selected" : "") +
+                (item.id === theater.id ? " selected" : "") +
                 (item.isAvailable === false ? " blur2" : "")
               }
               onClick={() => ClickTheater(item)}

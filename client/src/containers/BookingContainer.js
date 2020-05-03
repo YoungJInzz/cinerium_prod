@@ -56,6 +56,7 @@ const BookingConatainer = ({
   getScreens,
   InitState,
   getSCreensState,
+  showTimes,
 }) => {
   useEffect(() => {
     getInitScreens();
@@ -100,6 +101,7 @@ const BookingConatainer = ({
       getInitScreens={getInitScreens}
       InitState={InitState}
       getSCreensState={getSCreensState}
+      showTimes={showTimes}
     />
   );
 };
@@ -127,6 +129,7 @@ export default connect(
     group: booking.group,
     InitState: loading.GET_INITSCREENS,
     getSCreensState: loading.GET_SCREENS,
+    showTimes: booking.showTimes,
   }),
   {
     getInitScreens,

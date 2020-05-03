@@ -25,12 +25,13 @@ const Movieitems = ({
       }
     }
   };
+
   return (
     <div>
       <div
         className={
           "movieItem" +
-          (items === movie ? " selected" : "") +
+          (items.Id === movie.Id ? " selected" : "") +
           (items.isAvailable === false ? " blur2" : "")
         }
         onClick={() => clickmovie(items)}

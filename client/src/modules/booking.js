@@ -58,10 +58,7 @@ export const selectMovie = createAction(SELECT_MOVIE, (input) => input);
 export const selectRegion = createAction(SELECT_REGION, (input) => input);
 export const selectTheater = createAction(SELECT_THEATER, (input) => input);
 export const selectDate = createAction(SELECT_DATE, (input) => input);
-export const selectScreen = createAction(SELECT_SCREEN, (input) => ({
-  screenId: input.screenId,
-  timeId: input.timeId,
-}));
+export const selectScreen = createAction(SELECT_SCREEN, (input) => input);
 export const moveToNext = createAction(MOVE_TO_NEXT);
 export const moveToBefore = createAction(MOVE_TO_BEFORE);
 export const selectAdult = createAction(SELECT_ADULT);
@@ -606,7 +603,7 @@ const booking = handleActions(
           : action.payload.cinemas,
       dates:
         action.payload.dates === undefined ? state.dates : action.payload.dates,
-      showtimes:
+      showTimes:
         action.payload.showtimes === undefined
           ? state.showTimes
           : action.payload.showtimes,
