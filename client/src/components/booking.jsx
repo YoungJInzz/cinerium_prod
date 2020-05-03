@@ -45,6 +45,7 @@ const Booking = ({
   InitState,
   getSCreensState,
   showTimes,
+  initShowTimes,
 }) => {
   // useEffect(() => {
   //   console.log(dates);
@@ -65,6 +66,8 @@ const Booking = ({
         />
         <div className={"step1" + (currentStep !== 1 ? " hide" : "")}>
           <MovieSection
+            selectTheater={selectTheater}
+            initShowTimes={initShowTimes}
             movies={movies}
             movie={movie}
             movielist={movielist}
@@ -75,9 +78,12 @@ const Booking = ({
             theater={theater}
             date={date}
             getInitScreens={getInitScreens}
+            selectDate={selectDate}
+            selectRegion={selectRegion}
           />
           <TheatherSection
             getInitScreens={getInitScreens}
+            selectMovie={selectMovie}
             movie={movie}
             date={date}
             region={region}
@@ -90,8 +96,12 @@ const Booking = ({
             cinemas={cinemas}
             getScreens={getScreens}
             group={group}
+            initShowTimes={initShowTimes}
+            selectDate={selectDate}
+            selectRegion={selectRegion}
           />
           <Dates
+            selectMovie={selectMovie}
             dates={dates}
             date={date}
             selectDate={selectDate}
@@ -101,6 +111,9 @@ const Booking = ({
             theater={theater}
             group={group}
             getInitScreens={getInitScreens}
+            initShowTimes={initShowTimes}
+            selectTheater={selectTheater}
+            selectRegion={selectRegion}
           />
           <TimeSection
             timeData={timeData}

@@ -5,13 +5,17 @@ const MovieSection = ({
   movies,
   movie,
   movielist,
-  selectMovie,
   selectScreen,
   getScreens,
   theater,
   date,
   getInitScreens,
   group,
+  selectMovie,
+  initShowTimes,
+  selectTheater,
+  selectDate,
+  selectRegion,
 }) => {
   useEffect(() => {});
   return (
@@ -25,6 +29,8 @@ const MovieSection = ({
         <div className="list">
           {movies.map((items) => (
             <MovieItem
+              selectTheater={selectTheater}
+              initShowTimes={initShowTimes}
               movie={movie}
               items={items}
               selectMovie={selectMovie}
@@ -33,6 +39,8 @@ const MovieSection = ({
               date={date}
               getInitScreens={getInitScreens}
               group={group}
+              selectDate={selectDate}
+              selectRegion={selectRegion}
             />
           ))}
         </div>

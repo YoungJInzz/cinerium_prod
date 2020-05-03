@@ -16,10 +16,12 @@ import {
   handleSeatArr,
   getInitScreens,
   getScreens,
+  initShowTimes,
 } from "../modules/booking";
 import Booking from "../components/booking";
 
 const BookingConatainer = ({
+  initShowTimes,
   group,
   dates,
   cinemas,
@@ -102,6 +104,7 @@ const BookingConatainer = ({
       InitState={InitState}
       getSCreensState={getSCreensState}
       showTimes={showTimes}
+      initShowTimes={initShowTimes}
     />
   );
 };
@@ -147,5 +150,6 @@ export default connect(
     handleseatSelectedIndex,
     handleSeatArr,
     getScreens,
+    initShowTimes,
   }
 )(BookingConatainer);

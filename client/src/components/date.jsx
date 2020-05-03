@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
+import { select } from "redux-saga/effects";
 
 const DateItem = ({
   getInitScreens,
   item,
   date,
-  selectDate,
   numToDay,
   handleDate,
   handleDay,
@@ -12,6 +12,11 @@ const DateItem = ({
   movie,
   theater,
   group,
+  selectMovie,
+  initShowTimes,
+  selectTheater,
+  selectDate,
+  selectRegion,
 }) => {
   const clickDate = (item) => {
     if (item.isVailable === true) {
@@ -28,7 +33,12 @@ const DateItem = ({
           "해당 상영스케줄이 없습니다.다시 선택하시겠습니까?(선택한 극장 및 날짜가 초기화됩니다)"
         )
       ) {
-        getInitScreens();
+        selectMovie("");
+        selectTheater("");
+        selectDate("");
+        initShowTimes("");
+        selectRegion({ cinemaArea: "서울" });
+        getInitScreens("");
       }
     }
   };
@@ -56,7 +66,6 @@ const DateItem = ({
 //////////////////////////////////////////////////////////////////
 const Dates = ({
   date,
-  selectDate,
   selectScreen,
   dates,
   getScreens,
@@ -64,6 +73,11 @@ const Dates = ({
   movie,
   theater,
   group,
+  selectMovie,
+  initShowTimes,
+  selectTheater,
+  selectDate,
+  selectRegion,
 }) => {
   const [year, setYear] = useState();
   const [thisMonth, setThisMonth] = useState();
@@ -144,6 +158,11 @@ const Dates = ({
               movie={movie}
               theater={theater}
               group={group}
+              selectMovie={selectMovie}
+              initShowTimes={initShowTimes}
+              selectTheater={selectTheater}
+              selectDate={selectDate}
+              selectRegion={selectRegion}
             />
           ))}
         </div>

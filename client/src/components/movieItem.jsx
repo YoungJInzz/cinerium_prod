@@ -9,6 +9,10 @@ const Movieitems = ({
   date,
   getInitScreens,
   group,
+  selectTheater,
+  selectDate,
+  selectRegion,
+  initShowTimes,
 }) => {
   const clickmovie = (item) => {
     if (item.isAvailable === true) {
@@ -20,7 +24,12 @@ const Movieitems = ({
           "해당 상영스케줄이 없습니다.다시 선택하시겠습니까?(선택한 극장 및 날짜가 초기화됩니다)"
         )
       ) {
-        getInitScreens();
+        selectMovie("");
+        selectTheater("");
+        selectDate("");
+        initShowTimes("");
+        selectRegion({ cinemaArea: "서울" });
+        getInitScreens("");
       } else {
       }
     }

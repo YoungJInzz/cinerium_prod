@@ -25,9 +25,11 @@ const SELECT_TEEN = "booking/SELECT_TEEN";
 const HANDLE_SEATSELECTED = "booking/HANDLE_SEATSELECTED";
 const HANDLE_SEATSELECTEDINDEX = "booking/HANDLE_SEATSELECTEDINDEX";
 const HANDLE_SEATARR = "booking/HANDLE_SEATARR";
+const INIT_SHOWTIMES = "booking/INIT_SHOWTIMES";
 
 export const getInitScreens = createAction(GET_INITSCREENS);
 export const getScreens = createAction(GET_SCREENS, (payload) => payload);
+export const initShowTimes = createAction(INIT_SHOWTIMES);
 
 const getInitScreensSaga = createRequestSaga(GET_INITSCREENS, api.getInit);
 const getScreenSaga = createRequestSaga(GET_SCREENS, api.getScreenInfo);
@@ -607,6 +609,10 @@ const booking = handleActions(
         action.payload.showtimes === undefined
           ? state.showTimes
           : action.payload.showtimes,
+    }),
+    [INIT_SHOWTIMES]: (state, action) => ({
+      ...state,
+      showTimes: [],
     }),
   },
   initialState
