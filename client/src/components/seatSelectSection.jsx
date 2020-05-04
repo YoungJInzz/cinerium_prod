@@ -518,7 +518,7 @@ const Seatselect2Section = ({
         <div className="seat-screen">
           <div className="screen-img">screen</div>
           <div className="opening-container">
-            {seatArr.map((item) => (
+            {seatArrs.map((item) => (
               <SeatRow
                 item={item}
                 userId={userId}

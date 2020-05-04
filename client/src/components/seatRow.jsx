@@ -10,11 +10,11 @@ const SeatRow = ({
   handleSeatArr,
   person,
 }) => {
-  const [rowName, setRowName] = useState(Object.keys(item)[0]);
-  const [rowArr, setRowArr] = useState(item[rowName]);
+  const [rowName, setRowName] = useState("");
+  const [rowArr, setRowArr] = useState([]);
   useEffect(() => {
-    setRowName(Object.keys(item)[0]);
-    setRowArr(item[rowName]);
+    setRowName(item.rowName);
+    setRowArr(item.row);
   }, [item]);
   const handleSeat = (rowName, seatId) => {
     const mappingObj = {
@@ -94,15 +94,16 @@ const SeatRow = ({
           <div>
             <div
               className={
-                "opening-item" +
-                (seat.bookingUser !== "" && seat.bookingUser !== userId
-                  ? " notAvail"
-                  : "") +
-                (seat.bookingUser === userId ? " seatSelected" : "")
+                "opening-item"
+                // +
+                // (seat.bookingUser !== "" && seat.bookingUser !== userId
+                //   ? " notAvail"
+                //   : "") +
+                // (seat.bookingUser === userId ? " seatSelected" : "")
               }
-              onClick={() => handleSeat(rowName, seat.key)}
+              // onClick={() => handleSeat(rowName, seat.key)}
             >
-              {seat.key}
+              {seat.seat.seatNo.substring(1, 2)}
             </div>
           </div>
         ))}
