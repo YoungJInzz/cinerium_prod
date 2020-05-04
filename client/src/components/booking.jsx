@@ -8,6 +8,7 @@ import SeatSelectSection from "./seatSelectSection";
 import loadingImg from "../resources/loading.gif";
 
 const Booking = ({
+  screenName,
   group,
   movie,
   theater,
@@ -46,6 +47,12 @@ const Booking = ({
   getSCreensState,
   showTimes,
   initShowTimes,
+  initTotal,
+  selectScreenName,
+  setTotalSeat,
+  totalSeat,
+  getSeatTable,
+  seatTable,
 }) => {
   // useEffect(() => {
   //   console.log(dates);
@@ -80,6 +87,7 @@ const Booking = ({
             getInitScreens={getInitScreens}
             selectDate={selectDate}
             selectRegion={selectRegion}
+            initTotal={initTotal}
           />
           <TheatherSection
             getInitScreens={getInitScreens}
@@ -99,6 +107,7 @@ const Booking = ({
             initShowTimes={initShowTimes}
             selectDate={selectDate}
             selectRegion={selectRegion}
+            initTotal={initTotal}
           />
           <Dates
             selectMovie={selectMovie}
@@ -114,16 +123,20 @@ const Booking = ({
             initShowTimes={initShowTimes}
             selectTheater={selectTheater}
             selectRegion={selectRegion}
+            initTotal={initTotal}
           />
           <TimeSection
             timeData={timeData}
             selectScreen={selectScreen}
             screeninfo={screeninfo}
             showTimes={showTimes}
+            selectScreenName={selectScreenName}
+            setTotalSeat={setTotalSeat}
           />
         </div>
         <div className={"step2" + (currentStep !== 2 ? " hide" : "")}>
           <SeatSelectSection
+            screenName={screenName}
             theater={theater}
             timeData={timeData}
             date={date}
@@ -139,10 +152,13 @@ const Booking = ({
             handleseatSelected={handleseatSelected}
             handleseatSelectedIndex={handleseatSelectedIndex}
             handleSeatArr={handleSeatArr}
+            totalSeat={totalSeat}
+            seatTable={seatTable}
           />
         </div>
       </div>
       <BookInfo
+        screenName={screenName}
         handleseatSelectedIndex={handleseatSelectedIndex}
         seatSelectedIndex={seatSelectedIndex}
         handleSeatArr={handleSeatArr}
@@ -160,6 +176,7 @@ const Booking = ({
         moveToBefore={moveToBefore}
         moveToNext={moveToNext}
         currentStep={currentStep}
+        getSeatTable={getSeatTable}
       />
       <div className="test"></div>
     </div>

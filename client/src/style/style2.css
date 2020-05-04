@@ -698,6 +698,7 @@ body {
   width: 470px;
 }
 .seat-time-row {
+  width: 500px;
   height: 30px;
 }
 
@@ -710,21 +711,24 @@ body {
 
 .thea {
   border-right: 1px solid #cccccc;
-  width: 90px;
+  width: 100px;
+  white-space: nowrap;
+  overflow: hidden;
 }
 .scr {
   border-right: 1px solid #cccccc;
-  width: 70px;
+  width: 130px;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .seat-time-time {
   position: relative;
-  margin-right: 50px;
   float: left;
   padding-left: 10px;
-  font-size: 25px;
+  font-size: 22px;
   font-weight: bold;
-  width: 100px;
+  width: 125px;
 }
 .seat-main {
   position: relative;
@@ -823,15 +827,22 @@ body {
 
 .opening-row-name {
   margin-right: 10px;
+  width: 15px;
   position: relative;
   float: left;
 }
+.opening-seat {
+  position: relative;
+
+  margin-left: 20px;
+}
 
 .opening-item {
+  border-bottom: 3px solid white;
   cursor: pointer;
   text-align: center;
   font-size: 15px;
-  margin-right: 1px;
+  margin-right: 2px;
   width: 18px;
   height: 18px;
   color: white;

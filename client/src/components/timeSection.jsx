@@ -3,7 +3,14 @@ import ScreenItem from "./screenItem";
 import { FiSun } from "react-icons/fi";
 import { FiMoon } from "react-icons/fi";
 
-const TimeSection = ({ timeData, selectScreen, screeninfo, showTimes }) => {
+const TimeSection = ({
+  timeData,
+  selectScreen,
+  screeninfo,
+  showTimes,
+  selectScreenName,
+  setTotalSeat,
+}) => {
   return (
     <div className="timeSection">
       <div className="head">시간</div>
@@ -28,6 +35,8 @@ const TimeSection = ({ timeData, selectScreen, screeninfo, showTimes }) => {
             timeData={timeData}
             selectScreen={selectScreen}
             item={item}
+            selectScreenName={selectScreenName}
+            setTotalSeat={setTotalSeat}
           />
         ))}
       </div>

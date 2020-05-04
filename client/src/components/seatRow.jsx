@@ -89,22 +89,24 @@ const SeatRow = ({
   return (
     <div className="opening-row">
       <div className="opening-row-name">{rowName} </div>
-      {rowArr.map((seat) => (
-        <div>
-          <div
-            className={
-              "opening-item" +
-              (seat.bookingUser !== "" && seat.bookingUser !== userId
-                ? " notAvail"
-                : "") +
-              (seat.bookingUser === userId ? " seatSelected" : "")
-            }
-            onClick={() => handleSeat(rowName, seat.key)}
-          >
-            {seat.key}
+      <div className="opening-seat">
+        {rowArr.map((seat) => (
+          <div>
+            <div
+              className={
+                "opening-item" +
+                (seat.bookingUser !== "" && seat.bookingUser !== userId
+                  ? " notAvail"
+                  : "") +
+                (seat.bookingUser === userId ? " seatSelected" : "")
+              }
+              onClick={() => handleSeat(rowName, seat.key)}
+            >
+              {seat.key}
+            </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 };

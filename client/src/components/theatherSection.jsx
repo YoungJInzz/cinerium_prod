@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 const TheatherSection = ({
+  initTotal,
   getInitScreens,
   movie,
   date,
@@ -27,12 +28,8 @@ const TheatherSection = ({
           "해당 상영스케줄이 없습니다.다시 선택하시겠습니까?(선택한 극장 및 날짜가 초기화됩니다)"
         )
       ) {
-        selectMovie("");
-        selectTheater("");
-        selectDate("");
-        initShowTimes("");
-        selectRegion({ cinemaArea: "서울" });
-        getInitScreens("");
+        initTotal();
+        getInitScreens();
       }
     }
   };

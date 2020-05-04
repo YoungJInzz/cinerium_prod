@@ -1,15 +1,25 @@
 import React, { useEffect, useState } from "react";
 
-const TimeItem = ({ timeData, selectScreen, entry }) => {
+const TimeItem = ({
+  timeData,
+  selectScreen,
+  entry,
+  name,
+  selectScreenName,
+  totalSeat,
+  setTotalSeat,
+}) => {
   const [timeStr, setTimeStr] = useState("");
   useEffect(() => {
     setTimeStr(JSON.stringify(entry.startTime));
   });
+
   return (
     <div
-      className="seatSelect"
+      className={"seatSelect" + (entry.emptySeat === 0 ? " notClick" : "")}
       onClick={() => {
-        console.log(entry);
+        setTotalSeat(totalSeat);
+        selectScreenName(name);
         entry.emptySeat !== 0 && selectScreen(entry);
       }}
     >

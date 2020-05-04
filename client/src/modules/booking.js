@@ -10,7 +10,12 @@ const GET_INITSCREENS_FAILURE = "GET_INITSCREENS_FAILURE";
 const GET_SCREENS = "GET_SCREENS";
 const GET_SCREENS_SUCCESS = "GET_SCREENS_SUCCESS";
 const GET_SCREENS_FAILURE = "GET_SCREENS_FAILURE";
+const GET_SEATTABLE = "GET_SEATTABLE";
+const GET_SEATTABLE_SUCCESS = "GET_SEATTABLE_SUCCESS";
 
+const INIT_TOTAL = "booking/INIT_TOTAL";
+const SET_TOTALSEAT = "booking/SET_TOTALSEAT";
+const SELECT_SCREENNAME = "booking/SELECT_SCREENNAME";
 const SELECT_MOVIE = "booking/SELECT_MOIVE";
 const SELECT_REGION = "booking/SELECT_REGION";
 const SET_CINEMAS = "booking/SET_CINEMAS";
@@ -30,13 +35,17 @@ const INIT_SHOWTIMES = "booking/INIT_SHOWTIMES";
 export const getInitScreens = createAction(GET_INITSCREENS);
 export const getScreens = createAction(GET_SCREENS, (payload) => payload);
 export const initShowTimes = createAction(INIT_SHOWTIMES);
+export const initTotal = createAction(INIT_TOTAL);
+export const getSeatTable = createAction(GET_SEATTABLE);
 
 const getInitScreensSaga = createRequestSaga(GET_INITSCREENS, api.getInit);
 const getScreenSaga = createRequestSaga(GET_SCREENS, api.getScreenInfo);
+const getSeatTableSaga = createRequestSaga(GET_SEATTABLE, api.getSeats);
 
 export function* bookingSaga() {
   yield takeLatest(GET_INITSCREENS, getInitScreensSaga);
   yield takeLatest(GET_SCREENS, getScreenSaga);
+  yield takeLatest(GET_SEATTABLE, getSeatTableSaga);
 }
 // export const getInitScreens = () => async (dispatch) => {
 //   dispatch({ type: GET_INITSCREENS });
@@ -55,7 +64,11 @@ export function* bookingSaga() {
 //     throw e;
 //   }
 // };
-
+export const selectScreenName = createAction(
+  SELECT_SCREENNAME,
+  (input) => input
+);
+export const setTotalSeat = createAction(SET_TOTALSEAT, (input) => input);
 export const selectMovie = createAction(SELECT_MOVIE, (input) => input);
 export const selectRegion = createAction(SELECT_REGION, (input) => input);
 export const selectTheater = createAction(SELECT_THEATER, (input) => input);
@@ -84,6 +97,9 @@ export const handleSeatArr = createAction(HANDLE_SEATARR, (input) => ({
 export const setCinemas = createAction(SET_CINEMAS, (input) => input);
 
 const initialState = {
+  seatTable: [],
+  totalSeat: "",
+  screenName: "",
   movies: [],
   cinemas: [],
   dates: [],
@@ -610,9 +626,44 @@ const booking = handleActions(
           ? state.showTimes
           : action.payload.showtimes,
     }),
+    [GET_SEATTABLE_SUCCESS]: (state, action) => ({
+      ...state,
+      seatTable: action.payload.seats,
+    }),
     [INIT_SHOWTIMES]: (state, action) => ({
       ...state,
       showTimes: [],
+    }),
+    [INIT_TOTAL]: (state, action) => ({
+      ...state,
+      totalSeat: "",
+      screenName: "",
+      seatTable: [],
+      movies: [],
+      cinemas: [],
+      dates: [],
+      showTimes: [],
+      selectedCinemas: "",
+      userId: "58645",
+      group: "0",
+      seatSelected: [],
+      seatSelectedIndex: [],
+      currentStep: 1,
+      person: { adult: 0, teen: 0, senior: 0 },
+      movie: "",
+      theater: "",
+      screen: "",
+      timeData: "",
+      region: { cinemaArea: "서울" },
+      date: "",
+    }),
+    [SELECT_SCREENNAME]: (state, action) => ({
+      ...state,
+      screenName: action.payload,
+    }),
+    [SET_TOTALSEAT]: (state, action) => ({
+      ...state,
+      totalSeat: action.payload,
     }),
   },
   initialState

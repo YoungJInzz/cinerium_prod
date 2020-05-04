@@ -5,6 +5,7 @@ import RightBtn2 from "./rightBtn2";
 import LeftBtn1 from "./leftBtn";
 
 const BookInfo = ({
+  screenName,
   movie,
   theater,
   timeData,
@@ -22,6 +23,7 @@ const BookInfo = ({
   handleseatSelectedIndex,
   seatSelectedIndex,
   handleSeatArr,
+  getSeatTable,
 }) => {
   const [screen, setScreen] = useState("");
   const [layer, setLayer] = useState("");
@@ -67,16 +69,14 @@ const BookInfo = ({
       <div className="th Choice">
         <div
           className={
-            "choicePh" +
-            (theater !== "" || timeData !== "{}" || date !== "" ? " hide" : "")
+            "choicePh" + (theater !== "" || date !== "" ? " hide" : "")
           }
         >
           극장선택
         </div>
         <div
           className={
-            "theaterInfo" +
-            (theater === "" && timeData === "{}" && date === "" ? "hide" : "")
+            "theaterInfo" + (theater === "" && date === "" ? " hide" : "")
           }
         >
           <div className="row">
@@ -98,11 +98,8 @@ const BookInfo = ({
           </div>
           <div className="row">
             <span className="content-title">상영관</span>
-            <span className={"content" + (screen === "" ? " hide" : "")}>
-              {screen}관
-            </span>
-            <span className={"content-layer" + (layer === "" ? " hide" : "")}>
-              {layer}층
+            <span className={"content" + (screenName === "" ? " hide" : "")}>
+              {screenName}
             </span>
           </div>
           <div className="row">
@@ -172,6 +169,7 @@ const BookInfo = ({
         handleSeatArr={handleSeatArr}
       />
       <RightBtn1
+        getSeatTable={getSeatTable}
         movie={movie}
         theater={theater}
         date={date}

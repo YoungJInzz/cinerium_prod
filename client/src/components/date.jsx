@@ -17,6 +17,7 @@ const DateItem = ({
   selectTheater,
   selectDate,
   selectRegion,
+  initTotal,
 }) => {
   const clickDate = (item) => {
     if (item.isVailable === true) {
@@ -33,12 +34,8 @@ const DateItem = ({
           "해당 상영스케줄이 없습니다.다시 선택하시겠습니까?(선택한 극장 및 날짜가 초기화됩니다)"
         )
       ) {
-        selectMovie("");
-        selectTheater("");
-        selectDate("");
-        initShowTimes("");
-        selectRegion({ cinemaArea: "서울" });
-        getInitScreens("");
+        initTotal();
+        getInitScreens();
       }
     }
   };
@@ -78,6 +75,7 @@ const Dates = ({
   selectTheater,
   selectDate,
   selectRegion,
+  initTotal,
 }) => {
   const [year, setYear] = useState();
   const [thisMonth, setThisMonth] = useState();
@@ -133,7 +131,6 @@ const Dates = ({
       setNextMonth(new Date().getMonth() + 2);
     }
     getDateArr();
-    console.log(date);
   }, [dates, date]);
 
   return (
@@ -163,6 +160,7 @@ const Dates = ({
               selectTheater={selectTheater}
               selectDate={selectDate}
               selectRegion={selectRegion}
+              initTotal={initTotal}
             />
           ))}
         </div>

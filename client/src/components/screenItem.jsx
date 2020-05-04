@@ -1,7 +1,13 @@
 import React, { useState, useEffect } from "react";
 import TimeItem from "./timeItem";
 
-const ScreenItem = ({ timeData, selectScreen, item }) => {
+const ScreenItem = ({
+  timeData,
+  selectScreen,
+  item,
+  selectScreenName,
+  setTotalSeat,
+}) => {
   return (
     <div className="timeItem">
       <span className="dimension">{item.screen.dimension}</span>
@@ -11,9 +17,13 @@ const ScreenItem = ({ timeData, selectScreen, item }) => {
       <div seatSlot-section>
         {item.timeTables.map((entry) => (
           <TimeItem
+            name={item.screen.name}
+            totalSeat={item.screen.totalSeat}
             timeData={timeData}
             selectScreen={selectScreen}
+            selectScreenName={selectScreenName}
             entry={entry}
+            setTotalSeat={setTotalSeat}
           />
         ))}
       </div>

@@ -3,6 +3,7 @@ import { FaSquareFull } from "react-icons/fa";
 import { IoMdRefresh } from "react-icons/io";
 import SeatRow from "./seatRow";
 const Seatselect2Section = ({
+  screenName,
   theater,
   timeData,
   date,
@@ -18,17 +19,49 @@ const Seatselect2Section = ({
   handleseatSelected,
   handleseatSelectedIndex,
   handleSeatArr,
+  totalSeat,
+  seatTable,
 }) => {
   const [screen, setScreen] = useState("");
   const [layer, setLayer] = useState("");
+  const [seatArrs, setSeatArrs] = useState([]);
   const [startTime, setStartTime] = useState("");
   const [endTime, setEndTime] = useState("");
   const [emptySeat, setEmptySeat] = useState("");
-  const [totalSeat, setTotalSeat] = useState("");
+  const [dateStr, setDateStr] = useState("");
 
   useEffect(() => {
-    filterScreen();
-  }, [timeData]);
+    setSeatArrs(MapSeatTable());
+    setStartTime(`${timeData.startTime}`);
+    setEndTime(`${timeData.endTime}`);
+    setDateStr(`${date}`);
+  }, [seatTable]);
+
+  const MapSeatTable = () => {
+    const rowNames = [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J",
+      "K",
+      "L",
+      "M",
+      "N",
+      "O",
+      "P",
+    ];
+    const SeatArray = [];
+    for (let i = 0; i < seatTable.length; i++) {
+      SeatArray.push({ rowName: rowNames[i], row: seatTable[i] });
+    }
+    return SeatArray;
+  };
 
   const checkAdult = (e) => {
     let totalNum =
@@ -60,34 +93,34 @@ const Seatselect2Section = ({
       : selectSenior(Number(e.target.value));
   };
 
-  const filterScreen = () => {
-    let filteredSreen = screeninfo.filter(
-      (item) => item.id === timeData.screenId
-    );
-    let result = filteredSreen[0]; //setScreen(result.screen) don't work!
-    if (result !== undefined) {
-      for (let key in result) {
-        if (key === "screen") {
-          setScreen(result[key]);
-        }
-        if (key === "totalSeat") {
-          setTotalSeat(result[key]);
-        }
-        if ((key = "layer")) {
-          setLayer(result[key]);
-        }
-        if ((key = "timeslot")) {
-          for (let element of result[key]) {
-            if (element.id === timeData.timeId) {
-              setEmptySeat(element.emptySeat);
-              setStartTime(element.startTime);
-              setEndTime(element.endTime);
-            }
-          }
-        }
-      }
-    }
-  };
+  // const filterScreen = () => {
+  //   let filteredSreen = screeninfo.filter(
+  //     (item) => item.id === timeData.screenId
+  //   );
+  //   let result = filteredSreen[0]; //setScreen(result.screen) don't work!
+  //   if (result !== undefined) {
+  //     for (let key in result) {
+  //       if (key === "screen") {
+  //         setScreen(result[key]);
+  //       }
+  //       if (key === "totalSeat") {
+  //         setTotalSeat(result[key]);
+  //       }
+  //       if ((key = "layer")) {
+  //         setLayer(result[key]);
+  //       }
+  //       if ((key = "timeslot")) {
+  //         for (let element of result[key]) {
+  //           if (element.id === timeData.timeId) {
+  //             setEmptySeat(element.emptySeat);
+  //             setStartTime(element.startTime);
+  //             setEndTime(element.endTime);
+  //           }
+  //         }
+  //       }
+  //     }
+  //   }
+  // };
 
   const refresh = () => {
     seatSelectedIndex.forEach((item) =>
@@ -454,17 +487,23 @@ const Seatselect2Section = ({
             <div className="seat-time-content thea">
               cgv {theater.cinemaName}
             </div>
-            <div className="seat-time-content scr">
-              {`${screen}관 ${layer}층`}
-            </div>
-            <div className="seat-time-content left">
-              남은좌석 <span>{emptySeat}</span>
-              <span>{`/${totalSeat}`}</span>
+            <div className="seat-time-content scr">{screenName}</div>
+            <div className="seat-time-content thea">
+              남은좌석 {`${timeData.emptySeat}/${totalSeat}`}
             </div>
           </div>
           <div className="seat-time-row">
-            <div className="seat-time-time">{`${date.year}.${date.month}.${date.date}`}</div>
-            <div className="seat-time-time">{`${startTime}~${endTime}`}</div>
+            <div className="seat-time-time">{`${dateStr.substring(
+              0,
+              4
+            )}/${dateStr.substring(4, 6)}/${dateStr.substring(6, 8)}`}</div>
+            <div className="seat-time-time">{`${startTime.substring(
+              0,
+              2
+            )}:${startTime.substring(2, 4)}~${endTime.substring(
+              0,
+              2
+            )}:${endTime.substring(2, 4)}`}</div>
           </div>
         </div>
       </div>

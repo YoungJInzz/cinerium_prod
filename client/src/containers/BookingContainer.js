@@ -17,11 +17,19 @@ import {
   getInitScreens,
   getScreens,
   initShowTimes,
+  initTotal,
+  selectScreenName,
+  screenName,
+  setTotalSeat,
+  getSeatTable,
 } from "../modules/booking";
 import Booking from "../components/booking";
 
 const BookingConatainer = ({
+  seatTable,
+  selectScreenName,
   initShowTimes,
+  initTotal,
   group,
   dates,
   cinemas,
@@ -59,6 +67,10 @@ const BookingConatainer = ({
   InitState,
   getSCreensState,
   showTimes,
+  screenName,
+  setTotalSeat,
+  totalSeat,
+  getSeatTable,
 }) => {
   useEffect(() => {
     getInitScreens();
@@ -105,6 +117,13 @@ const BookingConatainer = ({
       getSCreensState={getSCreensState}
       showTimes={showTimes}
       initShowTimes={initShowTimes}
+      initTotal={initTotal}
+      selectScreenName={selectScreenName}
+      screenName={screenName}
+      setTotalSeat={setTotalSeat}
+      totalSeat={totalSeat}
+      getSeatTable={getSeatTable}
+      seatTable={seatTable}
     />
   );
 };
@@ -133,8 +152,13 @@ export default connect(
     InitState: loading.GET_INITSCREENS,
     getSCreensState: loading.GET_SCREENS,
     showTimes: booking.showTimes,
+    screenName: booking.screenName,
+    setTotalSeat: booking.setTotalSeat,
+    totalSeat: booking.totalSeat,
+    seatTable: booking.seatTable,
   }),
   {
+    getSeatTable,
     getInitScreens,
     selectMovie,
     selectRegion,
@@ -151,5 +175,8 @@ export default connect(
     handleSeatArr,
     getScreens,
     initShowTimes,
+    initTotal,
+    selectScreenName,
+    setTotalSeat,
   }
 )(BookingConatainer);

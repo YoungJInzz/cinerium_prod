@@ -16,6 +16,7 @@ const MovieSection = ({
   selectTheater,
   selectDate,
   selectRegion,
+  initTotal,
 }) => {
   useEffect(() => {});
   return (
@@ -41,6 +42,7 @@ const MovieSection = ({
               group={group}
               selectDate={selectDate}
               selectRegion={selectRegion}
+              initTotal={initTotal}
             />
           ))}
         </div>
