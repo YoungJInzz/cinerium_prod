@@ -12,6 +12,8 @@ const GET_SCREENS_SUCCESS = "GET_SCREENS_SUCCESS";
 const GET_SCREENS_FAILURE = "GET_SCREENS_FAILURE";
 const GET_SEATTABLE = "GET_SEATTABLE";
 const GET_SEATTABLE_SUCCESS = "GET_SEATTABLE_SUCCESS";
+const CHANGE_TICKETSTATE = "CHANGE_TICKETSTATE";
+const CHANGE_TICKETSTATE_SUCCESS = "CHANGE_TICKETSTATE_SUCCESS";
 
 const INIT_TOTAL = "booking/INIT_TOTAL";
 const SET_TOTALSEAT = "booking/SET_TOTALSEAT";
@@ -37,33 +39,26 @@ export const getScreens = createAction(GET_SCREENS, (payload) => payload);
 export const initShowTimes = createAction(INIT_SHOWTIMES);
 export const initTotal = createAction(INIT_TOTAL);
 export const getSeatTable = createAction(GET_SEATTABLE);
+export const changeTicketState = createAction(
+  CHANGE_TICKETSTATE,
+  (payload) => payload
+);
 
 const getInitScreensSaga = createRequestSaga(GET_INITSCREENS, api.getInit);
 const getScreenSaga = createRequestSaga(GET_SCREENS, api.getScreenInfo);
 const getSeatTableSaga = createRequestSaga(GET_SEATTABLE, api.getSeats);
+const changeTicketStateSaga = createRequestSaga(
+  CHANGE_TICKETSTATE,
+  api.changeTicketState
+);
 
 export function* bookingSaga() {
   yield takeLatest(GET_INITSCREENS, getInitScreensSaga);
   yield takeLatest(GET_SCREENS, getScreenSaga);
   yield takeLatest(GET_SEATTABLE, getSeatTableSaga);
+  yield takeLatest(CHANGE_TICKETSTATE, changeTicketStateSaga);
 }
-// export const getInitScreens = () => async (dispatch) => {
-//   dispatch({ type: GET_INITSCREENS });
-//   try {
-//     const response = await api.getInit();
-//     dispatch({
-//       type: GET_INITSCREENS_SUCCESS,
-//       payload: response.data,
-//     });
-//   } catch (e) {
-//     dispatch({
-//       type: GET_INITSCREENS_FAILURE,
-//       payload: e,
-//       error: true,
-//     });
-//     throw e;
-//   }
-// };
+
 export const selectScreenName = createAction(
   SELECT_SCREENNAME,
   (input) => input

@@ -14,3 +14,9 @@ export const getScreenInfo = (payload) => {
 };
 export const getSeats = (timeTableId) =>
   axios.get(`http://127.0.0.1:8080/ticket/seats?timeTableId=${timeTableId}`);
+
+export const changeTicketState = (ticketId, state) =>
+  axios.patch("http://127.0.0.1:8080/ticket/ticketstate", {
+    state: state,
+    tickets: ticketId,
+  });

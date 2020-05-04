@@ -8,7 +8,10 @@ export default function createRequestSaga(type, request) {
     yield put(startloading(type));
     try {
       const response = yield call(request, action.payload);
-      console.log("response", response);
+      console.log(response);
+      if (response.data.result === 0) {
+        alert("예매중인 티켓입니다");
+      }
       yield put({
         type: SUCCESS,
         payload: response.data,

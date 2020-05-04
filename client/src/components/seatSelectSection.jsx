@@ -21,6 +21,8 @@ const Seatselect2Section = ({
   handleSeatArr,
   totalSeat,
   seatTable,
+  changeTicketState,
+  getSeatTable,
 }) => {
   const [screen, setScreen] = useState("");
   const [layer, setLayer] = useState("");
@@ -528,6 +530,9 @@ const Seatselect2Section = ({
                 handleseatSelectedIndex={handleseatSelectedIndex}
                 handleSeatArr={handleSeatArr}
                 person={person}
+                changeTicketState={changeTicketState}
+                timeData={timeData}
+                getSeatTable
               />
             ))}
           </div>

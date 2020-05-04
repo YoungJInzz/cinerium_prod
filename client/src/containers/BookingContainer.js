@@ -22,6 +22,7 @@ import {
   screenName,
   setTotalSeat,
   getSeatTable,
+  changeTicketState,
 } from "../modules/booking";
 import Booking from "../components/booking";
 
@@ -71,6 +72,7 @@ const BookingConatainer = ({
   setTotalSeat,
   totalSeat,
   getSeatTable,
+  changeTicketState,
 }) => {
   useEffect(() => {
     getInitScreens();
@@ -124,6 +126,7 @@ const BookingConatainer = ({
       totalSeat={totalSeat}
       getSeatTable={getSeatTable}
       seatTable={seatTable}
+      changeTicketState={changeTicketState}
     />
   );
 };
@@ -178,5 +181,6 @@ export default connect(
     initTotal,
     selectScreenName,
     setTotalSeat,
+    changeTicketState,
   }
 )(BookingConatainer);

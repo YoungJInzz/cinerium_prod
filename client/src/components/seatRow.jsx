@@ -9,6 +9,9 @@ const SeatRow = ({
   handleseatSelectedIndex,
   handleSeatArr,
   person,
+  changeTicketState,
+  timeData,
+  getSeatTable,
 }) => {
   const [rowName, setRowName] = useState("");
   const [rowArr, setRowArr] = useState([]);
@@ -16,25 +19,7 @@ const SeatRow = ({
     setRowName(item.rowName);
     setRowArr(item.row);
   }, [item]);
-  const handleSeat = (rowName, seatId) => {
-    const mappingObj = {
-      A: 0,
-      B: 1,
-      C: 2,
-      D: 3,
-      E: 4,
-      F: 5,
-      G: 6,
-      H: 7,
-      I: 8,
-      J: 9,
-      K: 10,
-      L: 11,
-      M: 12,
-      N: 13,
-      O: 14,
-    };
-    let copySeatSelectedIndex = JSON.parse(JSON.stringify(seatSelectedIndex));
+  const handleSeat = (seatNum, ticketId) => {
     let totalPerson = person.adult + person.teen + person.senior;
     let copySeatSelected = JSON.parse(JSON.stringify(seatSelected));
     let reA = /[^a-zA-Z]/g;
@@ -53,32 +38,15 @@ const SeatRow = ({
 
     if (
       totalPerson > seatSelected.length &&
-      copySeatSelected.includes(`${rowName}${seatId}`) === false
+      copySeatSelected.includes(seatNum) === false
     ) {
-      copySeatSelected.push(`${rowName}${seatId}`);
-      copySeatSelectedIndex.push({
-        rowName,
-        rowIndex: mappingObj[rowName],
-        columnIndex: Number(seatId) - 1,
-      });
+      copySeatSelected.push(seatNum);
+
       handleseatSelected(copySeatSelected.sort(sortSeat));
-      handleseatSelectedIndex(copySeatSelectedIndex);
-      handleSeatArr({
-        rowName,
-        userId,
-        rowIndex: mappingObj[rowName],
-        columnIndex: Number(seatId) - 1,
-      });
+      changeTicketState(ticketId, 0);
+      getSeatTable(timeData.id);
     } else if (totalPerson === seatSelected.length) {
       if (window.confirm("선택이완료되었습니다 다시선택하시겠습니까?")) {
-        seatSelectedIndex.forEach((item) =>
-          handleSeatArr({
-            rowName: item.rowName,
-            userId: "",
-            rowIndex: item.rowIndex,
-            columnIndex: item.columnIndex,
-          })
-        );
         handleseatSelectedIndex([]);
         handleseatSelected([]);
       } else {
@@ -94,14 +62,11 @@ const SeatRow = ({
           <div>
             <div
               className={
-                "opening-item"
-                // +
-                // (seat.bookingUser !== "" && seat.bookingUser !== userId
-                //   ? " notAvail"
-                //   : "") +
-                // (seat.bookingUser === userId ? " seatSelected" : "")
+                "opening-item" +
+                (seat.ticket.ticketState === 2 ? " notAvail" : "") +
+                (seat.ticket.ticketState === 0 ? " seatSelected" : "")
               }
-              // onClick={() => handleSeat(rowName, seat.key)}
+              onClick={() => handleSeat(seat.seat.seatNo, seat.ticket.id)}
             >
               {seat.seat.seatNo.substring(1, 2)}
             </div>

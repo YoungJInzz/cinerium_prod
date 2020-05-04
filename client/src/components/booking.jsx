@@ -53,6 +53,7 @@ const Booking = ({
   totalSeat,
   getSeatTable,
   seatTable,
+  changeTicketState,
 }) => {
   // useEffect(() => {
   //   console.log(dates);
@@ -154,6 +155,7 @@ const Booking = ({
             handleSeatArr={handleSeatArr}
             totalSeat={totalSeat}
             seatTable={seatTable}
+            changeTicketState={changeTicketState}
           />
         </div>
       </div>
