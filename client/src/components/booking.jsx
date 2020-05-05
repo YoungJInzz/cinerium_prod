@@ -137,6 +137,7 @@ const Booking = ({
         </div>
         <div className={"step2" + (currentStep !== 2 ? " hide" : "")}>
           <SeatSelectSection
+            getSeatTable={getSeatTable}
             screenName={screenName}
             theater={theater}
             timeData={timeData}

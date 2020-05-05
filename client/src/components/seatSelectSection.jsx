@@ -532,7 +532,7 @@ const Seatselect2Section = ({
                 person={person}
                 changeTicketState={changeTicketState}
                 timeData={timeData}
-                getSeatTable
+                getSeatTable={getSeatTable}
               />
             ))}
           </div>
