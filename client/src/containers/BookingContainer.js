@@ -19,7 +19,6 @@ import {
   initShowTimes,
   initTotal,
   selectScreenName,
-  screenName,
   setTotalSeat,
   getSeatTable,
   changeTicketState,
@@ -27,6 +26,7 @@ import {
 import Booking from "../components/booking";
 
 const BookingConatainer = ({
+  ticketTokens,
   seatTable,
   selectScreenName,
   initShowTimes,
@@ -127,6 +127,7 @@ const BookingConatainer = ({
       getSeatTable={getSeatTable}
       seatTable={seatTable}
       changeTicketState={changeTicketState}
+      ticketTokens={ticketTokens}
     />
   );
 };
@@ -159,6 +160,7 @@ export default connect(
     setTotalSeat: booking.setTotalSeat,
     totalSeat: booking.totalSeat,
     seatTable: booking.seatTable,
+    ticketTokens: booking.ticketTokens,
   }),
   {
     getSeatTable,

@@ -11,6 +11,8 @@ const LeftBtn1 = ({
   seatSelectedIndex,
   handleSeatArr,
   handleseatSelectedIndex,
+  ticketTokens,
+  changeTicketState,
 }) => {
   const handlePage = () => {
     seatSelectedIndex.forEach((item) =>
@@ -32,7 +34,10 @@ const LeftBtn1 = ({
   return (
     <div
       className={"leftBtn" + (currentStep !== 2 ? " hide" : "")}
-      onClick={() => handlePage()}
+      onClick={() => {
+        changeTicketState({ state: "1", ticketTokens: ticketTokens });
+        handlePage();
+      }}
     >
       <FaArrowLeft className="rightArrow" />
       <div className="rightBtn-title">영화선택</div>

@@ -54,6 +54,7 @@ const Booking = ({
   getSeatTable,
   seatTable,
   changeTicketState,
+  ticketTokens,
 }) => {
   // useEffect(() => {
   //   console.log(dates);
@@ -71,6 +72,7 @@ const Booking = ({
             (InitState === false && getSCreensState === false ? " hide" : "")
           }
           src={loadingImg}
+          alt=""
         />
         <div className={"step1" + (currentStep !== 1 ? " hide" : "")}>
           <MovieSection
@@ -161,6 +163,7 @@ const Booking = ({
         </div>
       </div>
       <BookInfo
+        changeTicketState={changeTicketState}
         screenName={screenName}
         handleseatSelectedIndex={handleseatSelectedIndex}
         seatSelectedIndex={seatSelectedIndex}
@@ -180,6 +183,7 @@ const Booking = ({
         moveToNext={moveToNext}
         currentStep={currentStep}
         getSeatTable={getSeatTable}
+        ticketTokens={ticketTokens}
       />
       <div className="test"></div>
     </div>

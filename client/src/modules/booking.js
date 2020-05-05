@@ -93,6 +93,7 @@ export const setCinemas = createAction(SET_CINEMAS, (input) => input);
 
 const initialState = {
   seatTable: [],
+  ticketTokens: [],
   totalSeat: "",
   screenName: "",
   movies: [],
@@ -659,6 +660,10 @@ const booking = handleActions(
     [SET_TOTALSEAT]: (state, action) => ({
       ...state,
       totalSeat: action.payload,
+    }),
+    [CHANGE_TICKETSTATE_SUCCESS]: (state, action) => ({
+      ...state,
+      ticketTokens: state.ticketTokens.concat(action.payload.ticketTokens),
     }),
   },
   initialState

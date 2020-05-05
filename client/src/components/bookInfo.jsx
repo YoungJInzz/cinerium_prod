@@ -5,6 +5,8 @@ import RightBtn2 from "./rightBtn2";
 import LeftBtn1 from "./leftBtn";
 
 const BookInfo = ({
+  changeTicketState,
+  ticketTokens,
   screenName,
   movie,
   theater,
@@ -167,6 +169,8 @@ const BookInfo = ({
         handleseatSelectedIndex={handleseatSelectedIndex}
         seatSelectedIndex={seatSelectedIndex}
         handleSeatArr={handleSeatArr}
+        ticketTokens={ticketTokens}
+        changeTicketState={changeTicketState}
       />
       <RightBtn1
         getSeatTable={getSeatTable}

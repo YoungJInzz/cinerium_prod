@@ -9,9 +9,9 @@ export default function createRequestSaga(type, request) {
     try {
       const response = yield call(request, action.payload);
       console.log(response);
-      if (response.data.result === 0) {
-        alert("예매중인 티켓입니다");
-      }
+      // if (response.data.result === 0) {
+      //   alert("예매중인 티켓입니다");
+      // }
       yield put({
         type: SUCCESS,
         payload: response.data,

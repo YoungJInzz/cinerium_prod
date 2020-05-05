@@ -18,8 +18,9 @@ const SeatRow = ({
   useEffect(() => {
     setRowName(item.rowName);
     setRowArr(item.row);
-  }, [item]);
-  const handleSeat = (seatNum, ticketId) => {
+  }, [item, rowArr]);
+  const handleSeat = async (seatNum, ticketId, ticketState) => {
+    console.log(ticketState);
     let totalPerson = person.adult + person.teen + person.senior;
     let copySeatSelected = JSON.parse(JSON.stringify(seatSelected));
     let reA = /[^a-zA-Z]/g;
@@ -41,10 +42,11 @@ const SeatRow = ({
       copySeatSelected.includes(seatNum) === false
     ) {
       copySeatSelected.push(seatNum);
-
+      console.log("ticketId", ticketId);
       handleseatSelected(copySeatSelected.sort(sortSeat));
-      changeTicketState(ticketId, 0);
-      getSeatTable(timeData.id);
+      await changeTicketState({ ticketId: [ticketId], state: "0" });
+      await getSeatTable(timeData.id);
+      await getSeatTable(timeData.id);
     } else if (totalPerson === seatSelected.length) {
       if (window.confirm("선택이완료되었습니다 다시선택하시겠습니까?")) {
         handleseatSelectedIndex([]);
@@ -62,11 +64,24 @@ const SeatRow = ({
           <div>
             <div
               className={
-                "opening-item" +
-                (seat.ticket.ticketState === 2 ? " notAvail" : "") +
-                (seat.ticket.ticketState === 0 ? " seatSelected" : "")
+                "opening-item " +
+                (seat.ticket.ticketState === "0" &&
+                seatSelected.includes(seat.seat.seatNo)
+                  ? " seatSelected"
+                  : "") +
+                (seat.ticket.ticketState === "2" ||
+                (seat.ticket.ticketState === "0" &&
+                  seatSelected.includes(seat.seat.seatNo) === false)
+                  ? " notAvail"
+                  : "")
               }
-              onClick={() => handleSeat(seat.seat.seatNo, seat.ticket.id)}
+              onClick={() =>
+                handleSeat(
+                  seat.seat.seatNo,
+                  seat.ticket.id,
+                  seat.ticket.ticketState
+                )
+              }
             >
               {seat.seat.seatNo.substring(1, 2)}
             </div>

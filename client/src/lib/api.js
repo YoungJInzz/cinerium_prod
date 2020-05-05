@@ -1,11 +1,11 @@
 import axios from "axios";
 
-export const getInit = () => axios.get("http://127.0.0.1:8080/ticket/screens");
+export const getInit = () => axios.get("http://127.0.0.1:8005/ticket/screens");
 
 export const getScreenInfo = (payload) => {
   console.log(payload);
   return axios.get(
-    `http://127.0.0.1:8080/ticket/screens/info?movieId=${
+    `http://127.0.0.1:8005/ticket/screens/info?movieId=${
       payload.movieId === undefined ? "" : payload.movieId
     }&cinemaId=${payload.cinemaId === undefined ? "" : payload.cinemaId}&date=${
       payload.date === undefined || payload.date === "" ? "" : payload.date
@@ -13,10 +13,13 @@ export const getScreenInfo = (payload) => {
   );
 };
 export const getSeats = (timeTableId) =>
-  axios.get(`http://127.0.0.1:8080/ticket/seats?timeTableId=${timeTableId}`);
+  axios.get(`http://127.0.0.1:8005/ticket/seats?timeTableId=${timeTableId}`);
 
-export const changeTicketState = (ticketId, state) =>
-  axios.patch("http://127.0.0.1:8080/ticket/ticketstate", {
-    state: state,
-    tickets: ticketId,
+export const changeTicketState = (payload) => {
+  console.log(payload);
+  return axios.patch("http://127.0.0.1:8005/ticket/ticketstate", {
+    state: payload.state,
+    tickets: payload.ticketId === undefined ? "" : payload.ticketId,
+    ticketTokens: payload.ticketTokens,
   });
+};
