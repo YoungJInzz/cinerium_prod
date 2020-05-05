@@ -6,7 +6,7 @@ import TimeSection from "./timeSection";
 import BookInfo from "./bookInfo";
 import SeatSelectSection from "./seatSelectSection";
 import loadingImg from "../resources/loading.gif";
-
+import Payment from "./payment";
 const Booking = ({
   screenName,
   group,
@@ -159,7 +159,11 @@ const Booking = ({
             totalSeat={totalSeat}
             seatTable={seatTable}
             changeTicketState={changeTicketState}
+            ticketTokens={ticketTokens}
           />
+        </div>
+        <div className={"step3" + (currentStep !== 3 ? " hide" : "")}>
+          <Payment></Payment>
         </div>
       </div>
       <BookInfo

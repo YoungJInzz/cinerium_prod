@@ -865,6 +865,14 @@ body {
   pointer-events: none;
 }
 
+.step3 {
+  background-color: #fffaf0;
+  min-height: 700px;
+  width: 700px;
+  margin: 0 auto;
+  border: 1px solid #ebedef;
+}
+
 /*scroll bar*/
 ::-webkit-scrollbar {
   width: 7px;

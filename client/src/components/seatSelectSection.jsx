@@ -23,6 +23,7 @@ const Seatselect2Section = ({
   seatTable,
   changeTicketState,
   getSeatTable,
+  ticketTokens,
 }) => {
   const [screen, setScreen] = useState("");
   const [layer, setLayer] = useState("");
@@ -95,35 +96,6 @@ const Seatselect2Section = ({
       : selectSenior(Number(e.target.value));
   };
 
-  // const filterScreen = () => {
-  //   let filteredSreen = screeninfo.filter(
-  //     (item) => item.id === timeData.screenId
-  //   );
-  //   let result = filteredSreen[0]; //setScreen(result.screen) don't work!
-  //   if (result !== undefined) {
-  //     for (let key in result) {
-  //       if (key === "screen") {
-  //         setScreen(result[key]);
-  //       }
-  //       if (key === "totalSeat") {
-  //         setTotalSeat(result[key]);
-  //       }
-  //       if ((key = "layer")) {
-  //         setLayer(result[key]);
-  //       }
-  //       if ((key = "timeslot")) {
-  //         for (let element of result[key]) {
-  //           if (element.id === timeData.timeId) {
-  //             setEmptySeat(element.emptySeat);
-  //             setStartTime(element.startTime);
-  //             setEndTime(element.endTime);
-  //           }
-  //         }
-  //       }
-  //     }
-  //   }
-  // };
-
   const refresh = () => {
     seatSelectedIndex.forEach((item) =>
       handleSeatArr({
@@ -133,6 +105,9 @@ const Seatselect2Section = ({
         columnIndex: item.columnIndex,
       })
     );
+    changeTicketState({ state: "1", ticketTokens: ticketTokens });
+    getSeatTable(timeData.id);
+    getSeatTable(timeData.id);
     handleseatSelectedIndex([]);
     handleseatSelected([]);
     selectAdult(0);
