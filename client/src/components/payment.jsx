@@ -10,6 +10,8 @@ const Payment = ({ pointInfo }) => {
   const [point, setPoint] = useState("");
   const [disCountByCoupons, setDisCountByCoupons] = useState(0);
   const [isCouponApplied, setIsCouponApplied] = useState(false);
+  const [isPointApplied, setIsPointApplied] = useState(false);
+  const [pointValue, setPointValue] = useState(0);
   const handleStep = (x) => {
     if (step === x) {
       setStep("");
@@ -33,23 +35,29 @@ const Payment = ({ pointInfo }) => {
     if (checkedBoxes.length === 0) {
       alert("쿠폰을 선택해주세요");
     } else {
-      if (isCouponApplied) {
-        if (window.confirm("이미쿠폰이 적용되었습니다 초기화 하시겠습니까?")) {
-          setIsCouponApplied(false);
-          setTotalFee(totalFee + disCountByCoupons);
-          setDisCountByCoupons(0);
+      if (totalFee === 0) {
+        alert("이미 최종금액이 0원입니다");
+      } else {
+        if (isCouponApplied) {
+          if (
+            window.confirm("이미쿠폰이 적용되었습니다 초기화 하시겠습니까?")
+          ) {
+            setIsCouponApplied(false);
+            setTotalFee(totalFee + disCountByCoupons);
+            setDisCountByCoupons(0);
+            initCheckbox();
+          }
+        } else {
+          if (totalFee - disCountByCoupons < 0) {
+            setTotalFee(0);
+            setIsCouponApplied(true);
+            for (let item of checkedBoxes) {
+              item.checked = false;
+            }
+          } else setTotalFee(totalFee - disCountByCoupons);
+          setIsCouponApplied(true);
           initCheckbox();
         }
-      } else {
-        if (totalFee - disCountByCoupons < 0) {
-          setTotalFee(0);
-          setIsCouponApplied(true);
-          for (let item of checkedBoxes) {
-            item.checked = false;
-          }
-        } else setTotalFee(totalFee - disCountByCoupons);
-        setIsCouponApplied(true);
-        initCheckbox();
       }
     }
   };
@@ -62,6 +70,17 @@ const Payment = ({ pointInfo }) => {
     }
     setTotalFee(totalFee + disCountByCoupons);
     setDisCountByCoupons(0);
+  };
+
+  const handlePoint = (e) => {
+    let val = e.target.value;
+    if (val > pointInfo.giftCards[0].giftCardBalance) {
+      alert("포인트잔액을 초과하였습니다");
+    } else {
+      if (totalFee === 0) {
+        alert("이미 최종결제금액이 0원입니다.");
+      }
+    }
   };
   return (
     <div>
@@ -217,21 +236,25 @@ const Payment = ({ pointInfo }) => {
                 CJ 기프트카드 <FaChevronRight className="right-icon" />
               </div>
             </div>
-            <div
-              className={"select-form " + (giftcon === 1 ? " show" : " hide")}
-            >
+            <div className={"select-form " + (point === 1 ? " show" : " hide")}>
               <div className="NoCoupon">사용가능한 쿠폰이 없습니다</div>
             </div>
-            <div
-              className={"select-form " + (giftcon === 2 ? " show" : " hide")}
-            >
+            <div className={"select-form " + (point === 2 ? " show" : " hide")}>
               <div className="giftCard">
-                <span>카드보유금액</span>
-                <span>
-                  {pointInfo.giftCards[0].giftCardBalance
-                    ? undefined
-                    : pointInfo.giftCards[0].giftCardBalance}
+                <span className="col1">카드보유금액</span>
+                <span className="col2">
+                  {pointInfo.giftCards[0].giftCardBalance} 원
                 </span>
+                <span className="col3">적용금액</span>
+                <input
+                  className="cardValue"
+                  defaultValue="20000"
+                  className="col4"
+                  size="4"
+                  onChange={(e) => handlePoint(e)}
+                ></input>
+                <span className="col4">원</span>
+                <button className="pointApplyButton">적용하기</button>
               </div>
             </div>
           </div>

@@ -976,11 +976,11 @@ body {
   margin-top: 20px;
   margin-left: 20px;
 }
-.col1 {
+.discount-list-header > .col1 {
   display: inline-block;
   width: 300px;
 }
-.col2 {
+.discount-list-header > .col2 {
   display: inline-block;
   width: 150px;
 }
@@ -1011,6 +1011,27 @@ body {
   margin-top: 100px;
   margin-left: 120px;
 }
+
+.giftCard {
+  margin-top: 30px;
+  font-size: 14px;
+}
+.giftCard > .col1 {
+  margin-left: 20px;
+  margin-right: 10px;
+}
+.giftCard > .col2 {
+  margin-right: 10px;
+  color: #b30404;
+  font-weight: bold;
+}
+.giftCard > .col3 {
+  margin-right: 10px;
+}
+.giftCard > .col4 {
+  margin-left: 5px;
+}
+
 /*scroll bar*/
 ::-webkit-scrollbar {
   width: 7px;

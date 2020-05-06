@@ -97,7 +97,7 @@ export const handleSeatArr = createAction(HANDLE_SEATARR, (input) => ({
 export const setCinemas = createAction(SET_CINEMAS, (input) => input);
 
 const initialState = {
-  pointInfo: { giftCards: [], movieCoupons: [] },
+  pointInfo: { giftCards: [{ giftCardBalance: 0 }], movieCoupons: [] },
   seatTable: [],
   ticketTokens: [],
   totalSeat: "",
