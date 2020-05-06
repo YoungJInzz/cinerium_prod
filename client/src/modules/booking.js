@@ -111,7 +111,7 @@ const initialState = {
   group: "0",
   seatSelected: [],
   seatSelectedIndex: [],
-  currentStep: 3,
+  currentStep: 1,
   person: { adult: 0, teen: 0, senior: 0 },
   movie: "",
   theater: "",

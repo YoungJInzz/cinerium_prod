@@ -164,7 +164,7 @@ const Booking = ({
           />
         </div>
         <div className={"step3" + (currentStep !== 3 ? " hide" : "")}>
-          <Payment pointInfo={pointInfo}></Payment>
+          <Payment pointInfo={pointInfo} person={person}></Payment>
         </div>
       </div>
       <BookInfo
