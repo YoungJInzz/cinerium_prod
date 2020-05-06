@@ -14,6 +14,8 @@ const GET_SEATTABLE = "GET_SEATTABLE";
 const GET_SEATTABLE_SUCCESS = "GET_SEATTABLE_SUCCESS";
 const CHANGE_TICKETSTATE = "CHANGE_TICKETSTATE";
 const CHANGE_TICKETSTATE_SUCCESS = "CHANGE_TICKETSTATE_SUCCESS";
+const GET_POINT = "GET_POINT";
+const GET_POINT_SUCCESS = "GET_POINT_SUCCESS";
 
 const INIT_TOTAL = "booking/INIT_TOTAL";
 const SET_TOTALSEAT = "booking/SET_TOTALSEAT";
@@ -43,6 +45,7 @@ export const changeTicketState = createAction(
   CHANGE_TICKETSTATE,
   (payload) => payload
 );
+export const getPoint = createAction(GET_POINT, (payload) => payload);
 
 const getInitScreensSaga = createRequestSaga(GET_INITSCREENS, api.getInit);
 const getScreenSaga = createRequestSaga(GET_SCREENS, api.getScreenInfo);
@@ -51,12 +54,14 @@ const changeTicketStateSaga = createRequestSaga(
   CHANGE_TICKETSTATE,
   api.changeTicketState
 );
+const getPointSaga = createRequestSaga(GET_POINT, api.getPoint);
 
 export function* bookingSaga() {
   yield takeLatest(GET_INITSCREENS, getInitScreensSaga);
   yield takeLatest(GET_SCREENS, getScreenSaga);
   yield takeLatest(GET_SEATTABLE, getSeatTableSaga);
   yield takeLatest(CHANGE_TICKETSTATE, changeTicketStateSaga);
+  yield takeLatest(GET_POINT, getPointSaga);
 }
 
 export const selectScreenName = createAction(
@@ -92,6 +97,7 @@ export const handleSeatArr = createAction(HANDLE_SEATARR, (input) => ({
 export const setCinemas = createAction(SET_CINEMAS, (input) => input);
 
 const initialState = {
+  pointInfo: { giftCards: [], movieCoupons: [] },
   seatTable: [],
   ticketTokens: [],
   totalSeat: "",
@@ -105,7 +111,7 @@ const initialState = {
   group: "0",
   seatSelected: [],
   seatSelectedIndex: [],
-  currentStep: 1,
+  currentStep: 3,
   person: { adult: 0, teen: 0, senior: 0 },
   movie: "",
   theater: "",
@@ -664,6 +670,10 @@ const booking = handleActions(
     [CHANGE_TICKETSTATE_SUCCESS]: (state, action) => ({
       ...state,
       ticketTokens: state.ticketTokens.concat(action.payload.ticketTokens),
+    }),
+    [GET_POINT_SUCCESS]: (state, action) => ({
+      ...state,
+      pointInfo: action.payload,
     }),
   },
   initialState

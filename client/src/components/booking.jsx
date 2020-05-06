@@ -55,9 +55,10 @@ const Booking = ({
   seatTable,
   changeTicketState,
   ticketTokens,
+  pointInfo,
 }) => {
   // useEffect(() => {
-  //   console.log(dates);
+  //   getPoint();
   // });
   return (
     <div
@@ -163,7 +164,7 @@ const Booking = ({
           />
         </div>
         <div className={"step3" + (currentStep !== 3 ? " hide" : "")}>
-          <Payment></Payment>
+          <Payment pointInfo={pointInfo}></Payment>
         </div>
       </div>
       <BookInfo

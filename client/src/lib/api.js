@@ -23,3 +23,7 @@ export const changeTicketState = (payload) => {
     ticketTokens: payload.ticketTokens,
   });
 };
+
+export const getPoint = (payload) => {
+  return axios.get(`http://127.0.0.1:8005/ticket/user/service?accountid=admin`);
+};

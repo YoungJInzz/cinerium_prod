@@ -22,10 +22,13 @@ import {
   setTotalSeat,
   getSeatTable,
   changeTicketState,
+  getPoint,
+  pointInfo,
 } from "../modules/booking";
 import Booking from "../components/booking";
 
 const BookingConatainer = ({
+  pointInfo,
   ticketTokens,
   seatTable,
   selectScreenName,
@@ -73,10 +76,12 @@ const BookingConatainer = ({
   totalSeat,
   getSeatTable,
   changeTicketState,
+  getPoint,
 }) => {
   useEffect(() => {
     getInitScreens();
     getScreens();
+    getPoint({ id: "admin" });
   }, []);
 
   return (
@@ -128,6 +133,8 @@ const BookingConatainer = ({
       seatTable={seatTable}
       changeTicketState={changeTicketState}
       ticketTokens={ticketTokens}
+      getPoint={getPoint}
+      pointInfo={pointInfo}
     />
   );
 };
@@ -161,6 +168,7 @@ export default connect(
     totalSeat: booking.totalSeat,
     seatTable: booking.seatTable,
     ticketTokens: booking.ticketTokens,
+    pointInfo: booking.pointInfo,
   }),
   {
     getSeatTable,
@@ -184,5 +192,6 @@ export default connect(
     selectScreenName,
     setTotalSeat,
     changeTicketState,
+    getPoint,
   }
 )(BookingConatainer);

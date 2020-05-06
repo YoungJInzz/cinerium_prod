@@ -1,7 +1,9 @@
 body {
   font-family: Consolas, monospace;
 }
-
+.show {
+  display: block;
+}
 .hide {
   display: none;
 }
@@ -444,6 +446,7 @@ body {
 /*bookInfo*/
 .bookInfo {
   position: relative;
+  clear: both;
   margin-top: 2px;
   background-color: #17202a;
   height: 140px;
@@ -628,6 +631,7 @@ body {
   font-size: 20px;
   color: #e5e3d4;
 }
+
 .seat-info {
   height: 120px;
   background-color: #f9efdc;
@@ -864,15 +868,149 @@ body {
   background-color: #c0392b;
   pointer-events: none;
 }
-
-.step3 {
+.pay-step {
+  margin-top: 5px;
+  margin-bottom: 30px;
+}
+.pay-method {
+  position: relative;
   background-color: #fffaf0;
   min-height: 700px;
-  width: 700px;
+  width: 1000px;
   margin: 0 auto;
   border: 1px solid #ebedef;
 }
 
+.pay-titlebar {
+  width: 700px;
+  height: 35px;
+  line-height: 30px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #e0e0e0;
+  background-color: #333333;
+}
+
+.pay-titlebar > span {
+  margin-left: 12px;
+}
+
+.pay-titlebar > .again {
+  cursor: pointer;
+  font-size: 14px;
+  margin-left: 540px;
+}
+
+.refresh-icon2 {
+  position: absolute;
+  margin-top: 5px;
+  margin-left: 2px;
+  font-size: 20px;
+}
+
+.pay-header {
+  cursor: pointer;
+  width: 700px;
+  height: 40px;
+  line-height: 35px;
+  font-size: 15px;
+  font-weight: bold;
+  color: #333333;
+  background-color: #dfded6;
+}
+
+.pay-header > span {
+  margin-left: 12px;
+}
+
+.down-icon {
+  position: relative;
+  float: right;
+  margin-top: 8px;
+  margin-right: 5px;
+  font-size: 23px;
+}
+.pay-body {
+  width: 697px;
+  height: 300px;
+  border: 2px solid #e8e7e1;
+}
+.select-discount {
+  position: relative;
+  float: left;
+  width: 180px;
+  height: 300px;
+  border-right: 2px solid #e8e7e1;
+}
+.discount-item {
+  padding: 3px;
+  cursor: pointer;
+  border-bottom: 2px solid #e8e7e1;
+  height: 25px;
+  color: 333333;
+  line-height: 27px;
+  font-size: 12px;
+}
+
+.couponSelected {
+  background-color: #fdfdf8;
+  border: 3px solid #333333;
+}
+
+.right-icon {
+  position: relative;
+  margin-top: 5px;
+  float: right;
+  color: #e8e7e1;
+}
+.select-form {
+  position: relative;
+  float: left;
+}
+.discount-list-header {
+  position: relative;
+  border-bottom: 2px solid #e8e7e1;
+  padding-bottom: 5px;
+  font-size: 11px;
+  position: relative;
+  margin-top: 20px;
+  margin-left: 20px;
+}
+.col1 {
+  display: inline-block;
+  width: 300px;
+}
+.col2 {
+  display: inline-block;
+  width: 150px;
+}
+
+.discount-list-body {
+  position: relative;
+  margin-left: 20px;
+  font-size: 15px;
+}
+.coupone-item {
+  position: relative;
+}
+
+.result-form {
+  position: relative;
+  margin-left: 280px;
+  margin-top: 150px;
+}
+.coupon-applyButton {
+  cursor: pointer;
+  color: white;
+  border: 1px solid #bd8f62;
+  border-radius: 8px;
+  background-color: #bd8f62;
+}
+
+.NoCoupon {
+  margin-top: 100px;
+  margin-left: 120px;
+}
 /*scroll bar*/
 ::-webkit-scrollbar {
   width: 7px;

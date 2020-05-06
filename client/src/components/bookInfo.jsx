@@ -137,15 +137,15 @@ const BookInfo = ({
         </div>
         <div className={"row" + (person.adult === 0 ? " hide" : "")}>
           <span className="content-seat">일반</span>
-          <span className="price">{person.adult * 8000} 원</span>
+          <span className="price">{person.adult * 1000} 원</span>
         </div>
         <div className={"row" + (person.teen === 0 ? " hide" : "")}>
           <span className="content-seat">청소년</span>
-          <span className="price">{person.teen * 8000} 원</span>
+          <span className="price">{person.teen * 1000} 원</span>
         </div>
         <div className={"row" + (person.senior === 0 ? " hide" : "")}>
           <span className="content-seat">우대</span>
-          <span className="price">{person.senior * 8000} 원</span>
+          <span className="price">{person.senior * 1000} 원</span>
         </div>
         <div
           className={
@@ -155,7 +155,7 @@ const BookInfo = ({
         >
           <span className="content-seat">총금액</span>
           <span className="price red-font">
-            {(person.adult + person.teen + person.senior) * 8000} 원
+            {(person.adult + person.teen + person.senior) * 1000} 원
           </span>
         </div>
       </div>
