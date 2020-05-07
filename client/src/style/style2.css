@@ -983,6 +983,7 @@ body {
   margin-left: 20px;
 }
 .discount-list-header > .col1 {
+  margin-left: 5px;
   display: inline-block;
   width: 300px;
 }
@@ -1000,6 +1001,9 @@ body {
   position: relative;
 }
 
+.coupone-item > .col1 {
+  margin-right: 205px;
+}
 .result-form {
   position: relative;
   margin-left: 280px;

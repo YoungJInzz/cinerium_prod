@@ -3,8 +3,8 @@ import { FaChevronDown, FaChevronRight, FaChevronUp } from "react-icons/fa";
 import { IoMdRefresh } from "react-icons/io";
 
 const Payment = ({ pointInfo, person }) => {
-  const [totalFee, setTotalFee] = useState(0);
-  const [totalFeeFix, setTotalFeeFix] = useState(0);
+  const [totalFee, setTotalFee] = useState(2000);
+  const [totalFeeFix, setTotalFeeFix] = useState(2000);
   const [step, setStep] = useState("");
   const [coupon, setCoupon] = useState("");
   const [giftcon, setGiftcone] = useState("");
@@ -13,13 +13,12 @@ const Payment = ({ pointInfo, person }) => {
   const [discountByPoint, setDiscountByPoint] = useState(0);
   const [isCouponApplied, setIsCouponApplied] = useState(false);
   const [isPointApplied, setIsPointApplied] = useState(false);
-  const [pointValue, setPointValue] = useState(0);
 
-  useEffect(() => {
-    let totalNum = person.adult + person.teen + person.senior;
-    setTotalFee(totalNum * 1000);
-    setTotalFeeFix(totalNum * 1000);
-  });
+  // useEffect(() => {
+  //   let totalNum = person.adult + person.teen + person.senior;
+  //   setTotalFee(totalNum * 1000);
+  //   setTotalFeeFix(totalNum * 1000);
+  // }, [person]);
   const handleStep = (x) => {
     if (step === x) {
       setStep("");
@@ -81,26 +80,42 @@ const Payment = ({ pointInfo, person }) => {
   };
 
   const handlePoint = () => {
-    if (pointValue > pointInfo.giftCards[0].giftCardBalance) {
-      alert("포인트잔액을 초과하였습니다");
+    var elValue = Number(
+      document.getElementsByClassName("appliedPoint")[0].value
+    );
+    console.log(elValue.value);
+    setDiscountByPoint(elValue);
+    if (elValue === 0) {
+      alert("포인트를 입력해주세요");
     } else {
-      if (totalFee === 0) {
-        alert("이미 최종결제금액이 0원입니다.");
+      if (elValue > pointInfo.giftCards[0].giftCardBalance) {
+        alert("포인트잔액을 초과하였습니다");
+        elValue = 0;
       } else {
-        if (isPointApplied) {
-          if (
-            window.confirm("이미포인트가 적용되었습니다 초기화하시겠습니까?")
-          ) {
-            setIsPointApplied(false);
-            setTotalFee(totalFee + discountByPoint);
-            setDiscountByPoint(0);
-          }
+        if (totalFee === 0) {
+          alert("이미 최종결제금액이 0원입니다.");
+          elValue = 0;
         } else {
-          if (totalFee - discountByPoint < 0) {
-            setTotalFee(0);
-            setIsPointApplied(true);
-          } else setTotalFee(totalFee - discountByPoint);
-          setIsCouponApplied(true);
+          if (isPointApplied) {
+            if (
+              window.confirm("이미포인트가 적용되었습니다 초기화하시겠습니까?")
+            ) {
+              elValue = 0;
+              setIsPointApplied(false);
+              setTotalFee(totalFee + discountByPoint);
+              setDiscountByPoint(0);
+            }
+          } else {
+            if (totalFee - elValue < 0) {
+              elValue = 0;
+              setTotalFee(0);
+              setIsPointApplied(true);
+            } else {
+              setTotalFee(totalFee - elValue);
+              elValue = 0;
+              setIsPointApplied(true);
+            }
+          }
         }
       }
     }
@@ -123,7 +138,7 @@ const Payment = ({ pointInfo, person }) => {
               </span>
             </div>
             <div className="pay-header" onClick={() => handleStep(1)}>
-              <span>할인쿠폰</span>
+              <span>관람권/기프트콘</span>
               <FaChevronDown
                 className={"down-icon" + (step === 1 ? " hide" : " show")}
               />
@@ -139,7 +154,7 @@ const Payment = ({ pointInfo, person }) => {
                   }
                   onClick={() => setCoupon(1)}
                 >
-                  cgv할인쿠폰 <FaChevronRight className="right-icon" />{" "}
+                  영화관람권 <FaChevronRight className="right-icon" />{" "}
                 </div>
                 <div
                   className={
@@ -147,7 +162,7 @@ const Payment = ({ pointInfo, person }) => {
                   }
                   onClick={() => setCoupon(2)}
                 >
-                  CJ one할인쿠폰 <FaChevronRight className="right-icon" />
+                  cgv기프트콘 <FaChevronRight className="right-icon" />
                 </div>
               </div>
               <div
@@ -165,7 +180,7 @@ const Payment = ({ pointInfo, person }) => {
                         className="couponCheckBox"
                         onClick={() => handleCheckbox()}
                       />
-                      <span className="col1">1000원 할인 쿠폰</span>
+                      <span className="col1">영화관람권</span>
                       <span className="col2">{item.movieCouponEndDate}</span>
                     </div>
                   ))}
@@ -200,7 +215,7 @@ const Payment = ({ pointInfo, person }) => {
             </div>
 
             <div className="pay-header" onClick={() => handleStep(2)}>
-              <span>관람권/기프트콘</span>
+              <span>할인쿠폰</span>
               <FaChevronDown
                 className={"down-icon" + (step === 2 ? " hide" : " show")}
               />
@@ -216,7 +231,8 @@ const Payment = ({ pointInfo, person }) => {
                   }
                   onClick={() => setGiftcone(1)}
                 >
-                  영화관람권 <FaChevronRight className="right-icon" />{" "}
+                  cgv할인쿠폰
+                  <FaChevronRight className="right-icon" />{" "}
                 </div>
 
                 <div
@@ -225,7 +241,8 @@ const Payment = ({ pointInfo, person }) => {
                   }
                   onClick={() => setGiftcone(2)}
                 >
-                  CGV기프트콘 <FaChevronRight className="right-icon" />
+                  CJ ONE할인쿠폰
+                  <FaChevronRight className="right-icon" />
                 </div>
               </div>
               <div
@@ -292,11 +309,9 @@ const Payment = ({ pointInfo, person }) => {
                   </span>
                   <span className="col3">적용금액</span>
                   <input
-                    className="cardValue"
+                    className="appliedPoint"
                     defaultValue="0"
-                    className="col4"
                     size="4"
-                    onChange={(e) => setPointValue(Number(e.target.value))}
                   ></input>
                   <span className="col4">원</span>
                   <span className="col5">
