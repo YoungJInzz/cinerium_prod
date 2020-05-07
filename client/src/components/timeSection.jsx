@@ -10,6 +10,9 @@ const TimeSection = ({
   showTimes,
   selectScreenName,
   setTotalSeat,
+  movie,
+  theater,
+  date,
 }) => {
   return (
     <div className="timeSection">
@@ -26,7 +29,10 @@ const TimeSection = ({
       </div>
       <div className="timeInfo">
         <div
-          className={"placeholder" + (screeninfo.length !== 0 ? " hide" : "")}
+          className={
+            "placeholder" +
+            (movie !== "" && theater !== "" && date !== "" ? " hide" : "")
+          }
         >
           영화,극장,날짜를 선택해주세요
         </div>

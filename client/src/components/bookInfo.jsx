@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import { FaArrowRight, FaArrowLeft } from "react-icons/fa";
 import RightBtn1 from "./rightBtn1";
 import RightBtn2 from "./rightBtn2";
+import RightBtn3 from "./rightBtn3";
 import LeftBtn1 from "./leftBtn";
-
+import LeftBtn2 from "./leftBtn2";
 const BookInfo = ({
   changeTicketState,
   ticketTokens,
@@ -33,32 +34,7 @@ const BookInfo = ({
   const [dateStr, setDateStr] = useState("");
   useEffect(() => {
     setDateStr(JSON.stringify(date));
-    filterScreen();
   }, [timeData, date]);
-
-  const filterScreen = () => {
-    let filteredSreen = screeninfo.filter(
-      (item) => item.id === timeData.screenId
-    );
-    let result = filteredSreen[0]; //setScreen(result.screen) don't work!
-    if (result !== undefined) {
-      for (let key in result) {
-        if (key === "screen") {
-          setScreen(result[key]);
-        }
-        if ((key = "layer")) {
-          setLayer(result[key]);
-        }
-        if ((key = "timeslot")) {
-          for (let element of result[key]) {
-            if (element.id === timeData.timeId) {
-              setTime(element.startTime);
-            }
-          }
-        }
-      }
-    }
-  };
 
   return (
     <div className="bookInfo">
@@ -172,6 +148,10 @@ const BookInfo = ({
         ticketTokens={ticketTokens}
         changeTicketState={changeTicketState}
       />
+      <LeftBtn2
+        moveToBefore={moveToBefore}
+        currentStep={currentStep}
+      ></LeftBtn2>
       <RightBtn1
         getSeatTable={getSeatTable}
         movie={movie}
@@ -191,6 +171,7 @@ const BookInfo = ({
         currentStep={currentStep}
         step={2}
       />
+      <RightBtn3 currentStep={currentStep} step={3} title="결제하기" />
     </div>
   );
 };

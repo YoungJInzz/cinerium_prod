@@ -465,21 +465,21 @@ body {
 }
 
 .mv {
-  margin-left: 300px;
+  margin-left: 400px;
 }
 
 .th {
-  margin-left: 520px;
+  margin-left: 620px;
   color: #ededed;
 }
 
 .se {
-  margin-left: 740px;
+  margin-left: 840px;
   color: #ededed;
 }
 
 .pay {
-  margin-left: 960px;
+  margin-left: 1060px;
 }
 
 .choicePh {
@@ -560,12 +560,21 @@ body {
   width: 100px;
   height: 100px;
 }
+.rightBtn3 {
+  cursor: pointer;
+  position: absolute;
+  margin-left: 1059px;
+  margin-top: 15px;
+  border-radius: 20px;
+  width: 200px;
+  height: 100px;
+}
 
 .leftBtn {
   background-color: #808b96;
   cursor: pointer;
   position: absolute;
-  margin-left: 200px;
+  margin-left: 300px;
   margin-top: 15px;
   border-radius: 20px;
   width: 100px;
@@ -580,6 +589,15 @@ body {
   margin-top: 10px;
 }
 
+.check {
+  position: relative;
+  float: left;
+  font-size: 45px;
+  color: #fbfcfc;
+  margin-left: 25px;
+  margin-top: 24px;
+}
+
 .rightBtn-title {
   position: relative;
   margin-left: 20px;
@@ -587,7 +605,15 @@ body {
   font-weight: bold;
   color: #fbfcfc;
 }
-
+.rightBtn3-title {
+  position: relative;
+  float: left;
+  margin-left: 10px;
+  margin-top: 30px;
+  font-size: 27px;
+  font-weight: bold;
+  color: #fbfcfc;
+}
 /*bookInfo*/
 
 .step2 {
@@ -1076,8 +1102,9 @@ body {
   width: 220px;
   background-color: white;
   box-shadow: 1px 1px #888888;
-  position: relative;
   float: left;
+  -webkit-transition: all 300ms ease-in;
+  transition: all 300ms ease-in;
 }
 .col10 {
   font-size: 25px;

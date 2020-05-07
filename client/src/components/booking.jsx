@@ -57,9 +57,9 @@ const Booking = ({
   ticketTokens,
   pointInfo,
 }) => {
-  // useEffect(() => {
-  //   getPoint();
-  // });
+  useEffect(() => {
+    alert("현재 테스트할 수 있는 영화는 어벤져스-엔드게임");
+  }, []);
   return (
     <div
       className={
@@ -136,6 +136,9 @@ const Booking = ({
             showTimes={showTimes}
             selectScreenName={selectScreenName}
             setTotalSeat={setTotalSeat}
+            movie={movie}
+            theater={theater}
+            date={date}
           />
         </div>
         <div className={"step2" + (currentStep !== 2 ? " hide" : "")}>

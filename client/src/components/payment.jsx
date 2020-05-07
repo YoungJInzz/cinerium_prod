@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { FaChevronDown, FaChevronRight, FaChevronUp } from "react-icons/fa";
 import { IoMdRefresh } from "react-icons/io";
 
@@ -13,12 +13,42 @@ const Payment = ({ pointInfo, person }) => {
   const [discountByPoint, setDiscountByPoint] = useState(0);
   const [isCouponApplied, setIsCouponApplied] = useState(false);
   const [isPointApplied, setIsPointApplied] = useState(false);
+  const parentRef = useRef();
+  const childRef = useRef();
 
-  // useEffect(() => {
-  //   let totalNum = person.adult + person.teen + person.senior;
-  //   setTotalFee(totalNum * 1000);
-  //   setTotalFeeFix(totalNum * 1000);
-  // }, [person]);
+  useEffect(() => {
+    let totalNum = person.adult + person.teen + person.senior;
+    setTotalFee(totalNum * 1000);
+    setTotalFeeFix(totalNum * 1000);
+    setPayResultPosition();
+    function watchScroll() {
+      window.addEventListener("scroll", setPayResultPosition);
+    }
+    watchScroll();
+    return () => {
+      window.removeEventListener("scroll", setPayResultPosition);
+    };
+  }, [person]);
+
+  const setPayResultPosition = () => {
+    let target = document.querySelector("html").scrollTop;
+
+    let parentOffset = parentRef.current.offsetTop;
+    let parentHeight = parentRef.current.clientHeight;
+    let childHeight = childRef.current.clientHeight;
+    let maxHeight = parentOffset + parentHeight - childHeight;
+    let val1 = 70 + maxHeight - parentOffset;
+    let val2 = 70 + target - parentOffset;
+
+    if (target > maxHeight) {
+      childRef.current.style.marginTop = `${val1}px`;
+    } else if (target > parentOffset && target < maxHeight) {
+      childRef.current.style.marginTop = `${val2}px`;
+    } else {
+      childRef.current.style.marginTop = "70px";
+    }
+  };
+
   const handleStep = (x) => {
     if (step === x) {
       setStep("");
@@ -78,41 +108,47 @@ const Payment = ({ pointInfo, person }) => {
     setTotalFee(totalFee + discountByCoupons);
     setDiscountByCoupons(0);
   };
+  const resetPoint = () => {
+    document.getElementsByClassName("appliedPoint")[0].value = 0;
+    setIsPointApplied(false);
+    setTotalFee(totalFee + discountByPoint);
+    setDiscountByPoint(0);
+  };
 
   const handlePoint = () => {
-    var elValue = Number(
+    let elValue = Number(
       document.getElementsByClassName("appliedPoint")[0].value
     );
-    console.log(elValue.value);
-    setDiscountByPoint(elValue);
+
     if (elValue === 0) {
       alert("포인트를 입력해주세요");
     } else {
       if (elValue > pointInfo.giftCards[0].giftCardBalance) {
         alert("포인트잔액을 초과하였습니다");
-        elValue = 0;
+        document.getElementsByClassName("appliedPoint")[0].value = 0;
       } else {
         if (totalFee === 0) {
           alert("이미 최종결제금액이 0원입니다.");
-          elValue = 0;
+          document.getElementsByClassName("appliedPoint")[0].value = 0;
         } else {
           if (isPointApplied) {
             if (
               window.confirm("이미포인트가 적용되었습니다 초기화하시겠습니까?")
             ) {
-              elValue = 0;
+              document.getElementsByClassName("appliedPoint")[0].value = 0;
               setIsPointApplied(false);
               setTotalFee(totalFee + discountByPoint);
               setDiscountByPoint(0);
             }
           } else {
+            setDiscountByPoint(elValue);
             if (totalFee - elValue < 0) {
-              elValue = 0;
+              document.getElementsByClassName("appliedPoint")[0].value = 0;
               setTotalFee(0);
               setIsPointApplied(true);
             } else {
               setTotalFee(totalFee - elValue);
-              elValue = 0;
+              document.getElementsByClassName("appliedPoint")[0].value = 0;
               setIsPointApplied(true);
             }
           }
@@ -122,7 +158,7 @@ const Payment = ({ pointInfo, person }) => {
   };
   return (
     <div>
-      <div className="pay-container">
+      <div className="pay-container" ref={parentRef}>
         <div className="pay-method">
           <div className="pay-step">
             <div className="pay-titlebar">
@@ -187,7 +223,7 @@ const Payment = ({ pointInfo, person }) => {
                   <div>
                     <div className="result-form">
                       <button
-                        class="coupon-applyButton"
+                        className="coupon-applyButton"
                         onClick={() => applyCoupon()}
                       >
                         적용하기
@@ -260,7 +296,7 @@ const Payment = ({ pointInfo, person }) => {
           <div className="pay-step">
             <div className="pay-titlebar">
               <span>STEP 3</span>
-              <span className="again">
+              <span className="again" onClick={() => resetPoint()}>
                 다시하기
                 <IoMdRefresh className="refresh-icon2" />
               </span>
@@ -334,18 +370,18 @@ const Payment = ({ pointInfo, person }) => {
             <div className={"pay-body2"}>
               <div className="pay-way">
                 <input type="radio" id="card" name="gender" value="card" />
-                <label className="label" for="card">
+                <label className="label" htmlFor="card">
                   카드
                 </label>
                 <input type="radio" id="phone" name="gender" value="phone" />
-                <label className="label" for="phone">
+                <label className="label" htmlFor="phone">
                   휴대폰결제
                 </label>
               </div>
             </div>
           </div>
         </div>
-        <div className="payresult">
+        <div className="payresult" ref={childRef}>
           <div className="priceToPayContainer">
             <div className="priceToPayHead">결제하실금액</div>
             <div className="priceToPayBody">
