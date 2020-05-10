@@ -24,10 +24,14 @@ import {
   changeTicketState,
   getPoint,
   pointInfo,
+  setSectedSeats,
+  setSeatToBooked,
+  setBookedToEmpty,
 } from "../modules/booking";
 import Booking from "../components/booking";
 
 const BookingConatainer = ({
+  selectedSeats,
   pointInfo,
   ticketTokens,
   seatTable,
@@ -77,6 +81,9 @@ const BookingConatainer = ({
   getSeatTable,
   changeTicketState,
   getPoint,
+  setSectedSeats,
+  setSeatToBooked,
+  setBookedToEmpty,
 }) => {
   useEffect(() => {
     getInitScreens();
@@ -86,6 +93,7 @@ const BookingConatainer = ({
 
   return (
     <Booking
+      selectedSeats={selectedSeats}
       group={group}
       person={person}
       movie={movie}
@@ -135,12 +143,16 @@ const BookingConatainer = ({
       ticketTokens={ticketTokens}
       getPoint={getPoint}
       pointInfo={pointInfo}
+      setSectedSeats={setSectedSeats}
+      setSeatToBooked={setSeatToBooked}
+      setBookedToEmpty={setBookedToEmpty}
     />
   );
 };
 
 export default connect(
   ({ booking, loading }) => ({
+    selectedSeats: booking.selectedSeats,
     person: booking.person,
     movie: booking.movie,
     theater: booking.theater,
@@ -193,5 +205,8 @@ export default connect(
     setTotalSeat,
     changeTicketState,
     getPoint,
+    setSectedSeats,
+    setSeatToBooked,
+    setBookedToEmpty,
   }
 )(BookingConatainer);

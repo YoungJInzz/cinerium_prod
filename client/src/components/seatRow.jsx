@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 const SeatRow = ({
+  seatTable,
+  rowIndex,
   item,
   userId,
   seatSelected,
@@ -12,47 +15,69 @@ const SeatRow = ({
   changeTicketState,
   timeData,
   getSeatTable,
+  setSectedSeats,
+  setSeatToBooked,
 }) => {
   const [rowName, setRowName] = useState("");
   const [rowArr, setRowArr] = useState([]);
+
   useEffect(() => {
-    setRowName(item.rowName);
-    setRowArr(item.row);
-  }, [item, rowArr]);
-  const handleSeat = async (seatNum, ticketId, ticketState) => {
-    console.log(ticketState);
-    let totalPerson = person.adult + person.teen + person.senior;
-    let copySeatSelected = JSON.parse(JSON.stringify(seatSelected));
-    let reA = /[^a-zA-Z]/g;
-    let reN = /[^0-9]/g;
-    const sortSeat = (a, b) => {
-      var aA = a.replace(reA, "");
-      var bA = b.replace(reA, "");
-      if (aA === bA) {
-        let aN = parseInt(a.replace(reN, ""), 10);
-        let bN = parseInt(b.replace(reN, ""), 10);
-        return aN === bN ? 0 : aN > bN ? 1 : -1;
-      } else {
-        return aA > bA ? 1 : -1;
+    setRowName(Object.keys(item)[0]);
+    setRowArr(item[Object.keys(item)[0]]);
+  }, [item, rowArr, seatTable]);
+
+  const handleSeat = async (columnIndex, seatNum, ticketId) => {
+    const handleBooked = () => {
+      let totalPerson = person.adult + person.teen + person.senior;
+      let copySeatSelected = JSON.parse(JSON.stringify(seatSelected));
+      let reA = /[^a-zA-Z]/g;
+      let reN = /[^0-9]/g;
+      const sortSeat = (a, b) => {
+        var aA = a.replace(reA, "");
+        var bA = b.replace(reA, "");
+        if (aA === bA) {
+          let aN = parseInt(a.replace(reN, ""), 10);
+          let bN = parseInt(b.replace(reN, ""), 10);
+          return aN === bN ? 0 : aN > bN ? 1 : -1;
+        } else {
+          return aA > bA ? 1 : -1;
+        }
+      };
+
+      if (
+        totalPerson > seatSelected.length &&
+        copySeatSelected.includes(seatNum) === false
+      ) {
+        copySeatSelected.push(seatNum);
+        handleseatSelected(copySeatSelected.sort(sortSeat));
+        setSectedSeats([{ rowName, rowIndex, columnIndex, ticketId }]);
+        setSeatToBooked({
+          rowName: rowName,
+          rowIndex: rowIndex,
+          columnIndex: columnIndex,
+        });
+      } else if (totalPerson === seatSelected.length) {
+        if (window.confirm("선택이완료되었습니다 다시선택하시겠습니까?")) {
+          handleseatSelectedIndex([]);
+          handleseatSelected([]);
+        } else {
+        }
       }
     };
-
-    if (
-      totalPerson > seatSelected.length &&
-      copySeatSelected.includes(seatNum) === false
-    ) {
-      copySeatSelected.push(seatNum);
-      console.log("ticketId", ticketId);
-      handleseatSelected(copySeatSelected.sort(sortSeat));
-      await changeTicketState({ ticketId: [ticketId], state: "0" });
-      await getSeatTable(timeData.id);
-      await getSeatTable(timeData.id);
-    } else if (totalPerson === seatSelected.length) {
-      if (window.confirm("선택이완료되었습니다 다시선택하시겠습니까?")) {
-        handleseatSelectedIndex([]);
-        handleseatSelected([]);
-      } else {
+    let returnValue = await axios.patch(
+      "http://127.0.0.1:8005/ticket/ticketstate",
+      {
+        state: 0,
+        tickets: [ticketId],
       }
+    );
+    console.log(returnValue.data);
+    if (returnValue.data.result === "200") {
+      handleBooked();
+    } else if ((returnValue.data.result = "500")) {
+      alert("이미 예약된 좌석입니다");
+    } else {
+      alert("잘못된 요청입니다");
     }
   };
 
@@ -60,30 +85,23 @@ const SeatRow = ({
     <div className="opening-row">
       <div className="opening-row-name">{rowName} </div>
       <div className="opening-seat">
-        {rowArr.map((seat) => (
+        {rowArr.map((seat, Index) => (
           <div>
             <div
               className={
                 "opening-item " +
-                (seat.ticket.ticketState === "0" &&
-                seatSelected.includes(seat.seat.seatNo)
+                (seat.ticketState === "0" && seatSelected.includes(seat.seatNo)
                   ? " seatSelected"
                   : "") +
-                (seat.ticket.ticketState === "2" ||
-                (seat.ticket.ticketState === "0" &&
-                  seatSelected.includes(seat.seat.seatNo) === false)
+                (seat.ticketState === "2" ||
+                (seat.ticketState === "0" &&
+                  seatSelected.includes(seat.seatNo) === false)
                   ? " notAvail"
                   : "")
               }
-              onClick={() =>
-                handleSeat(
-                  seat.seat.seatNo,
-                  seat.ticket.id,
-                  seat.ticket.ticketState
-                )
-              }
+              onClick={() => handleSeat(Index, seat.seatNo, seat.ticketId)}
             >
-              {seat.seat.seatNo.substring(1, 2)}
+              {seat.seatNo.substring(1, 2)}
             </div>
           </div>
         ))}

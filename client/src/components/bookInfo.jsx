@@ -6,6 +6,8 @@ import RightBtn3 from "./rightBtn3";
 import LeftBtn1 from "./leftBtn";
 import LeftBtn2 from "./leftBtn2";
 const BookInfo = ({
+  selectedSeats,
+  setBookedToEmpty,
   changeTicketState,
   ticketTokens,
   screenName,
@@ -136,6 +138,8 @@ const BookInfo = ({
         </div>
       </div>
       <LeftBtn1
+        setBookedToEmpty={setBookedToEmpty}
+        selectedSeats={selectedSeats}
         moveToBefore={moveToBefore}
         currentStep={currentStep}
         selectAdult={selectAdult}

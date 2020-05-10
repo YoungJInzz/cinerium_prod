@@ -8,6 +8,7 @@ import SeatSelectSection from "./seatSelectSection";
 import loadingImg from "../resources/loading.gif";
 import Payment from "./payment";
 const Booking = ({
+  selectedSeats,
   screenName,
   group,
   movie,
@@ -56,6 +57,9 @@ const Booking = ({
   changeTicketState,
   ticketTokens,
   pointInfo,
+  setSectedSeats,
+  setSeatToBooked,
+  setBookedToEmpty,
 }) => {
   useEffect(() => {
     alert("현재 테스트할 수 있는 영화는 어벤져스-엔드게임");
@@ -143,6 +147,8 @@ const Booking = ({
         </div>
         <div className={"step2" + (currentStep !== 2 ? " hide" : "")}>
           <SeatSelectSection
+            selectedSeats={selectedSeats}
+            setSectedSeats={setSectedSeats}
             getSeatTable={getSeatTable}
             screenName={screenName}
             theater={theater}
@@ -164,6 +170,8 @@ const Booking = ({
             seatTable={seatTable}
             changeTicketState={changeTicketState}
             ticketTokens={ticketTokens}
+            setSeatToBooked={setSeatToBooked}
+            setBookedToEmpty={setBookedToEmpty}
           />
         </div>
         <div className={"step3" + (currentStep !== 3 ? " hide" : "")}>
@@ -171,6 +179,8 @@ const Booking = ({
         </div>
       </div>
       <BookInfo
+        setBookedToEmpty={setBookedToEmpty}
+        selectedSeats={selectedSeats}
         changeTicketState={changeTicketState}
         screenName={screenName}
         handleseatSelectedIndex={handleseatSelectedIndex}

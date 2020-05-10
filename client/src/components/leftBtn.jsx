@@ -1,7 +1,9 @@
 import React from "react";
 import { FaArrowLeft } from "react-icons/fa";
-
+import axios from "axios";
 const LeftBtn1 = ({
+  setBookedToEmpty,
+  selectedSeats,
   moveToBefore,
   currentStep,
   selectAdult,
@@ -15,16 +17,15 @@ const LeftBtn1 = ({
   changeTicketState,
 }) => {
   const handlePage = () => {
-    seatSelectedIndex.forEach((item) =>
-      handleSeatArr({
-        rowName: item.rowName,
-        userId: "",
-        rowIndex: item.rowIndex,
-        columnIndex: item.columnIndex,
-      })
-    );
+    let selectedId = selectedSeats.map((item) => item.ticketId);
+    axios.patch("http://127.0.0.1:8005/ticket/ticketstate", {
+      state: 1,
+      tickets: selectedId,
+    });
     handleseatSelectedIndex([]);
-
+    selectedSeats.forEach((item) => {
+      setBookedToEmpty(item);
+    });
     moveToBefore();
     handleseatSelected([]);
     selectAdult(0);

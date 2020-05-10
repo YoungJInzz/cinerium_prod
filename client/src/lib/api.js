@@ -20,7 +20,6 @@ export const changeTicketState = (payload) => {
   return axios.patch("http://127.0.0.1:8005/ticket/ticketstate", {
     state: payload.state,
     tickets: payload.ticketId === undefined ? "" : payload.ticketId,
-    ticketTokens: payload.ticketTokens,
   });
 };
 

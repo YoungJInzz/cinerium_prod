@@ -35,6 +35,9 @@ const HANDLE_SEATSELECTED = "booking/HANDLE_SEATSELECTED";
 const HANDLE_SEATSELECTEDINDEX = "booking/HANDLE_SEATSELECTEDINDEX";
 const HANDLE_SEATARR = "booking/HANDLE_SEATARR";
 const INIT_SHOWTIMES = "booking/INIT_SHOWTIMES";
+const SET_SELECTEDSEATS = "booking/SET_SELECTEDSEATS";
+const SET_SEATTOBOOKED = "booking/SET_SEATTOBOOKED";
+const SET_BOOKEDTOEMPTY = "booking/SET_BOOKEDTOEMPTY";
 
 export const getInitScreens = createAction(GET_INITSCREENS);
 export const getScreens = createAction(GET_SCREENS, (payload) => payload);
@@ -68,6 +71,12 @@ export const selectScreenName = createAction(
   SELECT_SCREENNAME,
   (input) => input
 );
+export const setSeatToBooked = createAction(SET_SEATTOBOOKED, (input) => input);
+export const setBookedToEmpty = createAction(
+  SET_BOOKEDTOEMPTY,
+  (input) => input
+);
+export const setSectedSeats = createAction(SET_SELECTEDSEATS, (input) => input);
 export const setTotalSeat = createAction(SET_TOTALSEAT, (input) => input);
 export const selectMovie = createAction(SELECT_MOVIE, (input) => input);
 export const selectRegion = createAction(SELECT_REGION, (input) => input);
@@ -99,6 +108,7 @@ export const setCinemas = createAction(SET_CINEMAS, (input) => input);
 const initialState = {
   pointInfo: { giftCards: [{ giftCardBalance: 0 }], movieCoupons: [] },
   seatTable: [],
+  selectedSeats: [],
   ticketTokens: [],
   totalSeat: "",
   screenName: "",
@@ -111,7 +121,7 @@ const initialState = {
   group: "0",
   seatSelected: [],
   seatSelectedIndex: [],
-  currentStep: 2,
+  currentStep: 1,
   person: { adult: 0, teen: 0, senior: 0 },
   movie: "",
   theater: "",
@@ -249,6 +259,44 @@ const booking = handleActions(
     [GET_POINT_SUCCESS]: (state, action) => ({
       ...state,
       pointInfo: action.payload,
+    }),
+    [SET_SELECTEDSEATS]: (state, action) => ({
+      ...state,
+      selectedSeats: state.selectedSeats.concat(action.payload),
+    }),
+    [SET_SEATTOBOOKED]: (state, action) => ({
+      ...state,
+      seatTable: state.seatTable.map((item1, index) =>
+        index === action.payload.rowIndex
+          ? {
+              ...item1,
+              [action.payload.rowName]: item1[
+                action.payload.rowName
+              ].map((item2, index) =>
+                index === action.payload.columnIndex
+                  ? { ...item2, ticketState: "0" }
+                  : item2
+              ),
+            }
+          : item1
+      ),
+    }),
+    [SET_BOOKEDTOEMPTY]: (state, action) => ({
+      ...state,
+      seatTable: state.seatTable.map((item1, index) =>
+        index === action.payload.rowIndex
+          ? {
+              ...item1,
+              [action.payload.rowName]: item1[
+                action.payload.rowName
+              ].map((item2, index) =>
+                index === action.payload.columnIndex
+                  ? { ...item2, ticketState: "1" }
+                  : item2
+              ),
+            }
+          : item1
+      ),
     }),
   },
   initialState
