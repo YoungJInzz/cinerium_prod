@@ -1,7 +1,13 @@
 import React from "react";
 import { useEffect } from "react";
 import { connect } from "react-redux";
-import { getInitScreens, selectDate } from "../modules/booking";
+import {
+  getInitScreens,
+  selectDate,
+  selectRegion,
+  selectTheater,
+  getScreens,
+} from "../modules/booking";
 import TimetableByCinema from "../components/timetableByCinema";
 
 const TimetableByCinemaContainer = ({
@@ -9,12 +15,36 @@ const TimetableByCinemaContainer = ({
   selectDate,
   cinemas,
   dates,
+  region,
+  selectRegion,
+  selectTheater,
+  theater,
+  getScreens,
 }) => {
-  useEffect(() => {}, []);
-  return <TimetableByCinema getInitScreens={getInitScreens} />;
+  useEffect(() => {
+    getInitScreens();
+  }, []);
+  return (
+    <TimetableByCinema
+      getInitScreens={getInitScreens}
+      cinemas={cinemas}
+      selectDate={selectDate}
+      dates={dates}
+      region={region}
+      selectRegion={selectRegion}
+      selectTheater={selectTheater}
+      theater={theater}
+      getScreens={getScreens}
+    />
+  );
 };
 
 export default connect(
-  ({ booking }) => ({ cinemas: booking.cinemas, dates: booking.cinemas }),
-  { getInitScreens, selectDate }
+  ({ booking }) => ({
+    cinemas: booking.cinemas,
+    dates: booking.dates,
+    region: booking.region,
+    theater: booking.theater,
+  }),
+  { getInitScreens, selectDate, selectRegion, selectTheater, getScreens }
 )(TimetableByCinemaContainer);

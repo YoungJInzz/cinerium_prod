@@ -1169,6 +1169,8 @@ body {
 /*selectbycinema*/
 
 .cinemas {
+  position: relative;
+  top: 1px;
   margin: 0 auto;
   background-image: url(../resources/background.svg);
   height: 440px;
@@ -1177,9 +1179,8 @@ body {
 .selectMenu {
   color: white;
   font-weight: bold;
-  position: absolute;
-  margin: 330px;
-  margin-top: 6px;
+  position: relative;
+  margin-left: 330px;
   height: 45px;
   width: 400px;
   background-image: url(../resources/ribbon.svg);
@@ -1215,6 +1216,77 @@ body {
   margin-left: 10px;
   top: 4px;
   font-size: 15px;
+}
+
+.cinemas > .regionList2 {
+  border-top: 1px solid #e8e8e8;
+  border-bottom: 1px solid #e8e8e8;
+  margin-left: 60px;
+  margin-top: 20px;
+  width: 940px;
+  height: 45px;
+}
+.cinemas > .regionList2 > .col {
+  cursor: pointer;
+  display: inline-block;
+  text-align: center;
+  width: 55px;
+  height: 45px;
+  font-size: 16px;
+  line-height: 43px;
+  font-weight: bold;
+  margin-left: 14px;
+  color: #e8e8e8;
+}
+
+.cinemaList {
+  position: relative;
+  width: 930px;
+  margin-left: 50px;
+  margin-top: 50px;
+}
+.cinemaList > .col {
+  cursor: pointer;
+  display: inline-block;
+  padding-right: 20px;
+  border-right: 1px solid white;
+  margin-left: 20px;
+  font-size: 15px;
+  margin-bottom: 35px;
+  position: relative;
+  color: #e8e8e8;
+}
+.timeData-container {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  width: 1050px;
+}
+.timeData-container > .cinemaName {
+  height: 40px;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.datesList {
+  overflow: hidden;
+  position: relative;
+  margin-top: 20px;
+  white-space: nowrap;
+  width: 700px;
+  height: 80px;
+  border-top: 2px solid black;
+  border-bottom: 2px solid black;
+}
+
+.datesList > .dateItem2 {
+  position: relative;
+  float: left;
+  width: 80px;
+  height: 50px;
+  border: 1px solid black;
+  font-size: 35px;
+  text-align: center;
 }
 /*selectbycinema*/
 

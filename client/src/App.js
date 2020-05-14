@@ -5,21 +5,16 @@ import Serch from "./components/serch";
 import Footer from "./components/footer";
 import BookingPage from "./pages/bookingpage";
 import Signup from "./components/signup";
-import { Route } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import TimetableByCinemaContainer from "./containers/timetableByCinemaContainer";
-import BookingContainer from "./containers/BookingContainer";
+import BookingContainer from "./containers/bookingContainer";
 import TestPage from "./pages/testPage";
 const App = memo(() => {
   return (
     <>
-      <Route path="/" component={TestPage} />
-      <Route path="/booking" exact={true} component={BookingPage} />
-      <Route
-        path="/cinema"
-        exact={true}
-        component={TimetableByCinemaContainer}
-      />
-
+      <TestPage />
+      <Route path="/cinema" component={TimetableByCinemaContainer} />
+      <Route path="/booking" component={BookingContainer} />
       {/* <div>
         <BookingPage />
       </div> */}
