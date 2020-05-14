@@ -1,6 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
 import BookingConatiner from "../containers/BookingContainer";
-
 const BookingPage = () => {
   return (
     <>

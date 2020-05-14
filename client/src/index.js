@@ -14,18 +14,20 @@ import ReduxThunk from "redux-thunk";
 import createSagaMiddleware from "redux-saga";
 import { composeWithDevTools } from "redux-devtools-extension";
 import "react-app-polyfill/ie9";
-
+import { BrowserRouter } from "react-router-dom";
 const sagaMiddleware = createSagaMiddleware();
 const store = createStore(
   rootReducer,
   composeWithDevTools(applyMiddleware(sagaMiddleware, ReduxThunk))
 );
 sagaMiddleware.run(rootSaga);
-
+console.log(store.getState());
 ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
+  <BrowserRouter>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </BrowserRouter>,
   document.getElementById("root")
 );
 serviceWorker.unregister();

@@ -1,6 +1,11 @@
 body {
   font-family: Consolas, monospace;
 }
+.asd {
+  width: 360px;
+  height: 45px;
+}
+
 .show {
   display: block;
 }
@@ -767,7 +772,6 @@ body {
 .seat-screen {
   position: relative;
   float: left;
-  border: 1px solid royalblue;
   margin-left: 80px;
   width: 800px;
   height: 400px;
@@ -796,7 +800,7 @@ body {
   position: relative;
   margin-left: 70px;
   float: left;
-  border: 1px solid blueviolet;
+
   width: 100px;
   height: 400px;
 }
@@ -1162,6 +1166,58 @@ body {
   background-color: #333333;
   color: #fdf8f8;
 }
+/*selectbycinema*/
+
+.cinemas {
+  margin: 0 auto;
+  background-image: url(../resources/background.svg);
+  height: 440px;
+  width: 1050px;
+}
+.selectMenu {
+  color: white;
+  font-weight: bold;
+  position: absolute;
+  margin: 330px;
+  margin-top: 6px;
+  height: 45px;
+  width: 400px;
+  background-image: url(../resources/ribbon.svg);
+}
+
+.selectMenu > .col1 > .icon {
+  position: relative;
+  font-size: 24px;
+  top: 5px;
+}
+
+.selectMenu > .col1 {
+  cursor: pointer;
+  text-align: center;
+  display: inline-block;
+  height: 35px;
+  width: 160px;
+  border-right: 1px solid white;
+  padding-right: 20px;
+  position: relative;
+  margin-left: 20px;
+  top: 4px;
+  font-size: 15px;
+}
+.selectMenu > .col2 {
+  cursor: pointer;
+  line-height: 35px;
+  display: inline-block;
+  height: 35px;
+  width: 155px;
+  padding-left: 15px;
+  position: relative;
+  margin-left: 10px;
+  top: 4px;
+  font-size: 15px;
+}
+/*selectbycinema*/
+
 /*scroll bar*/
 ::-webkit-scrollbar {
   width: 7px;

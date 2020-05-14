@@ -7,6 +7,7 @@ import BookInfo from "./bookInfo";
 import SeatSelectSection from "./seatSelectSection";
 import loadingImg from "../resources/loading.gif";
 import Payment from "./payment";
+import axios from "axios";
 const Booking = ({
   selectedSeats,
   screenName,
@@ -60,9 +61,14 @@ const Booking = ({
   setSectedSeats,
   setSeatToBooked,
   setBookedToEmpty,
+  initState,
 }) => {
   useEffect(() => {
-    alert("현재 테스트할 수 있는 영화는 어벤져스-엔드게임");
+    console.log(person);
+    let x = axios.get(
+      "http://127.0.0.1:8005/showtimes/timetables/data?movieId=5&cinemaArea=%EC%84%9C%EC%9A%B8&date=20200502"
+    );
+    console.log(x.data);
   }, []);
   return (
     <div

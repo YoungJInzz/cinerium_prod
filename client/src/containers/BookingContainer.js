@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import {
+  initState,
   selectMovie,
   selectRegion,
   selectTheater,
@@ -31,6 +32,7 @@ import {
 import Booking from "../components/booking";
 
 const BookingConatainer = ({
+  initState,
   selectedSeats,
   pointInfo,
   ticketTokens,
@@ -146,6 +148,7 @@ const BookingConatainer = ({
       setSectedSeats={setSectedSeats}
       setSeatToBooked={setSeatToBooked}
       setBookedToEmpty={setBookedToEmpty}
+      initState={initState}
     />
   );
 };
@@ -183,6 +186,7 @@ export default connect(
     pointInfo: booking.pointInfo,
   }),
   {
+    initState,
     getSeatTable,
     getInitScreens,
     selectMovie,

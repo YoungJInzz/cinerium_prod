@@ -38,7 +38,9 @@ const INIT_SHOWTIMES = "booking/INIT_SHOWTIMES";
 const SET_SELECTEDSEATS = "booking/SET_SELECTEDSEATS";
 const SET_SEATTOBOOKED = "booking/SET_SEATTOBOOKED";
 const SET_BOOKEDTOEMPTY = "booking/SET_BOOKEDTOEMPTY";
+export const INITSTATE = "booking/INITSTATE";
 
+export const initState = createAction(INITSTATE);
 export const getInitScreens = createAction(GET_INITSCREENS);
 export const getScreens = createAction(GET_SCREENS, (payload) => payload);
 export const initShowTimes = createAction(INIT_SHOWTIMES);
