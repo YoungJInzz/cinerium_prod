@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Ribbon from "../resources/ribbon.svg";
-import { FaHandPointRight } from "react-icons/fa";
+import {
+  FaHandPointRight,
+  FaRegHandPointLeft,
+  FaRegHandPointRight,
+} from "react-icons/fa";
 const TimetableByCinema = ({
   cinemas,
   region,
@@ -9,32 +13,25 @@ const TimetableByCinema = ({
   selectTheater,
   getScreens,
   dates,
+  preDatesDivision,
 }) => {
   const [regionCinemas, setRegionCinemas] = useState([]);
-  const [datesDivision, setDateDivison] = useState([
-    [
-      { date: 20200501, isVailable: true },
-      { date: 20200502, isVailable: true },
-      { date: 20200503, isVailable: true },
-      { date: 20200504, isVailable: true },
-      { date: 20200505, isVailable: true },
-      { date: 20200506, isVailable: true },
-      { date: 20200507, isVailable: true },
-      { date: 20200508, isVailable: true },
-    ],
-  ]);
+  const [datesDivision, setDatesDivison] = useState({
+    0: [{ date: 20200501, isVailable: true }],
+  });
   const [page, setPage] = useState(0);
   useEffect(() => {
+    setDatesDivison(divideDates());
     // divideDates();
     for (let item of cinemas) {
       if (item.cinemaArea === region.cinemaArea) {
         setRegionCinemas(item.cinemaList);
       }
     }
-  });
+  }, [dates]);
 
   const divideDates = () => {
-    let result = [];
+    let result = {};
     let num = Math.ceil(dates.length / 8);
     let count = 0;
     for (let i = 0; i < num; i++) {
@@ -43,10 +40,11 @@ const TimetableByCinema = ({
         if (dates[j] !== undefined) item.push(dates[j]);
       }
       count = count + 8;
-      result.push(item);
+      result[i] = item;
     }
-    setDateDivison(result);
+    return result;
   };
+
   return (
     <div>
       <div className="cinemas">
@@ -88,16 +86,24 @@ const TimetableByCinema = ({
           </span>
         </div>
         <div className="datesList">
-          {dates.map((item) => (
-            <div
-              className={
-                "dateItem2" + (item.isVailable === false ? " hide" : "")
-              }
-            >
-              {" "}
-              {item.date.toString().substring(6, 8)}
-            </div>
-          ))}
+          <div className="col1">
+            <FaRegHandPointLeft />
+          </div>
+          <div className="col2">
+            {datesDivision[0] &&
+              datesDivision[0].map((item) => (
+                <div
+                  className={
+                    "dateItem2" + (item.isVailable === false ? " hide" : "")
+                  }
+                >
+                  {item.date.toString().substring(6, 8)}
+                </div>
+              ))}
+          </div>
+          <dvi className="col3">
+            <FaRegHandPointRight />
+          </dvi>
         </div>
       </div>
     </div>
