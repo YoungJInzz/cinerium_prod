@@ -16,12 +16,10 @@ const TimetableByCinema = ({
   preDatesDivision,
 }) => {
   const [regionCinemas, setRegionCinemas] = useState([]);
-  const [datesDivision, setDatesDivison] = useState({
-    0: [{ date: 20200501, isVailable: true }],
-  });
+  const [datesDivision, setDatesDivison] = useState([]);
   const [page, setPage] = useState(0);
   useEffect(() => {
-    setDatesDivison(divideDates());
+    setDatesDivison(divideDates(dates));
     // divideDates();
     for (let item of cinemas) {
       if (item.cinemaArea === region.cinemaArea) {
@@ -30,21 +28,18 @@ const TimetableByCinema = ({
     }
   }, [dates]);
 
-  const divideDates = () => {
-    let result = {};
-    let num = Math.ceil(dates.length / 8);
-    let count = 0;
-    for (let i = 0; i < num; i++) {
-      let item = [];
-      for (let j = count; j < count + 8; j++) {
-        if (dates[j] !== undefined) item.push(dates[j]);
-      }
-      count = count + 8;
-      result[i] = item;
-    }
-    return result;
+  const divideDates = (dates) => {
+    const chunk = [];
+    while (dates.length) chunk.push(dates.splice(0, 8));
+    return chunk;
   };
 
+  const moveToNext = () => {
+    page < datesDivision.length - 1 ? setPage(page + 1) : setPage(page);
+  };
+  const moveToBefore = () => {
+    page > 0 ? setPage(page - 1) : setPage(page);
+  };
   return (
     <div>
       <div className="cinemas">
@@ -87,11 +82,11 @@ const TimetableByCinema = ({
         </div>
         <div className="datesList">
           <div className="col1">
-            <FaRegHandPointLeft />
+            <FaRegHandPointLeft onClick={() => moveToBefore()} />
           </div>
           <div className="col2">
-            {datesDivision[0] &&
-              datesDivision[0].map((item) => (
+            {datesDivision[page] &&
+              datesDivision[page].map((item) => (
                 <div
                   className={
                     "dateItem2" + (item.isVailable === false ? " hide" : "")
@@ -102,7 +97,7 @@ const TimetableByCinema = ({
               ))}
           </div>
           <dvi className="col3">
-            <FaRegHandPointRight />
+            <FaRegHandPointRight onClick={() => moveToNext()} />
           </dvi>
         </div>
       </div>
