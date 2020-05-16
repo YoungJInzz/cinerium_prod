@@ -5,7 +5,7 @@ import {
   FaRegHandPointLeft,
   FaRegHandPointRight,
 } from "react-icons/fa";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 const TimetableByCinema = ({
   cinemas,
   region,
