@@ -18,7 +18,12 @@ const Movieitems = ({
   const clickmovie = (item) => {
     if (item.isAvailable === true) {
       selectMovie(item);
-      getScreens({ movieId: item.Id, cinemaId: theater.id, date, group });
+      getScreens({
+        movieId: item.id,
+        cinemaId: theater.id,
+        date,
+        group: 123890,
+      });
     } else {
       if (
         window.confirm(

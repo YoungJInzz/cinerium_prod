@@ -71,7 +71,6 @@ const SeatRow = ({
         tickets: [ticketId],
       }
     );
-    console.log(returnValue.data);
     if (returnValue.data.result === "200") {
       handleBooked();
     } else if ((returnValue.data.result = "500")) {

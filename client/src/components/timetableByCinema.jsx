@@ -5,6 +5,7 @@ import {
   FaRegHandPointLeft,
   FaRegHandPointRight,
 } from "react-icons/fa";
+import { Link, useHistory } from "react-router-dom";
 const TimetableByCinema = ({
   cinemas,
   region,
@@ -13,14 +14,20 @@ const TimetableByCinema = ({
   selectTheater,
   getScreens,
   dates,
-  preDatesDivision,
+  date,
+  getShowtimeByCinema,
+  selectDate,
+  showtimeBycinema,
 }) => {
   const [regionCinemas, setRegionCinemas] = useState([]);
   const [datesDivision, setDatesDivison] = useState([]);
   const [page, setPage] = useState(0);
   useEffect(() => {
+    getShowtimeByCinema({ cinemaId: theater.id, date });
     setDatesDivison(divideDates(dates));
-    // divideDates();
+    if (dates.length !== 0) {
+      selectDate(dates[0].date);
+    }
     for (let item of cinemas) {
       if (item.cinemaArea === region.cinemaArea) {
         setRegionCinemas(item.cinemaList);
@@ -28,6 +35,7 @@ const TimetableByCinema = ({
     }
   }, [dates, region]);
 
+  const history = useHistory();
   const divideDates = (dates) => {
     const copyDates = JSON.parse(JSON.stringify(dates));
     const chunk = [];
@@ -37,13 +45,6 @@ const TimetableByCinema = ({
         chunk2.push(i);
       }
     }
-    // const map1 = copyDates.map(function (x) {
-    //   if (x.isVailable === true) {
-    //     return x;
-    //   }
-    // });
-
-    console.log(chunk2);
     while (chunk2.length) chunk.push(chunk2.splice(0, 8));
     return chunk;
   };
@@ -79,7 +80,9 @@ const TimetableByCinema = ({
                 selectTheater(item);
                 getScreens({
                   cinemaId: item.id,
+                  date: date,
                 });
+                getShowtimeByCinema({ cinemaId: item.id, date });
               }}
             >
               {item.cinemaName}
@@ -113,6 +116,41 @@ const TimetableByCinema = ({
           <dvi className="col3">
             <FaRegHandPointRight onClick={() => moveToNext()} />
           </dvi>
+        </div>
+        <div className="showtimeContainer">
+          {showtimeBycinema.map((item) => (
+            <div className="movieContainer">
+              <div className="showtime-movie-title">
+                <span
+                  className={
+                    "age " +
+                    (item.movie.movieRating === "전체"
+                      ? " all"
+                      : item.movie.movieRating === "12"
+                      ? "twe"
+                      : item.movie.movieRating === "15"
+                      ? "fif"
+                      : "nin")
+                  }
+                >
+                  {item.movie.movieRating}
+                </span>
+                <span>{item.movie.movieTitle}</span>
+              </div>
+              <div className="showtime-cinemasContainer">
+                {item.screens.map((item2) => (
+                  <div className="showtime-cinema">
+                    <div>{item2.screen.name}</div>
+                    <div>
+                      {item2.timeTables.map((item3) => (
+                        <span>{item3.startTime}</span>
+                      ))}{" "}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </div>

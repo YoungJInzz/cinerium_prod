@@ -137,11 +137,11 @@ const initialState = {
   currentStep: 1,
   person: { adult: 0, teen: 0, senior: 0 },
   movie: "",
-  theater: "",
+  theater: { id: 1, cinemaArea: "서울", cinemaName: "강남" },
   screen: "",
   timeData: "",
   region: { cinemaArea: "서울" },
-  date: "",
+  date: 20200501,
 };
 const booking = handleActions(
   {
@@ -313,7 +313,7 @@ const booking = handleActions(
     }),
     [GET_SHOWTIMEBYCINEMA_SUCCESS]: (state, action) => ({
       ...state,
-      showtimeBycinema: action.payload.showTimes,
+      showtimeBycinema: action.payload.showtimes,
     }),
   },
   initialState

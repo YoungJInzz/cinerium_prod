@@ -28,6 +28,7 @@ export const getPoint = (payload) => {
 };
 
 export const getShowtimeBycinema = (payload) => {
+  console.log(payload);
   return axios.get(
     `http://127.0.0.1:8005/showtimes/timetables?cinemaId=${payload.cinemaId}&date=${payload.date}`
   );

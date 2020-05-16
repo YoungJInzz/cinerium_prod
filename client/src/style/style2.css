@@ -1269,7 +1269,6 @@ body {
 }
 
 .datesList {
-  overflow: scroll;
   position: relative;
   margin-top: 20px;
   white-space: nowrap;

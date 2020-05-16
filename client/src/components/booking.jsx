@@ -64,11 +64,10 @@ const Booking = ({
   initState,
 }) => {
   useEffect(() => {
-    console.log(person);
     let x = axios.get(
       "http://127.0.0.1:8005/showtimes/timetables/data?movieId=5&cinemaArea=%EC%84%9C%EC%9A%B8&date=20200502"
     );
-    console.log(x.data);
+    console.log(1313, x.data);
   }, []);
   return (
     <div
