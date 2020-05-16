@@ -16,7 +16,8 @@ const CHANGE_TICKETSTATE = "CHANGE_TICKETSTATE";
 const CHANGE_TICKETSTATE_SUCCESS = "CHANGE_TICKETSTATE_SUCCESS";
 const GET_POINT = "GET_POINT";
 const GET_POINT_SUCCESS = "GET_POINT_SUCCESS";
-
+const GET_SHOWTIMEBYCINEMA = "GET_SHOWTIMEBYCINEMA";
+const GET_SHOWTIMEBYCINEMA_SUCCESS = "GET_SHOWTIMEBYCINEMA_SUCCESS";
 const INIT_TOTAL = "booking/INIT_TOTAL";
 const SET_TOTALSEAT = "booking/SET_TOTALSEAT";
 const SELECT_SCREENNAME = "booking/SELECT_SCREENNAME";
@@ -51,6 +52,10 @@ export const changeTicketState = createAction(
   (payload) => payload
 );
 export const getPoint = createAction(GET_POINT, (payload) => payload);
+export const getShowtimeByCinema = createAction(
+  GET_SHOWTIMEBYCINEMA,
+  (payload) => payload
+);
 
 const getInitScreensSaga = createRequestSaga(GET_INITSCREENS, api.getInit);
 const getScreenSaga = createRequestSaga(GET_SCREENS, api.getScreenInfo);
@@ -60,6 +65,10 @@ const changeTicketStateSaga = createRequestSaga(
   api.changeTicketState
 );
 const getPointSaga = createRequestSaga(GET_POINT, api.getPoint);
+const getShowtimeByCinemaSaga = createRequestSaga(
+  GET_SHOWTIMEBYCINEMA,
+  api.getShowtimeBycinema
+);
 
 export function* bookingSaga() {
   yield takeLatest(GET_INITSCREENS, getInitScreensSaga);
@@ -67,6 +76,7 @@ export function* bookingSaga() {
   yield takeLatest(GET_SEATTABLE, getSeatTableSaga);
   yield takeLatest(CHANGE_TICKETSTATE, changeTicketStateSaga);
   yield takeLatest(GET_POINT, getPointSaga);
+  yield takeLatest(GET_SHOWTIMEBYCINEMA, getShowtimeByCinemaSaga);
 }
 
 export const selectScreenName = createAction(
@@ -109,6 +119,7 @@ export const setCinemas = createAction(SET_CINEMAS, (input) => input);
 
 const initialState = {
   pointInfo: { giftCards: [{ giftCardBalance: 0 }], movieCoupons: [] },
+  showtimeBycinema: [],
   seatTable: [],
   selectedSeats: [],
   ticketTokens: [],
@@ -299,6 +310,10 @@ const booking = handleActions(
             }
           : item1
       ),
+    }),
+    [GET_SHOWTIMEBYCINEMA_SUCCESS]: (state, action) => ({
+      ...state,
+      showtimeBycinema: action.payload.showTimes,
     }),
   },
   initialState

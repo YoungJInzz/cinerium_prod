@@ -26,11 +26,25 @@ const TimetableByCinema = ({
         setRegionCinemas(item.cinemaList);
       }
     }
-  }, [dates]);
+  }, [dates, region]);
 
   const divideDates = (dates) => {
+    const copyDates = JSON.parse(JSON.stringify(dates));
     const chunk = [];
-    while (dates.length) chunk.push(dates.splice(0, 8));
+    const chunk2 = [];
+    for (let i of copyDates) {
+      if (i.isVailable === true) {
+        chunk2.push(i);
+      }
+    }
+    // const map1 = copyDates.map(function (x) {
+    //   if (x.isVailable === true) {
+    //     return x;
+    //   }
+    // });
+
+    console.log(chunk2);
+    while (chunk2.length) chunk.push(chunk2.splice(0, 8));
     return chunk;
   };
 
@@ -92,7 +106,7 @@ const TimetableByCinema = ({
                     "dateItem2" + (item.isVailable === false ? " hide" : "")
                   }
                 >
-                  {item.date.toString().substring(6, 8)}
+                  {`${item.date}`.substring(6, 8)}
                 </div>
               ))}
           </div>
