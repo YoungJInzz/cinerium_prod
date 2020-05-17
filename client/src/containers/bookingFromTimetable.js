@@ -31,7 +31,7 @@ import {
 } from "../modules/booking";
 import Booking from "../components/booking";
 
-const BookingConatainer = ({
+const BookingConatainerFromTimetable = ({
   initState,
   selectedSeats,
   pointInfo,
@@ -88,7 +88,6 @@ const BookingConatainer = ({
   setBookedToEmpty,
 }) => {
   useEffect(() => {
-    // initState();
     getInitScreens();
     getScreens();
     getPoint({ id: "admin" });
@@ -214,4 +213,4 @@ export default connect(
     setSeatToBooked,
     setBookedToEmpty,
   }
-)(BookingConatainer);
+)(BookingConatainerFromTimetable);

@@ -8,13 +8,18 @@ import Signup from "./components/signup";
 import { Route, Switch } from "react-router-dom";
 import TimetableByCinemaContainer from "./containers/timetableByCinemaContainer";
 import BookingContainer from "./containers/bookingContainer";
+import BookingConatainerFromTimetable from "./containers/bookingFromTimetable";
 import TestPage from "./pages/testPage";
 const App = memo(() => {
   return (
     <>
       <TestPage />
-      <Route path="/cinema" component={TimetableByCinemaContainer} />
+      <Route path="/timetable" component={TimetableByCinemaContainer} />
       <Route path="/booking" component={BookingContainer} />
+      <Route
+        path="/bookingFromTimetable"
+        component={BookingConatainerFromTimetable}
+      />
       {/* <div>
         <BookingPage />
       </div> */}

@@ -4,8 +4,11 @@ import {
   FaHandPointRight,
   FaRegHandPointLeft,
   FaRegHandPointRight,
+  FaCaretRight,
 } from "react-icons/fa";
 import { useHistory } from "react-router-dom";
+import loadingImg from "../resources/loading.gif";
+
 const TimetableByCinema = ({
   cinemas,
   region,
@@ -18,11 +21,14 @@ const TimetableByCinema = ({
   getShowtimeByCinema,
   selectDate,
   showtimeBycinema,
+  initState,
+  loading,
 }) => {
   const [regionCinemas, setRegionCinemas] = useState([]);
   const [datesDivision, setDatesDivison] = useState([]);
   const [page, setPage] = useState(0);
   useEffect(() => {
+    initState();
     getShowtimeByCinema({ cinemaId: theater.id, date });
     setDatesDivison(divideDates(dates));
     if (dates.length !== 0) {
@@ -67,7 +73,14 @@ const TimetableByCinema = ({
         </div>
         <div className="regionList2">
           {cinemas.map((item) => (
-            <span className="col" onClick={() => selectRegion(item)}>
+            <span
+              className={
+                item.cinemaArea === region.cinemaArea
+                  ? " region-selected"
+                  : "col"
+              }
+              onClick={() => selectRegion(item)}
+            >
               {item.cinemaArea}
             </span>
           ))}
@@ -75,7 +88,7 @@ const TimetableByCinema = ({
         <div className="cinemaList">
           {regionCinemas.map((item) => (
             <span
-              className="col"
+              className={item.id === theater.id ? " theater-selected" : "col"}
               onClick={() => {
                 selectTheater(item);
                 getScreens({
@@ -108,6 +121,12 @@ const TimetableByCinema = ({
                   className={
                     "dateItem2" + (item.isVailable === false ? " hide" : "")
                   }
+                  onClick={() =>
+                    getShowtimeByCinema({
+                      cinemaId: theater.id,
+                      date: item.date,
+                    })
+                  }
                 >
                   {`${item.date}`.substring(6, 8)}
                 </div>
@@ -117,13 +136,18 @@ const TimetableByCinema = ({
             <FaRegHandPointRight onClick={() => moveToNext()} />
           </dvi>
         </div>
+        <img
+          className={"loading" + (loading === false ? " hide" : "")}
+          src={loadingImg}
+          alt="불러오는중..."
+        />
         <div className="showtimeContainer">
           {showtimeBycinema.map((item) => (
             <div className="movieContainer">
               <div className="showtime-movie-title">
                 <span
                   className={
-                    "age " +
+                    "age2 " +
                     (item.movie.movieRating === "전체"
                       ? " all"
                       : item.movie.movieRating === "12"
@@ -133,18 +157,42 @@ const TimetableByCinema = ({
                       : "nin")
                   }
                 >
-                  {item.movie.movieRating}
+                  {item.movie.movieRating === "전체"
+                    ? "All"
+                    : item.movie.movieRating}
                 </span>
-                <span>{item.movie.movieTitle}</span>
+                <span className="title">{item.movie.movieTitle}</span>
               </div>
               <div className="showtime-cinemasContainer">
                 {item.screens.map((item2) => (
                   <div className="showtime-cinema">
-                    <div>{item2.screen.name}</div>
+                    <FaCaretRight className="right-icon2" />
+                    <span className="col1">{item2.screen.name}</span>
+                    <span className="col2">총 {item2.screen.totalSeat}석</span>
                     <div>
                       {item2.timeTables.map((item3) => (
-                        <span>{item3.startTime}</span>
-                      ))}{" "}
+                        <div
+                          className={
+                            "time-container" +
+                            (item3.emptySeat === 0 ? " blur" : "")
+                          }
+                        >
+                          <div className="time-item">
+                            {`${item3.startTime}`.substring(0, 2)}:
+                            {`${item3.startTime}`.substring(2, 4)}
+                          </div>
+                          <dvi
+                            className={
+                              "time-emptySeat" +
+                              (item3.emptySeat === 0
+                                ? " red-font"
+                                : " blue-font")
+                            }
+                          >
+                            {item3.emptySeat}석
+                          </dvi>
+                        </div>
+                      ))}
                     </div>
                   </div>
                 ))}

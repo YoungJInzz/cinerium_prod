@@ -22,7 +22,7 @@ const Movieitems = ({
         movieId: item.id,
         cinemaId: theater.id,
         date,
-        group: 123890,
+        group,
       });
     } else {
       if (

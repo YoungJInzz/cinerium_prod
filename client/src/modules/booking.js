@@ -131,7 +131,7 @@ const initialState = {
   showTimes: [],
   selectedCinemas: "",
   userId: "58645",
-  group: "0",
+  group: 123890,
   seatSelected: [],
   seatSelectedIndex: [],
   currentStep: 1,

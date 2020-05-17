@@ -64,6 +64,9 @@ const Booking = ({
   initState,
 }) => {
   useEffect(() => {
+    // initState();
+    selectDate("");
+    selectTheater("");
     let x = axios.get(
       "http://127.0.0.1:8005/showtimes/timetables/data?movieId=5&cinemaArea=%EC%84%9C%EC%9A%B8&date=20200502"
     );
@@ -72,7 +75,8 @@ const Booking = ({
   return (
     <div
       className={
-        InitState == true || getSCreensState === true ? "notClick" : ""
+        "bookingContainer" +
+        (InitState == true || getSCreensState === true ? "notClick" : "")
       }
     >
       <div className="booking-container">
@@ -82,7 +86,7 @@ const Booking = ({
             (InitState === false && getSCreensState === false ? " hide" : "")
           }
           src={loadingImg}
-          alt=""
+          alt="불러오는중..."
         />
         <div className={"step1" + (currentStep !== 1 ? " hide" : "")}>
           <MovieSection

@@ -21,7 +21,7 @@ const TheatherSection = ({
   const ClickTheater = (item) => {
     if (item.isAvailable == true) {
       selectTheater(item);
-      getScreens({ movieId: movie.Id, cinemaId: item.id, date, group });
+      getScreens({ movieId: movie.id, cinemaId: item.id, date, group });
     } else {
       if (
         window.confirm(

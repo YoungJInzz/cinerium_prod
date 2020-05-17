@@ -1,6 +1,15 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:400, 300, 500);
+
 body {
-  font-family: Consolas, monospace;
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+  color: #222;
+  background-color: #f6f1e7;
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
 }
+
 .asd {
   width: 360px;
   height: 45px;
@@ -48,8 +57,16 @@ body {
   color: #c0392b;
 }
 
+.blue-font {
+  color: #1b50ff;
+}
+
 .gray {
   background-color: #808b96;
+}
+.bookingContainer {
+  padding-top: 90px;
+  background-color: white;
 }
 .booking-container {
   position: relative;
@@ -136,6 +153,18 @@ body {
   background-color: darkorange;
   color: white;
   border-radius: 5px;
+}
+.age2 {
+  display: inline-block;
+  text-align: center;
+  line-height: 22px;
+  width: 20px;
+  height: 20px;
+  font-size: 16px;
+  margin-right: 8px;
+  background-color: darkorange;
+  color: white;
+  border-radius: 10px;
 }
 .all {
   font-size: 12px;
@@ -449,14 +478,16 @@ body {
 /*time*/
 
 /*bookInfo*/
-.bookInfo {
+.bookInfoContainer {
   position: relative;
   clear: both;
   margin-top: 2px;
   background-color: #17202a;
   height: 140px;
 }
-
+.bookInfo {
+  margin-left: 10%;
+}
 .Choice {
   position: absolute;
   line-height: 90px;
@@ -470,21 +501,21 @@ body {
 }
 
 .mv {
-  margin-left: 400px;
+  margin-left: 200px;
 }
 
 .th {
-  margin-left: 620px;
+  margin-left: 420px;
   color: #ededed;
 }
 
 .se {
-  margin-left: 840px;
+  margin-left: 640px;
   color: #ededed;
 }
 
 .pay {
-  margin-left: 1060px;
+  margin-left: 860px;
 }
 
 .choicePh {
@@ -559,7 +590,7 @@ body {
 .rightBtn {
   cursor: pointer;
   position: absolute;
-  margin-left: 1350px;
+  margin-left: 1150px;
   margin-top: 15px;
   border-radius: 20px;
   width: 100px;
@@ -1234,9 +1265,22 @@ body {
   height: 45px;
   font-size: 16px;
   line-height: 43px;
-  font-weight: bold;
+  font-weight: 400;
   margin-left: 14px;
   color: #e8e8e8;
+}
+.region-selected {
+  cursor: pointer;
+  display: inline-block;
+  text-align: center;
+  width: 55px;
+  height: 45px;
+  font-size: 18px;
+  line-height: 43px;
+  margin-left: 14px;
+
+  color: white;
+  font-weight: bold;
 }
 
 .cinemaList {
@@ -1256,6 +1300,18 @@ body {
   position: relative;
   color: #e8e8e8;
 }
+.theater-selected {
+  cursor: pointer;
+  display: inline-block;
+  padding-right: 20px;
+  border-right: 1px solid white;
+  margin-left: 20px;
+  font-size: 17px;
+  font-weight: bold;
+  margin-bottom: 35px;
+  position: relative;
+  color: white;
+}
 .timeData-container {
   margin-left: auto;
   margin-right: auto;
@@ -1272,7 +1328,7 @@ body {
   position: relative;
   margin-top: 20px;
   white-space: nowrap;
-  width: 820px;
+  width: 920px;
   height: 100px;
   border-top: 2px solid black;
   border-bottom: 2px solid black;
@@ -1284,7 +1340,7 @@ body {
   float: left;
   width: 70px;
   height: 50px;
-  margin-right: 10px;
+  margin-left: 25px;
   font-size: 25px;
   font-weight: bold;
   text-align: center;
@@ -1311,12 +1367,73 @@ body {
 .datesList > .col3 {
   cursor: pointer;
   margin-top: 25px;
-  margin-left: 20px;
+
   font-size: 50px;
   position: relative;
   float: right;
 }
 
+.movieContainer {
+  float: left;
+  border-bottom: 1px solid black;
+  width: 920px;
+  min-height: 100px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+.showtime-movie-title > .title {
+  font-size: 17px;
+  font-weight: bold;
+}
+.showtime-cinemasContainer {
+  margin-top: 10px;
+}
+.showtime-cinema {
+  position: relative;
+  clear: both;
+}
+.showtime-cinema > span {
+  font-weight: 500;
+  display: inline-block;
+  font-size: 13px;
+}
+.showtime-cinema > .right-icon2 {
+  position: relative;
+  font-size: 15px;
+  top: 3px;
+}
+.showtime-cinema > .col1 {
+  padding-right: 5px;
+  border-right: 1px solid black;
+}
+.showtime-cinema > .col2 {
+  padding-left: 5px;
+}
+.time-container {
+  cursor: pointer;
+  position: relative;
+  float: left;
+  border: 1px solid #b0b0b0;
+  width: 50px;
+  height: 45px;
+  text-align: center;
+  margin-left: 2px;
+}
+.time-container:hover {
+  background-color: #f0f0f0;
+  border: 1px solid black;
+}
+.time-item {
+  margin-top: 5px;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.time-emptySeat {
+  font-weight: 400;
+  margin-top: 3px;
+  font-size: 13px;
+}
 /*selectbycinema*/
 
 /*scroll bar*/

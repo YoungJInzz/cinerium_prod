@@ -8,10 +8,10 @@ const Test = ({ initState, getInitScreens, person }) => {
   return (
     <dvi>
       {/* <Link to="/booking"> */}
-      <button onClick={() => history.push("/booking")}>button1</button>
+      <button onClick={() => history.push("/booking")}>booking</button>
       {/* </Link> */}
-      <Link to="/cinema">
-        <button>button2</button>
+      <Link to="/timetable">
+        <button>timetable</button>
       </Link>
     </dvi>
   );

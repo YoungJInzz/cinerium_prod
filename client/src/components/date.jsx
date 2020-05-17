@@ -23,7 +23,7 @@ const DateItem = ({
     if (item.isVailable === true) {
       selectDate(item.date);
       getScreens({
-        movieId: movie.Id,
+        movieId: movie.id,
         cinemaId: theater.id,
         date: item.date,
         group,

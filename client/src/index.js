@@ -5,7 +5,6 @@ import { Provider } from "react-redux";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import "./style/reset.css";
-import "./style/style1.css";
 import "./style/style2.css";
 import "./style/signup.css";
 import "./font/font.css";
