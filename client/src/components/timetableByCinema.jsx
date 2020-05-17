@@ -23,12 +23,16 @@ const TimetableByCinema = ({
   showtimeBycinema,
   initState,
   loading,
+  selectScreenName,
+  selectScreen,
+  selectMovie,
 }) => {
   const [regionCinemas, setRegionCinemas] = useState([]);
   const [datesDivision, setDatesDivison] = useState([]);
   const [page, setPage] = useState(0);
+
   useEffect(() => {
-    initState();
+    // initState();
     getShowtimeByCinema({ cinemaId: theater.id, date });
     setDatesDivison(divideDates(dates));
     if (dates.length !== 0) {
@@ -42,6 +46,10 @@ const TimetableByCinema = ({
   }, [dates, region]);
 
   const history = useHistory();
+
+  const changePage = () => {
+    history.push("/bookingFromTimetable");
+  };
   const divideDates = (dates) => {
     const copyDates = JSON.parse(JSON.stringify(dates));
     const chunk = [];
@@ -119,14 +127,17 @@ const TimetableByCinema = ({
               datesDivision[page].map((item) => (
                 <div
                   className={
-                    "dateItem2" + (item.isVailable === false ? " hide" : "")
+                    "dateItem2" +
+                    (item.isVailable === false ? " hide" : "") +
+                    (item.date === date ? " picked" : "")
                   }
-                  onClick={() =>
+                  onClick={() => {
+                    selectDate(item.date);
                     getShowtimeByCinema({
                       cinemaId: theater.id,
                       date: item.date,
-                    })
-                  }
+                    });
+                  }}
                 >
                   {`${item.date}`.substring(6, 8)}
                 </div>
@@ -176,6 +187,12 @@ const TimetableByCinema = ({
                             "time-container" +
                             (item3.emptySeat === 0 ? " blur" : "")
                           }
+                          onClick={() => {
+                            selectScreenName(item2.screen.name);
+                            selectScreen(item3);
+                            selectMovie(item.movie);
+                            changePage();
+                          }}
                         >
                           <div className="time-item">
                             {`${item3.startTime}`.substring(0, 2)}:

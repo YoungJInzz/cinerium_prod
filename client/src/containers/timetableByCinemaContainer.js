@@ -9,6 +9,9 @@ import {
   getScreens,
   getShowtimeByCinema,
   initState,
+  selectScreenName,
+  selectScreen,
+  selectMovie,
 } from "../modules/booking";
 import TimetableByCinema from "../components/timetableByCinema";
 
@@ -27,6 +30,9 @@ const TimetableByCinemaContainer = ({
   showtimeBycinema,
   loading,
   initState,
+  selectScreenName,
+  selectScreen,
+  selectMovie,
 }) => {
   useEffect(() => {
     initState();
@@ -49,6 +55,9 @@ const TimetableByCinemaContainer = ({
       showtimeBycinema={showtimeBycinema}
       initState={initState}
       loading={loading}
+      selectScreenName={selectScreenName}
+      selectScreen={selectScreen}
+      selectMovie={selectMovie}
     />
   );
 };
@@ -71,5 +80,8 @@ export default connect(
     getScreens,
     getShowtimeByCinema,
     initState,
+    selectScreenName,
+    selectScreen,
+    selectMovie,
   }
 )(TimetableByCinemaContainer);

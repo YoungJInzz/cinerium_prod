@@ -88,7 +88,9 @@ const BookingConatainer = ({
   setBookedToEmpty,
 }) => {
   useEffect(() => {
-    // initState();
+    initState();
+    selectDate("");
+    selectTheater("");
     getInitScreens();
     getScreens();
     getPoint({ id: "admin" });

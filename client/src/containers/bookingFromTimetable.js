@@ -88,8 +88,12 @@ const BookingConatainerFromTimetable = ({
   setBookedToEmpty,
 }) => {
   useEffect(() => {
-    getInitScreens();
-    getScreens();
+    getScreens({
+      movieId: movie.id,
+      cinemaId: theater.id,
+      date: date,
+      group: group,
+    });
     getPoint({ id: "admin" });
   }, []);
 
