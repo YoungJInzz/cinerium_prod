@@ -1,8 +1,13 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { FaSquareFull } from "react-icons/fa";
 import { IoMdRefresh } from "react-icons/io";
 import SeatRow from "./seatRow";
 const Seatselect2Section = ({
+  selectedSeats,
+  setSeatToBooked,
+  setSectedSeats,
+  screenName,
   theater,
   timeData,
   date,
@@ -18,17 +23,26 @@ const Seatselect2Section = ({
   handleseatSelected,
   handleseatSelectedIndex,
   handleSeatArr,
+  totalSeat,
+  seatTable,
+  changeTicketState,
+  getSeatTable,
+  ticketTokens,
+  setBookedToEmpty,
 }) => {
   const [screen, setScreen] = useState("");
   const [layer, setLayer] = useState("");
+  // const [seatArrs, setSeatArrs] = useState([]);
   const [startTime, setStartTime] = useState("");
   const [endTime, setEndTime] = useState("");
   const [emptySeat, setEmptySeat] = useState("");
-  const [totalSeat, setTotalSeat] = useState("");
+  const [dateStr, setDateStr] = useState("");
 
   useEffect(() => {
-    filterScreen();
-  }, [timeData]);
+    setStartTime(`${timeData.startTime}`);
+    setEndTime(`${timeData.endTime}`);
+    setDateStr(`${date}`);
+  }, [seatTable]);
 
   const checkAdult = (e) => {
     let totalNum =
@@ -60,44 +74,17 @@ const Seatselect2Section = ({
       : selectSenior(Number(e.target.value));
   };
 
-  const filterScreen = () => {
-    let filteredSreen = screeninfo.filter(
-      (item) => item.id === timeData.screenId
-    );
-    let result = filteredSreen[0]; //setScreen(result.screen) don't work!
-    if (result !== undefined) {
-      for (let key in result) {
-        if (key === "screen") {
-          setScreen(result[key]);
-        }
-        if (key === "totalSeat") {
-          setTotalSeat(result[key]);
-        }
-        if ((key = "layer")) {
-          setLayer(result[key]);
-        }
-        if ((key = "timeslot")) {
-          for (let element of result[key]) {
-            if (element.id === timeData.timeId) {
-              setEmptySeat(element.emptySeat);
-              setStartTime(element.startTime);
-              setEndTime(element.endTime);
-            }
-          }
-        }
-      }
-    }
-  };
-
   const refresh = () => {
-    seatSelectedIndex.forEach((item) =>
-      handleSeatArr({
-        rowName: item.rowName,
-        userId: "",
-        rowIndex: item.rowIndex,
-        columnIndex: item.columnIndex,
-      })
-    );
+    let selectedId = selectedSeats.map((item) => item.ticketId);
+
+    axios.patch("http://127.0.0.1:8005/ticket/ticketstate", {
+      state: 1,
+      tickets: selectedId,
+    });
+    selectedSeats.forEach((item) => {
+      setBookedToEmpty(item);
+    });
+
     handleseatSelectedIndex([]);
     handleseatSelected([]);
     selectAdult(0);
@@ -451,18 +438,26 @@ const Seatselect2Section = ({
         </div>
         <div className="seat-time">
           <div className="seat-time-row">
-            <div className="seat-time-content thea">cgv {theater}</div>
-            <div className="seat-time-content scr">
-              {`${screen}관 ${layer}층`}
+            <div className="seat-time-content thea">
+              cgv {theater.cinemaName}
             </div>
-            <div className="seat-time-content left">
-              남은좌석 <span>{emptySeat}</span>
-              <span>{`/${totalSeat}`}</span>
+            <div className="seat-time-content scr">{screenName}</div>
+            <div className="seat-time-content thea">
+              남은좌석 {`${timeData.emptySeat}/${totalSeat}`}
             </div>
           </div>
           <div className="seat-time-row">
-            <div className="seat-time-time">{`${date.year}.${date.month}.${date.date}`}</div>
-            <div className="seat-time-time">{`${startTime}~${endTime}`}</div>
+            <div className="seat-time-time">{`${dateStr.substring(
+              0,
+              4
+            )}/${dateStr.substring(4, 6)}/${dateStr.substring(6, 8)}`}</div>
+            <div className="seat-time-time">{`${startTime.substring(
+              0,
+              2
+            )}:${startTime.substring(2, 4)}~${endTime.substring(
+              0,
+              2
+            )}:${endTime.substring(2, 4)}`}</div>
           </div>
         </div>
       </div>
@@ -477,8 +472,10 @@ const Seatselect2Section = ({
         <div className="seat-screen">
           <div className="screen-img">screen</div>
           <div className="opening-container">
-            {seatArr.map((item) => (
+            {seatTable.map((item, rowIndex) => (
               <SeatRow
+                seatTable={seatTable}
+                rowIndex={rowIndex}
                 item={item}
                 userId={userId}
                 seatSelected={seatSelected}
@@ -487,6 +484,11 @@ const Seatselect2Section = ({
                 handleseatSelectedIndex={handleseatSelectedIndex}
                 handleSeatArr={handleSeatArr}
                 person={person}
+                changeTicketState={changeTicketState}
+                timeData={timeData}
+                getSeatTable={getSeatTable}
+                setSectedSeats={setSectedSeats}
+                setSeatToBooked={setSeatToBooked}
               />
             ))}
           </div>

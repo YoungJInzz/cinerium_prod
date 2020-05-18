@@ -1,7 +1,23 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:400, 300, 500);
+
 body {
-  font-family: Consolas, monospace;
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+  color: #222;
+  background-color: #f6f1e7;
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
 }
 
+.asd {
+  width: 360px;
+  height: 45px;
+}
+
+.show {
+  display: block;
+}
 .hide {
   display: none;
 }
@@ -9,9 +25,25 @@ body {
   background-color: #666;
   color: whitesmoke;
 }
+.notClick {
+  pointer-events: none;
+}
 .blur {
   opacity: 0.5;
   pointer-events: none;
+}
+
+.blur2 {
+  opacity: 0.5;
+}
+
+.loading {
+  position: relative;
+  left: 50%;
+  top: 270px;
+  width: 50px;
+  height: 50px;
+  z-index: 1;
 }
 .regionSelected {
   background-color: #abb2b9;
@@ -25,8 +57,16 @@ body {
   color: #c0392b;
 }
 
+.blue-font {
+  color: #1b50ff;
+}
+
 .gray {
   background-color: #808b96;
+}
+.bookingContainer {
+  padding-top: 90px;
+  background-color: white;
 }
 .booking-container {
   position: relative;
@@ -92,6 +132,9 @@ body {
 
 .movieItem {
   height: 30px;
+  width: 220px;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .movieItem:hover {
@@ -111,6 +154,22 @@ body {
   color: white;
   border-radius: 5px;
 }
+.age2 {
+  display: inline-block;
+  text-align: center;
+  line-height: 22px;
+  width: 20px;
+  height: 20px;
+  font-size: 16px;
+  margin-right: 8px;
+  background-color: darkorange;
+  color: white;
+  border-radius: 10px;
+}
+.all {
+  font-size: 12px;
+  background-color: #77b300;
+}
 
 .twe {
   background-color: darkorange;
@@ -125,8 +184,10 @@ body {
 }
 
 .movieItem .title {
+  width: 50px;
   font-size: 14px;
   font-weight: 600;
+  overflow: hidden;
 }
 
 /*movie*/
@@ -206,8 +267,11 @@ body {
 }
 
 .theaterItem {
+  width: 120px;
   font-size: 14px;
   height: 25px;
+  white-space: pre;
+  overflow: hidden;
 }
 
 .theaterItem:hover {
@@ -265,7 +329,7 @@ body {
 }
 
 .day {
-  font-size: 16px;
+  font-size: 14px;
 }
 
 .sun {
@@ -278,8 +342,8 @@ body {
 }
 
 .date {
-  margin-left: 25px;
-  font-size: 16px;
+  margin-left: 15px;
+  font-size: 13px;
   font-family: Verdana;
   font-weight: bold;
 }
@@ -311,7 +375,10 @@ body {
   color: #e5e3d4;
   background-color: #2c3e50;
 }
-
+.timeInfo {
+  height: 350px;
+  overflow: auto;
+}
 .placeholder {
   margin-top: 180px;
   text-align: center;
@@ -411,13 +478,16 @@ body {
 /*time*/
 
 /*bookInfo*/
-.bookInfo {
+.bookInfoContainer {
   position: relative;
+  clear: both;
   margin-top: 2px;
   background-color: #17202a;
   height: 140px;
 }
-
+.bookInfo {
+  margin-left: 10%;
+}
 .Choice {
   position: absolute;
   line-height: 90px;
@@ -431,21 +501,21 @@ body {
 }
 
 .mv {
-  margin-left: 300px;
+  margin-left: 200px;
 }
 
 .th {
-  margin-left: 520px;
+  margin-left: 420px;
   color: #ededed;
 }
 
 .se {
-  margin-left: 740px;
+  margin-left: 640px;
   color: #ededed;
 }
 
 .pay {
-  margin-left: 960px;
+  margin-left: 860px;
 }
 
 .choicePh {
@@ -453,8 +523,11 @@ body {
 }
 
 .movieSelected {
-  font-size: 20px;
+  font-size: 15px;
   color: #ededed;
+  width: 190px;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .theaterInfo {
@@ -477,6 +550,9 @@ body {
   line-height: 20px;
   font-size: 15px;
   color: #ededed;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 140px;
 }
 .content-time {
   margin-left: 85px;
@@ -514,10 +590,19 @@ body {
 .rightBtn {
   cursor: pointer;
   position: absolute;
-  margin-left: 1350px;
+  margin-left: 1150px;
   margin-top: 15px;
   border-radius: 20px;
   width: 100px;
+  height: 100px;
+}
+.rightBtn3 {
+  cursor: pointer;
+  position: absolute;
+  margin-left: 1059px;
+  margin-top: 15px;
+  border-radius: 20px;
+  width: 200px;
   height: 100px;
 }
 
@@ -525,7 +610,7 @@ body {
   background-color: #808b96;
   cursor: pointer;
   position: absolute;
-  margin-left: 200px;
+  margin-left: 100px;
   margin-top: 15px;
   border-radius: 20px;
   width: 100px;
@@ -540,6 +625,15 @@ body {
   margin-top: 10px;
 }
 
+.check {
+  position: relative;
+  float: left;
+  font-size: 45px;
+  color: #fbfcfc;
+  margin-left: 25px;
+  margin-top: 24px;
+}
+
 .rightBtn-title {
   position: relative;
   margin-left: 20px;
@@ -547,7 +641,15 @@ body {
   font-weight: bold;
   color: #fbfcfc;
 }
-
+.rightBtn3-title {
+  position: relative;
+  float: left;
+  margin-left: 10px;
+  margin-top: 30px;
+  font-size: 27px;
+  font-weight: bold;
+  color: #fbfcfc;
+}
 /*bookInfo*/
 
 .step2 {
@@ -591,6 +693,7 @@ body {
   font-size: 20px;
   color: #e5e3d4;
 }
+
 .seat-info {
   height: 120px;
   background-color: #f9efdc;
@@ -661,6 +764,7 @@ body {
   width: 470px;
 }
 .seat-time-row {
+  width: 550px;
   height: 30px;
 }
 
@@ -673,21 +777,24 @@ body {
 
 .thea {
   border-right: 1px solid #cccccc;
-  width: 90px;
+  width: 100px;
+  white-space: nowrap;
+  overflow: hidden;
 }
 .scr {
   border-right: 1px solid #cccccc;
-  width: 70px;
+  width: 130px;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .seat-time-time {
   position: relative;
-  margin-right: 50px;
   float: left;
   padding-left: 10px;
-  font-size: 25px;
+  font-size: 22px;
   font-weight: bold;
-  width: 100px;
+  width: 135px;
 }
 .seat-main {
   position: relative;
@@ -696,7 +803,6 @@ body {
 .seat-screen {
   position: relative;
   float: left;
-  border: 1px solid royalblue;
   margin-left: 80px;
   width: 800px;
   height: 400px;
@@ -725,7 +831,7 @@ body {
   position: relative;
   margin-left: 70px;
   float: left;
-  border: 1px solid blueviolet;
+
   width: 100px;
   height: 400px;
 }
@@ -772,8 +878,8 @@ body {
   width: 600px;
   height: 400px;
   position: relative;
-  margin-top: 30px;
-  margin-left: auto;
+  margin-top: 120px;
+  margin-left: 165px;
   margin-right: auto;
 }
 
@@ -786,15 +892,22 @@ body {
 
 .opening-row-name {
   margin-right: 10px;
+  width: 15px;
   position: relative;
   float: left;
 }
+.opening-seat {
+  position: relative;
+
+  margin-left: 20px;
+}
 
 .opening-item {
+  border-bottom: 3px solid white;
   cursor: pointer;
   text-align: center;
   font-size: 15px;
-  margin-right: 1px;
+  margin-right: 2px;
   width: 18px;
   height: 18px;
   color: white;
@@ -817,6 +930,515 @@ body {
   pointer-events: none;
 }
 
+.pay-step {
+  margin-top: 5px;
+  margin-bottom: 30px;
+}
+.pay-container {
+  position: relative;
+  float: left;
+  background-color: #fffaf0;
+  min-height: 630px;
+  width: 1000px;
+  margin: 0 auto;
+  border: 1px solid #ebedef;
+}
+
+.pay-method {
+  position: relative;
+  float: left;
+}
+.pay-titlebar {
+  width: 700px;
+  height: 35px;
+  line-height: 30px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #e0e0e0;
+  background-color: #333333;
+}
+
+.pay-titlebar > span {
+  margin-left: 12px;
+}
+
+.pay-titlebar > .again {
+  cursor: pointer;
+  font-size: 14px;
+  margin-left: 540px;
+}
+
+.refresh-icon2 {
+  position: absolute;
+  margin-top: 5px;
+  margin-left: 2px;
+  font-size: 20px;
+}
+
+.pay-header {
+  cursor: pointer;
+  width: 700px;
+  height: 40px;
+  line-height: 35px;
+  font-size: 15px;
+  font-weight: bold;
+  color: #333333;
+  background-color: #dfded6;
+}
+
+.pay-header > span {
+  margin-left: 12px;
+}
+
+.down-icon {
+  position: relative;
+  float: right;
+  margin-top: 8px;
+  margin-right: 5px;
+  font-size: 23px;
+}
+.pay-body {
+  width: 697px;
+  height: 300px;
+  border: 2px solid #e8e7e1;
+}
+.select-discount {
+  position: relative;
+  float: left;
+  width: 180px;
+  height: 300px;
+  border-right: 2px solid #e8e7e1;
+}
+.discount-item {
+  padding: 3px;
+  cursor: pointer;
+  border-bottom: 2px solid #e8e7e1;
+  height: 25px;
+  color: 333333;
+  line-height: 27px;
+  font-size: 12px;
+}
+
+.couponSelected {
+  background-color: #fdfdf8;
+  border: 3px solid #333333;
+}
+
+.right-icon {
+  position: relative;
+  margin-top: 5px;
+  float: right;
+  color: #e8e7e1;
+}
+.select-form {
+  position: relative;
+  float: left;
+}
+.discount-list-header {
+  position: relative;
+  border-bottom: 2px solid #e8e7e1;
+  padding-bottom: 5px;
+  font-size: 11px;
+  position: relative;
+  margin-top: 20px;
+  margin-left: 20px;
+}
+.discount-list-header > .col1 {
+  margin-left: 5px;
+  display: inline-block;
+  width: 300px;
+}
+.discount-list-header > .col2 {
+  display: inline-block;
+  width: 150px;
+}
+
+.discount-list-body {
+  position: relative;
+  margin-left: 20px;
+  font-size: 15px;
+}
+.coupone-item {
+  position: relative;
+}
+
+.coupone-item > .col1 {
+  margin-right: 205px;
+}
+.result-form {
+  position: relative;
+  margin-left: 280px;
+  margin-top: 150px;
+}
+.coupon-applyButton {
+  cursor: pointer;
+  color: white;
+  border: 1px solid #bd8f62;
+  border-radius: 5px;
+  background-color: #bd8f62;
+}
+
+.NoCoupon {
+  margin-top: 100px;
+  margin-left: 120px;
+}
+
+.giftCard {
+  margin-top: 30px;
+  font-size: 14px;
+}
+.giftCard > .col1 {
+  margin-left: 20px;
+  margin-right: 10px;
+}
+.giftCard > .col2 {
+  margin-right: 10px;
+  color: #b30404;
+  font-weight: bold;
+}
+.giftCard > .col3 {
+  margin-right: 10px;
+}
+.giftCard > .col4 {
+  margin-left: 5px;
+}
+.giftCard > .col5 {
+  margin-left: 40px;
+}
+.pointApplyButton {
+  cursor: pointer;
+  color: white;
+  border: 1px solid #bd8f62;
+  border-radius: 8px;
+  background-color: #bd8f62;
+}
+.pay-titlebar > .col1 {
+  font-size: 15px;
+}
+.pay-body2 {
+  width: 697px;
+  height: 180px;
+  border: 2px solid #e8e7e1;
+}
+.pay-way {
+  height: 35px;
+  border-bottom: 2px solid #e8e7e1;
+}
+.label {
+  line-height: 33px;
+  font-size: 16px;
+  font-weight: bold;
+  margin-right: 50px;
+}
+
+.payresult {
+  padding-top: 20px;
+  margin-left: 40px;
+  height: 380px;
+  width: 220px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 1px 1px #888888;
+  float: left;
+  -webkit-transition: all 300ms ease-in;
+  transition: all 300ms ease-in;
+}
+.col10 {
+  font-size: 25px;
+  font-weight: bold;
+}
+.col11 {
+  margin-left: 5px;
+  margin-right: 10px;
+}
+.priceToPayContainer {
+  margin-left: 10px;
+  margin-bottom: 50px;
+  border: 2px solid #333333;
+  width: 200px;
+  height: 80px;
+  border-radius: 5px;
+}
+.priceToPayHead {
+  color: #333333;
+  height: 50%;
+  font-size: 17px;
+  font-weight: bold;
+  line-height: 40px;
+  text-align: center;
+}
+.priceToPayBody {
+  height: 50%;
+  text-align: right;
+  line-height: 40px;
+  background-color: #333333;
+  color: #fdf8f8;
+}
+
+.priceDiscountedContainer {
+  margin-left: 10px;
+  border: 2px solid #333333;
+  width: 200px;
+  height: 80px;
+  border-radius: 5px;
+}
+.priceToPayHead {
+  color: #333333;
+  height: 50%;
+  font-size: 17px;
+  font-weight: bold;
+  line-height: 40px;
+  text-align: center;
+}
+.priceToPayBody {
+  height: 50%;
+  text-align: right;
+  line-height: 40px;
+  background-color: #333333;
+  color: #fdf8f8;
+}
+/*selectbycinema*/
+
+.cinemas {
+  position: relative;
+  top: 1px;
+  margin: 0 auto;
+  background-image: url(../resources/background.svg);
+  height: 440px;
+  width: 1050px;
+}
+.selectMenu {
+  color: white;
+  font-weight: bold;
+  position: relative;
+  margin-left: 330px;
+  height: 45px;
+  width: 400px;
+  background-image: url(../resources/ribbon.svg);
+}
+
+.selectMenu > .col1 > .icon {
+  position: relative;
+  font-size: 24px;
+  top: 5px;
+}
+
+.selectMenu > .col1 {
+  cursor: pointer;
+  text-align: center;
+  display: inline-block;
+  height: 35px;
+  width: 160px;
+  border-right: 1px solid white;
+  padding-right: 20px;
+  position: relative;
+  margin-left: 20px;
+  top: 4px;
+  font-size: 15px;
+}
+.selectMenu > .col2 {
+  cursor: pointer;
+  line-height: 35px;
+  display: inline-block;
+  height: 35px;
+  width: 155px;
+  padding-left: 15px;
+  position: relative;
+  margin-left: 10px;
+  top: 4px;
+  font-size: 15px;
+}
+
+.cinemas > .regionList2 {
+  border-top: 1px solid #e8e8e8;
+  border-bottom: 1px solid #e8e8e8;
+  margin-left: 60px;
+  margin-top: 20px;
+  width: 940px;
+  height: 45px;
+}
+.cinemas > .regionList2 > .col {
+  cursor: pointer;
+  display: inline-block;
+  text-align: center;
+  width: 55px;
+  height: 45px;
+  font-size: 16px;
+  line-height: 43px;
+  font-weight: 400;
+  margin-left: 14px;
+  color: #e8e8e8;
+}
+.region-selected {
+  cursor: pointer;
+  display: inline-block;
+  text-align: center;
+  width: 55px;
+  height: 45px;
+  font-size: 18px;
+  line-height: 43px;
+  margin-left: 14px;
+
+  color: white;
+  font-weight: bold;
+}
+
+.cinemaList {
+  position: relative;
+  width: 930px;
+  margin-left: 50px;
+  margin-top: 50px;
+}
+.cinemaList > .col {
+  cursor: pointer;
+  display: inline-block;
+  padding-right: 20px;
+  border-right: 1px solid white;
+  margin-left: 20px;
+  font-size: 15px;
+  margin-bottom: 35px;
+  position: relative;
+  color: #e8e8e8;
+}
+.theater-selected {
+  cursor: pointer;
+  display: inline-block;
+  padding-right: 20px;
+  border-right: 1px solid white;
+  margin-left: 20px;
+  font-size: 17px;
+  font-weight: bold;
+  margin-bottom: 35px;
+  position: relative;
+  color: white;
+}
+.timeData-container {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  width: 1050px;
+}
+.timeData-container > .cinemaName {
+  height: 40px;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.datesList {
+  position: relative;
+  margin-top: 20px;
+  white-space: nowrap;
+  width: 920px;
+  height: 100px;
+  border-top: 2px solid black;
+  border-bottom: 2px solid black;
+}
+
+.datesList > .col2 > .dateItem2 {
+  cursor: pointer;
+  position: relative;
+  float: left;
+  width: 70px;
+  height: 50px;
+  margin-left: 25px;
+  font-size: 25px;
+  font-weight: bold;
+  text-align: center;
+  line-height: 50px;
+  color: #5f5f5f;
+
+  border-radius: 5px;
+}
+.picked {
+  border: 2px solid black;
+  background-color: #f5f5f5;
+}
+.datesList > .col1 {
+  cursor: pointer;
+  margin-top: 25px;
+  margin-right: 20px;
+  font-size: 50px;
+  position: relative;
+  float: left;
+}
+.datesList > .col2 {
+  margin-top: 25px;
+  position: relative;
+  float: left;
+}
+
+.datesList > .col3 {
+  cursor: pointer;
+  margin-top: 25px;
+
+  font-size: 50px;
+  position: relative;
+  float: right;
+}
+
+.movieContainer {
+  float: left;
+  border-bottom: 1px solid black;
+  width: 920px;
+  min-height: 100px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+.showtime-movie-title > .title {
+  font-size: 17px;
+  font-weight: bold;
+}
+.showtime-cinemasContainer {
+  margin-top: 10px;
+}
+.showtime-cinema {
+  position: relative;
+  clear: both;
+}
+.showtime-cinema > span {
+  font-weight: 500;
+  display: inline-block;
+  font-size: 13px;
+}
+.showtime-cinema > .right-icon2 {
+  position: relative;
+  font-size: 15px;
+  top: 3px;
+}
+.showtime-cinema > .col1 {
+  padding-right: 5px;
+  border-right: 1px solid black;
+}
+.showtime-cinema > .col2 {
+  padding-left: 5px;
+}
+.time-container {
+  cursor: pointer;
+  position: relative;
+  float: left;
+  border: 1px solid #b0b0b0;
+  width: 50px;
+  height: 45px;
+  text-align: center;
+  margin-left: 2px;
+}
+.time-container:hover {
+  background-color: #f0f0f0;
+  border: 1px solid black;
+}
+.time-item {
+  margin-top: 5px;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.time-emptySeat {
+  font-weight: 400;
+  margin-top: 3px;
+  font-size: 13px;
+}
+/*selectbycinema*/
+
 /*scroll bar*/
 ::-webkit-scrollbar {
   width: 7px;
@@ -837,6 +1459,10 @@ body {
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
+}
+
+.test {
+  background-image: url(/src/resources/rec.svg);
 }
 
 /*scroll bar end*/

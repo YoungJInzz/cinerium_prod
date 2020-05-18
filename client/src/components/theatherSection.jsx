@@ -1,19 +1,47 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 const TheatherSection = ({
+  initTotal,
+  getInitScreens,
+  movie,
+  date,
+  cinemas,
   region,
   theater,
-  theaterlist,
-  regiontheater,
-  selectRegion,
+  getScreens,
+  group,
+  selectMovie,
+  initShowTimes,
   selectTheater,
-  selectScreen,
+  selectDate,
+  selectRegion,
 }) => {
-  const Do = (item) => {
-    selectTheater(item);
-    selectScreen({ screenId: "", timeId: "" });
+  const [regionCinemas, setRegionCinemas] = useState([]);
+
+  const ClickTheater = (item) => {
+    if (item.isAvailable == true) {
+      selectTheater(item);
+      getScreens({ movieId: movie.id, cinemaId: item.id, date, group });
+    } else {
+      if (
+        window.confirm(
+          "해당 상영스케줄이 없습니다.다시 선택하시겠습니까?(선택한 극장 및 날짜가 초기화됩니다)"
+        )
+      ) {
+        initTotal();
+        getInitScreens();
+      }
+    }
   };
-  const regionList = theaterlist.map((item) => item.region);
+
+  useEffect(() => {
+    for (let item of cinemas) {
+      if (item.cinemaArea === region.cinemaArea) {
+        setRegionCinemas(item.cinemaList);
+      }
+    }
+  });
+
   return (
     <div className="theater-section">
       <div className="head">극장</div>
@@ -23,24 +51,29 @@ const TheatherSection = ({
           <div className="btn-2">특별관</div>
         </div>
         <div className="regionList">
-          {regionList.map((item) => (
+          {cinemas.map((item) => (
             <div
               className={
-                "regionItem " + (item === region ? " regionSelected" : "")
+                "regionItem " +
+                (item.cinemaArea === region.cinemaArea ? " regionSelected" : "")
               }
               onClick={() => selectRegion(item)}
             >
-              {item}
+              {item.cinemaArea}
             </div>
           ))}
         </div>
         <div className="regiontheater">
-          {regiontheater.map((item) => (
+          {regionCinemas.map((item) => (
             <div
-              className={"theaterItem" + (item === theater ? " selected" : "")}
-              onClick={() => Do(item)}
+              className={
+                "theaterItem" +
+                (item.id === theater.id ? " selected" : "") +
+                (item.isAvailable === false ? " blur2" : "")
+              }
+              onClick={() => ClickTheater(item)}
             >
-              {item}
+              {item.cinemaName}
             </div>
           ))}
         </div>

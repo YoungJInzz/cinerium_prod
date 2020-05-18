@@ -3,7 +3,17 @@ import ScreenItem from "./screenItem";
 import { FiSun } from "react-icons/fi";
 import { FiMoon } from "react-icons/fi";
 
-const TimeSection = ({ timeData, selectScreen, screeninfo }) => {
+const TimeSection = ({
+  timeData,
+  selectScreen,
+  screeninfo,
+  showTimes,
+  selectScreenName,
+  setTotalSeat,
+  movie,
+  theater,
+  date,
+}) => {
   return (
     <div className="timeSection">
       <div className="head">시간</div>
@@ -19,15 +29,20 @@ const TimeSection = ({ timeData, selectScreen, screeninfo }) => {
       </div>
       <div className="timeInfo">
         <div
-          className={"placeholder" + (screeninfo.length !== 0 ? " hide" : "")}
+          className={
+            "placeholder" +
+            (movie !== "" && theater !== "" && date !== "" ? " hide" : "")
+          }
         >
           영화,극장,날짜를 선택해주세요
         </div>
-        {screeninfo.map((item) => (
+        {showTimes.map((item) => (
           <ScreenItem
             timeData={timeData}
             selectScreen={selectScreen}
             item={item}
+            selectScreenName={selectScreenName}
+            setTotalSeat={setTotalSeat}
           />
         ))}
       </div>

@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 const SeatRow = ({
+  seatTable,
+  rowIndex,
   item,
   userId,
   seatSelected,
@@ -9,102 +12,99 @@ const SeatRow = ({
   handleseatSelectedIndex,
   handleSeatArr,
   person,
+  changeTicketState,
+  timeData,
+  getSeatTable,
+  setSectedSeats,
+  setSeatToBooked,
 }) => {
-  const [rowName, setRowName] = useState(Object.keys(item)[0]);
-  const [rowArr, setRowArr] = useState(item[rowName]);
+  const [rowName, setRowName] = useState("");
+  const [rowArr, setRowArr] = useState([]);
+
   useEffect(() => {
     setRowName(Object.keys(item)[0]);
-    setRowArr(item[rowName]);
-  }, [item]);
-  const handleSeat = (rowName, seatId) => {
-    const mappingObj = {
-      A: 0,
-      B: 1,
-      C: 2,
-      D: 3,
-      E: 4,
-      F: 5,
-      G: 6,
-      H: 7,
-      I: 8,
-      J: 9,
-      K: 10,
-      L: 11,
-      M: 12,
-      N: 13,
-      O: 14,
-    };
-    let copySeatSelectedIndex = JSON.parse(JSON.stringify(seatSelectedIndex));
-    let totalPerson = person.adult + person.teen + person.senior;
-    let copySeatSelected = JSON.parse(JSON.stringify(seatSelected));
-    let reA = /[^a-zA-Z]/g;
-    let reN = /[^0-9]/g;
-    const sortSeat = (a, b) => {
-      var aA = a.replace(reA, "");
-      var bA = b.replace(reA, "");
-      if (aA === bA) {
-        let aN = parseInt(a.replace(reN, ""), 10);
-        let bN = parseInt(b.replace(reN, ""), 10);
-        return aN === bN ? 0 : aN > bN ? 1 : -1;
-      } else {
-        return aA > bA ? 1 : -1;
-      }
-    };
+    setRowArr(item[Object.keys(item)[0]]);
+  }, [item, rowArr, seatTable]);
 
-    if (
-      totalPerson > seatSelected.length &&
-      copySeatSelected.includes(`${rowName}${seatId}`) === false
-    ) {
-      copySeatSelected.push(`${rowName}${seatId}`);
-      copySeatSelectedIndex.push({
-        rowName,
-        rowIndex: mappingObj[rowName],
-        columnIndex: Number(seatId) - 1,
-      });
-      handleseatSelected(copySeatSelected.sort(sortSeat));
-      handleseatSelectedIndex(copySeatSelectedIndex);
-      handleSeatArr({
-        rowName,
-        userId,
-        rowIndex: mappingObj[rowName],
-        columnIndex: Number(seatId) - 1,
-      });
-    } else if (totalPerson === seatSelected.length) {
-      if (window.confirm("선택이완료되었습니다 다시선택하시겠습니까?")) {
-        seatSelectedIndex.forEach((item) =>
-          handleSeatArr({
-            rowName: item.rowName,
-            userId: "",
-            rowIndex: item.rowIndex,
-            columnIndex: item.columnIndex,
-          })
-        );
-        handleseatSelectedIndex([]);
-        handleseatSelected([]);
-      } else {
+  const handleSeat = async (columnIndex, seatNum, ticketId) => {
+    const handleBooked = () => {
+      let totalPerson = person.adult + person.teen + person.senior;
+      let copySeatSelected = JSON.parse(JSON.stringify(seatSelected));
+      let reA = /[^a-zA-Z]/g;
+      let reN = /[^0-9]/g;
+      const sortSeat = (a, b) => {
+        var aA = a.replace(reA, "");
+        var bA = b.replace(reA, "");
+        if (aA === bA) {
+          let aN = parseInt(a.replace(reN, ""), 10);
+          let bN = parseInt(b.replace(reN, ""), 10);
+          return aN === bN ? 0 : aN > bN ? 1 : -1;
+        } else {
+          return aA > bA ? 1 : -1;
+        }
+      };
+
+      if (
+        totalPerson > seatSelected.length &&
+        copySeatSelected.includes(seatNum) === false
+      ) {
+        copySeatSelected.push(seatNum);
+        handleseatSelected(copySeatSelected.sort(sortSeat));
+        setSectedSeats([{ rowName, rowIndex, columnIndex, ticketId }]);
+        setSeatToBooked({
+          rowName: rowName,
+          rowIndex: rowIndex,
+          columnIndex: columnIndex,
+        });
+      } else if (totalPerson === seatSelected.length) {
+        if (window.confirm("선택이완료되었습니다 다시선택하시겠습니까?")) {
+          handleseatSelectedIndex([]);
+          handleseatSelected([]);
+        } else {
+        }
       }
+    };
+    let returnValue = await axios.patch(
+      "http://127.0.0.1:8005/ticket/ticketstate",
+      {
+        state: 0,
+        tickets: [ticketId],
+      }
+    );
+    if (returnValue.data.result === "200") {
+      handleBooked();
+    } else if ((returnValue.data.result = "500")) {
+      alert("이미 예약된 좌석입니다");
+    } else {
+      alert("잘못된 요청입니다");
     }
   };
 
   return (
     <div className="opening-row">
       <div className="opening-row-name">{rowName} </div>
-      {rowArr.map((seat) => (
-        <div>
-          <div
-            className={
-              "opening-item" +
-              (seat.bookingUser !== "" && seat.bookingUser !== userId
-                ? " notAvail"
-                : "") +
-              (seat.bookingUser === userId ? " seatSelected" : "")
-            }
-            onClick={() => handleSeat(rowName, seat.key)}
-          >
-            {seat.key}
+      <div className="opening-seat">
+        {rowArr.map((seat, Index) => (
+          <div>
+            <div
+              className={
+                "opening-item " +
+                (seat.ticketState === "0" && seatSelected.includes(seat.seatNo)
+                  ? " seatSelected"
+                  : "") +
+                (seat.ticketState === "2" ||
+                (seat.ticketState === "0" &&
+                  seatSelected.includes(seat.seatNo) === false)
+                  ? " notAvail"
+                  : "")
+              }
+              onClick={() => handleSeat(Index, seat.seatNo, seat.ticketId)}
+            >
+              {seat.seatNo.substring(1, 2)}
+            </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 };

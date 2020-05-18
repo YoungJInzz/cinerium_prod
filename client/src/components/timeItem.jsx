@@ -1,24 +1,36 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
-const TimeItem = ({ screenId, timeData, selectScreen, entry }) => {
+const TimeItem = ({
+  timeData,
+  selectScreen,
+  entry,
+  name,
+  selectScreenName,
+  totalSeat,
+  setTotalSeat,
+}) => {
+  const [timeStr, setTimeStr] = useState("");
+  useEffect(() => {
+    setTimeStr(JSON.stringify(entry.startTime));
+  });
+
   return (
     <div
-      className="seatSelect"
-      onClick={() =>
-        entry.emptySeat !== 0 &&
-        selectScreen({ screenId: screenId, timeId: entry.id })
-      }
+      className={"seatSelect" + (entry.emptySeat === 0 ? " notClick" : "")}
+      onClick={() => {
+        setTotalSeat(totalSeat);
+        selectScreenName(name);
+        entry.emptySeat !== 0 && selectScreen(entry);
+      }}
     >
       <div
         className={
           "time" +
-          (entry.id === timeData.timeId && screenId === timeData.screenId
-            ? " selected"
-            : "") +
+          (entry.id === timeData.id ? " selected" : "") +
           (entry.emptySeat === 0 ? " sellout2" : "")
         }
       >
-        {entry.startTime}
+        {`${timeStr.substring(0, 2)}:${timeStr.substring(2, 4)}`}
       </div>
       <div className={"emptySeat" + (entry.emptySeat === 0 ? " sellout" : "")}>
         {entry.emptySeat !== 0 ? `${entry.emptySeat}석` : "매진"}
