@@ -8,7 +8,7 @@ import Signup from "./components/signup";
 import { Route, Switch } from "react-router-dom";
 import TimetableByCinemaContainer from "./containers/timetableByCinemaContainer";
 import BookingContainer from "./containers/bookingContainer";
-import BookingConatainerFromTimetable from "./containers/bookingFromTimetable";
+import BookingConatainerFromTimetable from "./containers/bookingFromTimetableContainer";
 import TestPage from "./pages/testPage";
 const App = memo(() => {
   return (
