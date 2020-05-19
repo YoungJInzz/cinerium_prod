@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
-import BookingConatiner from "../containers/bookingContainer";
+import React from "react";
+import BookingContainer from "../containers/bookingContainer";
 const BookingPage = () => {
   return (
     <>
-      <BookingConatiner />
+      <BookingContainer />
     </>
   );
 };
