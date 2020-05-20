@@ -1,18 +1,9 @@
-language: node.js
-node_js:
-  - "node"
-
 sudo: required
-
 services:
   - docker
 
-install:
-  - npm install
+before_install:
+  - docker build -t cinerium -f Dockerfile.prod .
 
 script:
-  - npm run build
-
-after_success:
-  - docker build -t cinerium .
-  - docker run cinerium npm run test -- --coverage
+  - docker run cinerium
