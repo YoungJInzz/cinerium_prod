@@ -12,7 +12,7 @@ script:
   - docker run cinerium
   
 deploy:
-  provider: elasticbeanstalk
+  provider: elasticbeanstal
   region: "ap-northeast-2"
   app: "cinerium"
   env: "Cinerium-env"
