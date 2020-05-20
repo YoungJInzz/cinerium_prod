@@ -6,4 +6,4 @@ before_install:
   - docker build -t cinerium -f Dockerfile.prod .
 
 script:
-  - docker run cinerium npm run test -- --coverage
+  - docker run cinerium
