@@ -79,6 +79,33 @@ body {
   background-color: #ebedef;
   height: 495px;
 }
+/*header*/
+.logotag {
+  position: relative;
+  height: 50px;
+  width: 250px;
+  display: block;
+  float: left;
+  background-color: #ff9201;
+}
+.logo {
+  position: relative;
+  margin-left: 10px;
+  height: 50px;
+  width: 220px;
+}
+.navbar {
+  background-color: #ffb34f;
+  height: 50px;
+}
+.bar-icon {
+  cursor: pointer;
+  top: 10px;
+  font-size: 30px;
+  position: relative;
+  float: left;
+}
+/*header*/
 
 /*movie*/
 

@@ -1,4 +1,5 @@
 import React, { memo } from "react";
+import Header from "./components/header";
 import Navigation from "./components/navigation";
 import Main from "./components/main";
 import Serch from "./components/serch";
@@ -13,7 +14,8 @@ import TestPage from "./pages/testPage";
 const App = memo(() => {
   return (
     <>
-      <TestPage />
+      <Header />
+      {/* <TestPage /> */}
       <Route path="/timetable" component={TimetableByCinemaContainer} />
       <Route path="/booking" component={BookingContainer} />
       <Route

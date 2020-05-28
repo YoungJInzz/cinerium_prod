@@ -65,7 +65,7 @@ const SeatRow = ({
       }
     };
     let returnValue = await axios.patch(
-      "http://127.0.0.1:8005/ticket/ticketstate",
+      "http://15.165.162.106:8080/ticket/ticketstate",
       {
         state: 0,
         tickets: [ticketId],
