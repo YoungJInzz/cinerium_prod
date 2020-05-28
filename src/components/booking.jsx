@@ -7,7 +7,6 @@ import BookInfo from "./bookInfo";
 import SeatSelectSection from "./seatSelectSection";
 import loadingImg from "../resources/loading.gif";
 import Payment from "./payment";
-import axios from "axios";
 const Booking = ({
   selectedSeats,
   screenName,
@@ -68,7 +67,7 @@ const Booking = ({
     <div
       className={
         "bookingContainer" +
-        (InitState == true || getSCreensState === true ? "notClick" : "")
+        (InitState === true || getSCreensState === true ? "notClick" : "")
       }
     >
       <div className="booking-container">
@@ -115,7 +114,6 @@ const Booking = ({
             group={group}
             initShowTimes={initShowTimes}
             selectDate={selectDate}
-            selectRegion={selectRegion}
             initTotal={initTotal}
           />
           <Dates

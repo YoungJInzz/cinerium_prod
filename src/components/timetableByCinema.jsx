@@ -70,7 +70,7 @@ const TimetableByCinema = ({
     page > 0 ? setPage(page - 1) : setPage(page);
   };
   return (
-    <div>
+    <div className="cinemasContainer">
       <div className="cinemas">
         <div className="selectMenu">
           <span className="col1">

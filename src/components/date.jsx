@@ -158,7 +158,6 @@ const Dates = ({
               selectMovie={selectMovie}
               initShowTimes={initShowTimes}
               selectTheater={selectTheater}
-              selectDate={selectDate}
               selectRegion={selectRegion}
               initTotal={initTotal}
             />

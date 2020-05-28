@@ -5,16 +5,10 @@ const SeatRow = ({
   seatTable,
   rowIndex,
   item,
-  userId,
   seatSelected,
-  seatSelectedIndex,
   handleseatSelected,
   handleseatSelectedIndex,
-  handleSeatArr,
   person,
-  changeTicketState,
-  timeData,
-  getSeatTable,
   setSectedSeats,
   setSeatToBooked,
 }) => {
@@ -65,7 +59,7 @@ const SeatRow = ({
       }
     };
     let returnValue = await axios.patch(
-      "http://15.165.162.106:8080/ticket/ticketstate",
+      "http://localhost:8080/ticket/ticketstate",
       {
         state: 0,
         tickets: [ticketId],
