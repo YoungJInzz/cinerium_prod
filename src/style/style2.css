@@ -153,6 +153,10 @@ body {
   width: 60px;
   height: 85px;
 }
+.menuTitle {
+  color: #545454;
+  margin-left: 100px;
+}
 .sidebar {
   position: relative;
   clear: both;
@@ -166,7 +170,22 @@ body {
 .nav-li:hover {
   background-color: #dadace;
 }
+.nav-child-li {
+  padding-top: 10px;
+  cursor: pointer;
+  height: 30px;
+  padding-left: 20px;
+}
+.nav-child-li:hover {
+  font-weight: 600;
+}
 .circleFillIcon {
+  display: inline-block;
+  margin-right: 10px;
+  position: relative;
+  font-size: 15px;
+}
+.circleIcon {
   display: inline-block;
   margin-right: 10px;
   position: relative;
