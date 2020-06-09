@@ -10,10 +10,7 @@ const TheatherSection = ({
   theater,
   getScreens,
   group,
-  selectMovie,
-  initShowTimes,
   selectTheater,
-  selectDate,
   selectRegion,
 }) => {
   const [regionCinemas, setRegionCinemas] = useState([]);

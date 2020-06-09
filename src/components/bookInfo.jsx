@@ -14,7 +14,6 @@ const BookInfo = ({
   theater,
   timeData,
   date,
-  screeninfo,
   moveToBefore,
   moveToNext,
   currentStep,

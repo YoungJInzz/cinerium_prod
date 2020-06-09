@@ -9,10 +9,6 @@ const Movieitems = ({
   date,
   getInitScreens,
   group,
-  selectTheater,
-  selectDate,
-  selectRegion,
-  initShowTimes,
   initTotal,
 }) => {
   const clickmovie = (item) => {

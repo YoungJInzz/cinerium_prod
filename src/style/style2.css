@@ -65,6 +65,7 @@ body {
   background-color: #808b96;
 }
 .bookingContainer {
+  position: relative;
   margin-left: 250px;
   max-width: 3000px;
   padding-top: 90px;
@@ -94,6 +95,27 @@ body {
   display: block;
   float: left;
   background-color: #ff9201;
+  transition: all 0.2s linear;
+}
+@media screen and (min-width: 1415px) {
+  .bar-icon {
+    display: none;
+  }
+}
+@media screen and (max-width: 1415px) {
+  .bar-icon {
+    transition: all 0.2s linear;
+    transform: translateX(-240px);
+  }
+  .logotag {
+    transition: all 0.2s linear;
+  }
+  .bookingContainer {
+    margin-left: 0px;
+  }
+  .main-sidebar {
+    transition: all 0.2s linear;
+  }
 }
 .logo {
   position: relative;
@@ -112,12 +134,15 @@ body {
   font-size: 30px;
   position: relative;
   float: left;
+  transition: all 0.2s linear;
 }
 .main-sidebar {
   position: absolute;
   min-height: 100%;
   width: 250px;
   background-color: #e8e8e1;
+  z-index: 2;
+  transition: all 0.2s linear;
 }
 .login {
   margin: 15px 0px 20px 0px;

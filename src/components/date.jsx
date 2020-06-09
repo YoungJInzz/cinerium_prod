@@ -7,16 +7,11 @@ const DateItem = ({
   date,
   numToDay,
   handleDate,
-  handleDay,
   getScreens,
   movie,
   theater,
   group,
-  selectMovie,
-  initShowTimes,
-  selectTheater,
   selectDate,
-  selectRegion,
   initTotal,
 }) => {
   const clickDate = (item) => {

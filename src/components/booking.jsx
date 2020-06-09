@@ -66,7 +66,7 @@ const Booking = ({
   return (
     <div
       className={
-        "bookingContainer" +
+        "bookingContainer " +
         (InitState === true || getSCreensState === true ? "notClick" : "")
       }
     >

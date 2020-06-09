@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Ribbon from "../resources/ribbon.svg";
 import {
   FaHandPointRight,
   FaRegHandPointLeft,
@@ -21,7 +20,6 @@ const TimetableByCinema = ({
   getShowtimeByCinema,
   selectDate,
   showtimeBycinema,
-  initState,
   loading,
   selectScreenName,
   selectScreen,
@@ -77,7 +75,7 @@ const TimetableByCinema = ({
             <FaHandPointRight className="icon" />
             극장별 상영시간표
           </span>
-          <span className="col2">영화별 상영시간표</span>
+          <span className="col2">영화별 상영표(개발중)</span>
         </div>
         <div className="regionList2">
           {cinemas.map((item) => (
